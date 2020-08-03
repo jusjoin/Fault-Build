@@ -1,0 +1,11 @@
+/* 
+  LocalizableStrings.strings
+  Fault Build
+
+  Created by Zane on 8/2/20.
+  Copyright © 2020 JusDev Studios. All rights reserved.
+*/
+
+"LoginPlaceHolderTextUserName" = "Username";
+"LoginPlaceHolderTextPassword" = "Password";
+"LoginButtonTitle" = "Login";
