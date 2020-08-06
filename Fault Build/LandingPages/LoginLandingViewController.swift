@@ -12,7 +12,7 @@ class LoginLandingViewController: UIViewController {
 
     private let loginContentView:UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = ThemeManager().currentTheme.mainBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -36,7 +36,7 @@ class LoginLandingViewController: UIViewController {
     
     private let loginButton:UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
+        button.backgroundColor = ThemeManager().currentTheme.primaryButtonBackgroundColor
         button.setTitle("LoginButtonTitle".localize(), for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 5

@@ -12,14 +12,15 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     let baseTableView:UITableView = {
        let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = ThemeManager().currentTheme.tableViewBackgroundColor
+        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
     let mainContentView:UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = ThemeManager().currentTheme.mainBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -29,7 +30,7 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.view.addSubview(self.mainContentView)
         self.mainContentView.addSubview(baseTableView)
         self.setupMainContentView()
-//        self.setupBaseTableView()
+        self.setupBaseTableView()
     }
     
     func setupMainContentView() {
@@ -51,23 +52,27 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
         self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Text label"
-        cell.detailTextLabel?.text = "Detail text label"
+        cell.textLabel?.text = "No Data"
+        cell.detailTextLabel?.text = "No Data"
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         return
+    }
+    
+    func reloadTableView() {
+        self.baseTableView.reloadData()
     }
 }
