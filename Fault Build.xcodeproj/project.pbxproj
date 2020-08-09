@@ -32,6 +32,7 @@
 		84AA326924DA5D0A0020D08A /* FaultDataRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326824DA5D0A0020D08A /* FaultDataRespository.swift */; };
 		84AA326B24DB687D0020D08A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326A24DB687D0020D08A /* UIColor+Extension.swift */; };
 		84AA326E24DBBC270020D08A /* GameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326D24DBBC270020D08A /* GameItem.swift */; };
+		84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		84AA326824DA5D0A0020D08A /* FaultDataRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultDataRespository.swift; sourceTree = "<group>"; };
 		84AA326A24DB687D0020D08A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		84AA326D24DBBC270020D08A /* GameItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItem.swift; sourceTree = "<group>"; };
+		84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultBuildHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				84AA321A24D759200020D08A /* Assets.xcassets */,
 				84AA321F24D759200020D08A /* Info.plist */,
 				84AA321724D7591C0020D08A /* Fault_Build.xcdatamodeld */,
+				84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */,
 			);
 			path = "Fault Build";
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				84AA325124D7BDA90020D08A /* LeaderboardViewController.swift in Sources */,
 				84AA325B24D908560020D08A /* GameItemData.swift in Sources */,
 				84AA326024DA22EC0020D08A /* Resource.swift in Sources */,
+				84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */,
 				84AA326724DA4BD60020D08A /* APIClient.swift in Sources */,
 				84AA325824D8F3A80020D08A /* Theme.swift in Sources */,
 				84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */,

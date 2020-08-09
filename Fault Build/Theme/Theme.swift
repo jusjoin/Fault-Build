@@ -11,7 +11,10 @@ import UIKit
 
 class ThemeManager {
     
-    static let shared = ThemeManager()
+    static let shared: ThemeManager = {
+        let instance = ThemeManager()
+        return instance
+    }()
     var currentTheme: Theme
     let lightTheme = LightTheme()
     let darkTheme = DarkTheme()
@@ -24,9 +27,18 @@ class ThemeManager {
 
 class Theme {
     //colors
-    var mainBackgroundColor: UIColor = UIColor()
-    var tableViewBackgroundColor: UIColor = UIColor()
-    var primaryButtonBackgroundColor: UIColor = UIColor()
+    var mainBackgroundColor: UIColor = UIColor.clear
+    var tableViewBackgroundColor: UIColor = UIColor.clear
+    var primaryButtonBackgroundColor: UIColor = UIColor.clear
+    
+    let blueFaction = "#183B72FF"
+    let redFaction = "#4B211CFF"
+    let purpleFaction = "#3F3153FF"
+    let greenFaction = "#336F36FF"
+    let whiteFaction = "#777777FF"
+    let neutralItemBG = "#A85511FF"
+    let consumableItemBG = "#222222FF"
+    let baseItemBG = "#222222FF"
     
     //fonts
     

@@ -16,6 +16,7 @@ final class FaultDataRepository {
 //    private var gameItems = [String: GameItem]()
 //    private var sortedGameItems = [(String, GameItemData)]()
     private var gameItems = [String: GameItem]()
+    private var gameItemsFactionDictionary = [String: [GameItem]]()
     private var sortedGameItems = [GameItem]()
     
     func updateGameItems(completion: @escaping (() -> Void)) {
@@ -35,10 +36,63 @@ final class FaultDataRepository {
 
     func initGameItemsFromResponseDictionary(responseDictionary: GameItemDictionary) {
         var gameItemDictionary = [String: GameItem]()
+        var gameItemFactionDictionary = [String: [GameItem]]()
+        var consumablesArray = [GameItem]()
+        var neutralArray = [GameItem]()
+        var baseItemsArray = [GameItem]()
+        var redFactionArray = [GameItem]()
+        var blueFactionArray = [GameItem]()
+        var purpleFactionArray = [GameItem]()
+        var greenFactionArray = [GameItem]()
+        var whiteFactionArray = [GameItem]()
+        
         for gameItem in responseDictionary {
-            gameItemDictionary[gameItem.key] = GameItem(itemID: gameItem.key, gameItemData: gameItem.value)
+            let item = GameItem(itemID: gameItem.key, gameItemData: gameItem.value)
+            gameItemDictionary[gameItem.key] = item
+            
+            switch(item.color) {
+            case FaultFaction.none:
+                if item.parents.count == 0 {
+                    if item.treeID == 10 {
+                        consumablesArray.append(item)
+                    }
+                    else {
+                        neutralArray.append(item)
+                    }
+                }
+                else {
+                    baseItemsArray.append(item)
+                }
+                
+            case FaultFaction.blue:
+                blueFactionArray.append(item)
+                
+            case FaultFaction.green:
+                greenFactionArray.append(item)
+                
+            case FaultFaction.purple:
+                purpleFactionArray.append(item)
+                
+            case FaultFaction.red:
+                redFactionArray.append(item)
+                
+            case FaultFaction.white:
+                whiteFactionArray.append(item)
+                
+            default :
+                break
+            }
         }
-        self.gameItems = gameItemDictionary
+        gameItems = gameItemDictionary
+        gameItemFactionDictionary["ConsumableItems"] = consumablesArray
+        gameItemFactionDictionary["NeutralItems"] = neutralArray
+        gameItemFactionDictionary["BaseItems"] = baseItemsArray
+        gameItemFactionDictionary["BlueItems"] = blueFactionArray
+        gameItemFactionDictionary["GreenItems"] = greenFactionArray
+        gameItemFactionDictionary["PurpleItems"] = purpleFactionArray
+        gameItemFactionDictionary["RedItems"] = redFactionArray
+        gameItemFactionDictionary["WhiteItems"] = whiteFactionArray
+        self.gameItemsFactionDictionary = gameItemFactionDictionary
     }
     
 //    Needs rework and to implement closures and activity indicators
@@ -58,6 +112,10 @@ final class FaultDataRepository {
             self.sortedGameItems = sortedItems
         }
         return self.sortedGameItems
+    }
+    
+    func getGameItemsFactionDictionary() -> [String: [GameItem]] {
+        return self.gameItemsFactionDictionary
     }
     
     //Needs rework and to implement closures and activity indicators
