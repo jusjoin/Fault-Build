@@ -18,14 +18,14 @@ final class FaultDataRepository {
     private var gameItems = [String: GameItem]()
     private var gameItemsFactionDictionary = [String: [GameItem]]()
     private var sortedGameItems = [GameItem]()
+//    private var heroes = [String: Hero]()
     
     func updateGameItems(completion: @escaping (() -> Void)) {
-        FaultAPI().getAllItems { (result) in
+        FaultAPI.shared.getAllItems { (result) in
             switch result {
             case .success(let items):
                 print("\(self) retrieved items:")
                 dump(items)
-//                self.gameItems = items
                 self.initGameItemsFromResponseDictionary(responseDictionary: items)
                 completion()
             case .failure(let error):
@@ -84,14 +84,14 @@ final class FaultDataRepository {
             }
         }
         gameItems = gameItemDictionary
-        gameItemFactionDictionary["ConsumableItems"] = consumablesArray
-        gameItemFactionDictionary["NeutralItems"] = neutralArray
-        gameItemFactionDictionary["BaseItems"] = baseItemsArray
-        gameItemFactionDictionary["BlueItems"] = blueFactionArray
-        gameItemFactionDictionary["GreenItems"] = greenFactionArray
-        gameItemFactionDictionary["PurpleItems"] = purpleFactionArray
-        gameItemFactionDictionary["RedItems"] = redFactionArray
-        gameItemFactionDictionary["WhiteItems"] = whiteFactionArray
+        gameItemFactionDictionary[GameItemType.consumableItems.description] = consumablesArray
+        gameItemFactionDictionary[GameItemType.neutralItems.description] = neutralArray
+        gameItemFactionDictionary[GameItemType.baseItems.description] = baseItemsArray
+        gameItemFactionDictionary[GameItemType.blueItems.description] = blueFactionArray
+        gameItemFactionDictionary[GameItemType.greenItems.description] = greenFactionArray
+        gameItemFactionDictionary[GameItemType.purpleItems.description] = purpleFactionArray
+        gameItemFactionDictionary[GameItemType.redItems.description] = redFactionArray
+        gameItemFactionDictionary[GameItemType.whiteItems.description] = whiteFactionArray
         self.gameItemsFactionDictionary = gameItemFactionDictionary
     }
     
@@ -116,6 +116,20 @@ final class FaultDataRepository {
     
     func getGameItemsFactionDictionary() -> [String: [GameItem]] {
         return self.gameItemsFactionDictionary
+    }
+    
+    func getHeroes(completion: @escaping (() -> Void)) {
+        FaultAPI.shared.getHero(heroName: "LtBelica") { (result) in
+            switch result {
+            case .success(let items):
+                print("\(self) retrieved hero:")
+                dump(items)
+//                self.initGameItemsFromResponseDictionary(responseDictionary: items)
+                completion()
+            case .failure(let error):
+                print("\(self) retrieve error on get hero: \(error)")
+            }
+        }
     }
     
     //Needs rework and to implement closures and activity indicators

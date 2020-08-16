@@ -20,16 +20,16 @@ class LeaderboardViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainContentView.addSubview(comingSoonLabel)
+//        self.mainContentView.addSubview(comingSoonLabel)
         self.setupComingSoon()
     }
     
-    func setupComingSoon() {
-        comingSoonLabel.topAnchor.constraint(equalTo: self.mainContentView.topAnchor, constant: 80).isActive = true
-        comingSoonLabel.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor, constant: 20).isActive = true
-        comingSoonLabel.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor, constant: -20).isActive = true
-        self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
-        self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
-    }
+//    func setupComingSoon() {
+//        comingSoonLabel.topAnchor.constraint(equalTo: self.mainContentView.topAnchor, constant: 80).isActive = true
+//        comingSoonLabel.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor, constant: 20).isActive = true
+//        comingSoonLabel.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor, constant: -20).isActive = true
+//        self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
+//        self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
+//    }
 
 }

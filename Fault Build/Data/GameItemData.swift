@@ -6,8 +6,14 @@
 //  Copyright © 2020 JusDev Studios. All rights reserved.
 //
 
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let items = try? JSONDecoder().decode(GameItemData.self, from: jsonData)
+
 import Foundation
 
+// MARK: - GameItemData
 struct GameItemData: Codable {
     var name: String
     var parents: [Int]
@@ -25,6 +31,7 @@ struct GameItemData: Codable {
     }
 }
 
+// MARK: - GameItemAttributeData
 struct GameItemAttributeData: Codable {
     var attributeName: String
     var value, rankValue: Double
@@ -38,6 +45,7 @@ struct GameItemAttributeData: Codable {
     }
 }
 
+// MARK: - GameItemColorData
 enum GameItemColorData: String, Codable {
     case black = "Black"
     case blue = "Blue"

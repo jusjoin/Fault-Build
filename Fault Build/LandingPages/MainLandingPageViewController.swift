@@ -17,21 +17,21 @@ class MainLandingPageViewController: UITabBarController {
     }
     
     func setupTabBar() {
-        let profileViewController = ProfileViewController()
+        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
         
-        let heroesViewController = HeroesViewController()
+        let heroesViewController = UINavigationController(rootViewController: HeroesViewController())
         heroesViewController.tabBarItem = UITabBarItem(title: "Heroes", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
         
-        let itemsViewController = ItemsViewController()
-        itemsViewController.tabBarItem = UITabBarItem(title: "Items", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
+        let itemListViewController = UINavigationController(rootViewController: ItemListViewController())
+        itemListViewController.tabBarItem = UITabBarItem(title: "Items", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
         
-        let leaderboardViewController = LeaderboardViewController()
+        let leaderboardViewController = UINavigationController(rootViewController: LeaderboardViewController())
         leaderboardViewController.tabBarItem = UITabBarItem(title: "Leaderboard", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
         
         
         
-        self.viewControllers = [profileViewController, heroesViewController, itemsViewController, leaderboardViewController]
+        self.viewControllers = [profileViewController, heroesViewController, itemListViewController, leaderboardViewController]
     }
 
 }

@@ -70,4 +70,139 @@ class GameItem {
         }
         self.attributes = attributes
     }
+    
+    func getItemImage() -> UIImage{
+        var image = UIImage()
+        switch(self.color) {
+                case FaultFaction.none:
+                    if self.treeID == 10 {
+                        image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.none)
+                    }
+                    else {
+                        image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.none)
+                    }
+        default:
+            image = FaultBuildHelper.shared.getFactionImage(faction: self.color)
+        }
+        return image
+    }
+    
+    func getChildren(gameItemID: String) -> [GameItem]{
+        var childrenArray = [GameItem]()
+        if let gameItem = FaultDataRepository.shared.getGameItems()[gameItemID]{
+            if gameItem.children.count != 0 {
+                let childID = String(gameItem.children[0])
+                if let child = FaultDataRepository.shared.getGameItems()[childID] {
+                    childrenArray.append(child)
+                    if child.children.count != 0 {
+                        childrenArray.append(contentsOf: child.getChildren(gameItemID: String(childID)))
+                    }
+                }
+            }
+        }
+        return childrenArray
+    }
+    
+//    func getItemImage(item: GameItem) -> UIImage {
+//        var image = UIImage()
+//
+//        switch(item.color) {
+//        case FaultFaction.none:
+//            if item.treeID == 10 {
+//                image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.none)
+//            }
+//            else {
+//                image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.none)
+//            }
+//
+//        case FaultFaction.blue:
+//            image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.blue)
+//
+//        case FaultFaction.green:
+//            image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.green)
+//
+//        case FaultFaction.purple:
+//            image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.purple)
+//
+//        case FaultFaction.red:
+//            image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.red)
+//
+//        case FaultFaction.white:
+//            image = FaultBuildHelper.shared.getFactionImage(faction: FaultFaction.white)
+//
+//        default :
+//            break
+//        }
+//        return image
+//    }
+    
+    func getItemImageBackgroundColor() -> UIColor {
+        var color = UIColor.clear
+        
+        switch(self.color) {
+        case FaultFaction.none:
+            if self.parents.count == 0 {
+                if self.treeID == 10 {
+                    color = UIColor(hex: ThemeManager.shared.currentTheme.consumableItemBG) ?? UIColor.clear
+                }
+                else {
+                    color = UIColor(hex: ThemeManager.shared.currentTheme.neutralItemBG) ?? UIColor.clear
+                }
+            }
+            else {
+                color = UIColor(hex: ThemeManager.shared.currentTheme.consumableItemBG) ?? UIColor.clear
+            }
+            
+        case FaultFaction.blue:
+            color = UIColor(hex: ThemeManager.shared.currentTheme.blueFaction) ?? UIColor.clear
+            
+        case FaultFaction.green:
+            color = UIColor(hex: ThemeManager.shared.currentTheme.greenFaction) ?? UIColor.clear
+            
+        case FaultFaction.purple:
+            color = UIColor(hex: ThemeManager.shared.currentTheme.purpleFaction) ?? UIColor.clear
+            
+        case FaultFaction.red:
+            color = UIColor(hex: ThemeManager.shared.currentTheme.redFaction) ?? UIColor.clear
+            
+        case FaultFaction.white:
+            color = UIColor(hex: ThemeManager.shared.currentTheme.whiteFaction) ?? UIColor.clear
+            
+        default :
+            break
+        }
+        return color
+    }
+}
+
+enum GameItemType: Int {
+    case consumableItems = 0
+    case blueItems
+    case redItems
+    case purpleItems
+    case greenItems
+    case whiteItems
+    case neutralItems
+    case baseItems
+    
+    var description : String {
+        switch self {
+        case .consumableItems:
+            return "Consumable Items"
+        case .blueItems:
+            return "Blue Items"
+        case .redItems:
+            return "Red Items"
+        case .purpleItems:
+            return "Purple Items"
+        case .greenItems:
+            return "Green Items"
+        case .whiteItems:
+            return "White Items"
+        case .neutralItems:
+            return "Neutral Items"
+        case .baseItems:
+            return "Base Items"
+        }
+    }
 }

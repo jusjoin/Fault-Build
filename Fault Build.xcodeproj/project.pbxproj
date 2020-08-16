@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84A3C44724E91D1C00DFDE5C /* HeroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* HeroData.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
 		84AA321924D7591C0020D08A /* Fault_Build.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84AA321724D7591C0020D08A /* Fault_Build.xcdatamodeld */; };
@@ -17,7 +18,7 @@
 		84AA323F24D7B5E90020D08A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84AA324124D7B5E90020D08A /* Localizable.strings */; };
 		84AA324424D7BCAB0020D08A /* MainLandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA324324D7BCAB0020D08A /* MainLandingPageViewController.swift */; };
 		84AA324B24D7BD370020D08A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA324A24D7BD370020D08A /* ProfileViewController.swift */; };
-		84AA324D24D7BD470020D08A /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA324C24D7BD470020D08A /* ItemsViewController.swift */; };
+		84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA324C24D7BD470020D08A /* ItemListViewController.swift */; };
 		84AA324F24D7BD860020D08A /* HeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA324E24D7BD860020D08A /* HeroesViewController.swift */; };
 		84AA325124D7BDA90020D08A /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA325024D7BDA90020D08A /* LeaderboardViewController.swift */; };
 		84AA325324D7D2250020D08A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA325224D7D2250020D08A /* BaseViewController.swift */; };
@@ -33,6 +34,8 @@
 		84AA326B24DB687D0020D08A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326A24DB687D0020D08A /* UIColor+Extension.swift */; };
 		84AA326E24DBBC270020D08A /* GameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326D24DBBC270020D08A /* GameItem.swift */; };
 		84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */; };
+		84AA327224E248D10020D08A /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA327124E248D10020D08A /* ItemViewController.swift */; };
+		84DB29A524E8C44200465587 /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB29A424E8C44200465587 /* CellFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84A3C44624E91D1C00DFDE5C /* HeroData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroData.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84AA320E24D7591C0020D08A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 		84AA324024D7B5E90020D08A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		84AA324324D7BCAB0020D08A /* MainLandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLandingPageViewController.swift; sourceTree = "<group>"; };
 		84AA324A24D7BD370020D08A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		84AA324C24D7BD470020D08A /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		84AA324C24D7BD470020D08A /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		84AA324E24D7BD860020D08A /* HeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewController.swift; sourceTree = "<group>"; };
 		84AA325024D7BDA90020D08A /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		84AA325224D7D2250020D08A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		84AA326A24DB687D0020D08A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		84AA326D24DBBC270020D08A /* GameItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItem.swift; sourceTree = "<group>"; };
 		84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultBuildHelper.swift; sourceTree = "<group>"; };
+		84AA327124E248D10020D08A /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		84DB29A424E8C44200465587 /* CellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +123,10 @@
 		84AA320B24D7591C0020D08A /* Fault Build */ = {
 			isa = PBXGroup;
 			children = (
+				84DB29A324E8C38A00465587 /* Helper */,
 				84AA325224D7D2250020D08A /* BaseViewController.swift */,
 				84AA325524D8EECE0020D08A /* Constants.swift */,
+				84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */,
 				84AA326324DA48A30020D08A /* Extensions */,
 				84AA325424D8EEB10020D08A /* Theme */,
 				84AA325924D908310020D08A /* Data */,
@@ -127,14 +135,12 @@
 				84AA324624D7BCEC0020D08A /* Items */,
 				84AA324524D7BCDC0020D08A /* Profile */,
 				84AA324224D7B6170020D08A /* LandingPages */,
-				84AA323C24D78D2A0020D08A /* Extensions */,
 				84AA323924D78B610020D08A /* Localization */,
 				84AA320C24D7591C0020D08A /* AppDelegate.swift */,
 				84AA320E24D7591C0020D08A /* SceneDelegate.swift */,
 				84AA321A24D759200020D08A /* Assets.xcassets */,
 				84AA321F24D759200020D08A /* Info.plist */,
 				84AA321724D7591C0020D08A /* Fault_Build.xcdatamodeld */,
-				84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */,
 			);
 			path = "Fault Build";
 			sourceTree = "<group>";
@@ -154,14 +160,6 @@
 				84AA324124D7B5E90020D08A /* Localizable.strings */,
 			);
 			path = Localization;
-			sourceTree = "<group>";
-		};
-		84AA323C24D78D2A0020D08A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				84AA323D24D78D410020D08A /* String+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		84AA324224D7B6170020D08A /* LandingPages */ = {
@@ -185,8 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				84AA324724D7BCF60020D08A /* ItemsBuilds */,
-				84AA324C24D7BD470020D08A /* ItemsViewController.swift */,
+				84AA324C24D7BD470020D08A /* ItemListViewController.swift */,
 				84AA326D24DBBC270020D08A /* GameItem.swift */,
+				84AA327124E248D10020D08A /* ItemViewController.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -227,6 +226,7 @@
 			children = (
 				84AA325C24DA1C350020D08A /* API */,
 				84AA325A24D908560020D08A /* GameItemData.swift */,
+				84A3C44624E91D1C00DFDE5C /* HeroData.swift */,
 				84AA326824DA5D0A0020D08A /* FaultDataRespository.swift */,
 			);
 			path = Data;
@@ -246,11 +246,20 @@
 		84AA326324DA48A30020D08A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				84AA323D24D78D410020D08A /* String+Extensions.swift */,
 				84AA326424DA48DF0020D08A /* URLRequest+Resource.swift */,
 				84AA326A24DB687D0020D08A /* UIColor+Extension.swift */,
 			);
 			name = Extensions;
 			path = ../Extensions;
+			sourceTree = "<group>";
+		};
+		84DB29A324E8C38A00465587 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				84DB29A424E8C44200465587 /* CellFactory.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +365,7 @@
 				84AA326B24DB687D0020D08A /* UIColor+Extension.swift in Sources */,
 				84AA323824D75A740020D08A /* LoginLandingViewController.swift in Sources */,
 				84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */,
+				84A3C44724E91D1C00DFDE5C /* HeroData.swift in Sources */,
 				84AA325324D7D2250020D08A /* BaseViewController.swift in Sources */,
 				84AA325124D7BDA90020D08A /* LeaderboardViewController.swift in Sources */,
 				84AA325B24D908560020D08A /* GameItemData.swift in Sources */,
@@ -367,10 +377,12 @@
 				84AA323E24D78D410020D08A /* String+Extensions.swift in Sources */,
 				84AA324B24D7BD370020D08A /* ProfileViewController.swift in Sources */,
 				84AA326E24DBBC270020D08A /* GameItem.swift in Sources */,
-				84AA324D24D7BD470020D08A /* ItemsViewController.swift in Sources */,
+				84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */,
 				84AA325E24DA1C6C0020D08A /* FaultAPI.swift in Sources */,
 				84AA326924DA5D0A0020D08A /* FaultDataRespository.swift in Sources */,
+				84AA327224E248D10020D08A /* ItemViewController.swift in Sources */,
 				84AA324F24D7BD860020D08A /* HeroesViewController.swift in Sources */,
+				84DB29A524E8C44200465587 /* CellFactory.swift in Sources */,
 				84AA326524DA48DF0020D08A /* URLRequest+Resource.swift in Sources */,
 				84AA324424D7BCAB0020D08A /* MainLandingPageViewController.swift in Sources */,
 				84AA326224DA27CA0020D08A /* Result.swift in Sources */,
@@ -528,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 679H57RL57;
 				INFOPLIST_FILE = "Fault Build/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -545,6 +558,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 679H57RL57;
 				INFOPLIST_FILE = "Fault Build/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

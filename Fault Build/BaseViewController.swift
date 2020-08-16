@@ -9,20 +9,30 @@
 import UIKit
 
 class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let baseTableView:UITableView = {
+    let baseTableView: UITableView = {
        let tableView = UITableView()
         tableView.backgroundColor = ThemeManager().currentTheme.tableViewBackgroundColor
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.estimatedRowHeight = 200
+        tableView.separatorColor = .clear
         return tableView
     }()
     
-    let mainContentView:UIView = {
+    let mainContentView: UIView = {
         let view = UIView()
         view.backgroundColor = ThemeManager().currentTheme.mainBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private let comingSoonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Coming Soon"
+        label.textColor = .red
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     override func viewDidLoad() {
@@ -72,7 +82,20 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         return
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func reloadTableView() {
         self.baseTableView.reloadData()
+    }
+    
+    func setupComingSoon() {
+        self.mainContentView.addSubview(comingSoonLabel)
+        comingSoonLabel.topAnchor.constraint(equalTo: self.mainContentView.topAnchor, constant: 80).isActive = true
+        comingSoonLabel.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor, constant: 20).isActive = true
+        comingSoonLabel.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor, constant: -20).isActive = true
+        self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
+        self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
     }
 }
