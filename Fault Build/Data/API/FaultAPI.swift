@@ -13,7 +13,7 @@ class FaultAPI {
     static let shared = FaultAPI()
     enum Methods: String {
         case getAllItems = "GetAllItems"
-        case getHero = "GetHero"
+        case getBelicaData = "getBelicaData"
     }
     
     let resources: Dictionary<Methods, Resource>
@@ -24,8 +24,8 @@ class FaultAPI {
         if let getAllItemsURL = URL(string: "https://api.playfault.com/items") {
             resourcesDictionary[Methods.getAllItems] = Resource(name: "GetAllItems", url: getAllItemsURL, method: "GET")
         }
-        if let getHero = URL(string: "https://api.playfault.com/heroData/") {
-            resourcesDictionary[Methods.getHero] = Resource(name: "GetHero", url: getHero, method: "GET")
+        if let getBelicaDataURL = URL(string: "https://api.playfault.com/heroData/LtBelica") {
+            resourcesDictionary[Methods.getBelicaData] = Resource(name: "GetBelicaData", url: getBelicaDataURL, method: "GET")
         }
         
         resources = resourcesDictionary
@@ -52,28 +52,23 @@ class FaultAPI {
         }
     }
     
-    func getHero(heroName:String, _ completion: @escaping ((Result<HeroData>) -> Void)) {
-        if let resource = resources[Methods.getHero] {
-            let resourceNameForHero = resource.name + heroName
-            if let resourceURLForHero = URL(string: resource.url.absoluteString + heroName) {
-                let resourceForHero = Resource(name: resourceNameForHero, url: resourceURLForHero, method: resource.method)
-                apiClient.load(resourceForHero) { (result) in
-                    switch result {
-                    case .success(let data):
-                        do {
-                            let hero = try JSONDecoder().decode(HeroData.self, from: data)
-                            completion(.success(hero))
-                        }
-                        catch {
-                            completion(.failure(error))
-                        }
-                        
-                    case .failure(let error):
-                        print("\(self) retrieve error: \(error) from resource: \(resourceForHero)")
+    func getBelicaData(_ completion: @escaping ((Result<BelicaData>) -> Void)) {
+        if let resource = resources[Methods.getBelicaData] {
+            apiClient.load(resource) { (result) in
+                switch result {
+                case .success(let data):
+                    do {
+                        let belicaData = try JSONDecoder().decode(BelicaData.self, from: data)
+                        completion(.success(belicaData))
                     }
+                    catch {
+                        completion(.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    print("\(self) retrieve error: \(error) from resource: \(resource)")
                 }
             }
-            
         }
     }
 }

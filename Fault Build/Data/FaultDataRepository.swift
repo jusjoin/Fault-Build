@@ -119,7 +119,7 @@ final class FaultDataRepository {
     }
     
     func getHeroes(completion: @escaping (() -> Void)) {
-        FaultAPI.shared.getHero(heroName: "LtBelica") { (result) in
+        FaultAPI.shared.getBelicaData() { (result) in
             switch result {
             case .success(let items):
                 print("\(self) retrieved hero:")
@@ -127,7 +127,7 @@ final class FaultDataRepository {
 //                self.initGameItemsFromResponseDictionary(responseDictionary: items)
                 completion()
             case .failure(let error):
-                print("\(self) retrieve error on get hero: \(error)")
+                print("\(self) retrieve error on get belica: \(error)")
             }
         }
     }

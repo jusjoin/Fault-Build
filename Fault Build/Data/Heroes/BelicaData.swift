@@ -6,35 +6,48 @@
 //  Copyright © 2020 JusDev Studios. All rights reserved.
 //
 
-import Foundation
+//   let hero = try? JSONDecoder().decode(BelicaData.self, from: jsonData)
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let hero = try? JSONDecoder().decode(HeroData.self, from: jsonData)
 
 import Foundation
 
-// MARK: - HeroData
-struct HeroData: Codable {
-    let info: Info
+// MARK: - BelicaData
+struct BelicaData: Codable {
+    let info: BelicaInfoData
     let health, healthPerLevel: Int
     let healthRegen, healthRegenPerLevel: Double
     let mana, manaPerLevel: Int
     let manaRegen, manaRegenPerLevel: Double
     let physicalArmor: Int
     let physicalArmorPerLevel, energyArmor, energyArmorPerLevel: Double
-    let movespeed: Int
-    let lmb: Lmb
-    let rmb: E
-    let q: Q
-    let e: E
-    let r: R
-    let p: P
+    let moveSpeed: Int
+    let lmbAbility: BelicaLMBAbilityData
+    let rmbAbility: BelicaEAbilityData
+    let qAbility: BelicaQAbilityData
+    let eAbility: BelicaEAbilityData
+    let rAbility: BelicaRAbilityData
+    let pAbility: BelicaPAbilityData
+    
+    enum CodingKeys: String, CodingKey {
+        case info
+        case health, healthPerLevel
+        case healthRegen, healthRegenPerLevel
+        case mana, manaPerLevel
+        case manaRegen, manaRegenPerLevel
+        case physicalArmor
+        case physicalArmorPerLevel, energyArmor, energyArmorPerLevel
+        case lmbAbility = "lmb"
+        case rmbAbility = "rmb"
+        case qAbility = "q"
+        case eAbility = "e"
+        case rAbility = "r"
+        case pAbility = "p"
+        case moveSpeed = "movespeed"
+    }
 }
 
-// MARK: - E
-struct E: Codable {
+// MARK: - BelicaEAbilityData
+struct BelicaEAbilityData: Codable {
     let name, eDescription: String
     let xLevel: String?
     let range, radius, cooldown, resourceCost: String
@@ -49,8 +62,8 @@ struct E: Codable {
     }
 }
 
-// MARK: - Info
-struct Info: Codable {
+// MARK: - BelicaInfoData
+struct BelicaInfoData: Codable {
     let basicRange, niche, role, damageType: String
     let infoDescription: String
 
@@ -60,8 +73,8 @@ struct Info: Codable {
     }
 }
 
-// MARK: - Lmb
-struct Lmb: Codable {
+// MARK: - BelicaLMBAbilityData
+struct BelicaLMBAbilityData: Codable {
     let name, lmbDescription: String
     let cooldown: Double
     let range, physicalDamage, energyDamage, attackSpeedPerLevel: Int
@@ -75,8 +88,8 @@ struct Lmb: Codable {
     }
 }
 
-// MARK: - P
-struct P: Codable {
+// MARK: - BelicaPAbilityData
+struct BelicaPAbilityData: Codable {
     let name, pDescription, readyMovementMultiplier, baseDamage: String
     let scalingFactor: String
 
@@ -87,8 +100,8 @@ struct P: Codable {
     }
 }
 
-// MARK: - Q
-struct Q: Codable {
+// MARK: - BelicaQAbilityData
+struct BelicaQAbilityData: Codable {
     let name, qDescription, level, cooldown: String
     let resourceCost, castTime, range, width: String
     let speed, height, launchspeed, baseDamage: String
@@ -101,8 +114,8 @@ struct Q: Codable {
     }
 }
 
-// MARK: - R
-struct R: Codable {
+// MARK: - BelicaRAbilityData
+struct BelicaRAbilityData: Codable {
     let name, rDescription, readyMovementMultiplier, range: String
     let cooldown, resourceCost, castTime, baseDamage: String
     let scalingFactor, recoveryTime, missingManaPCT, missingManaPCTMax: String

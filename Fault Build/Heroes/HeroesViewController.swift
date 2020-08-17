@@ -18,12 +18,6 @@ class HeroesViewController: BaseViewController {
         return label
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        self.mainContentView.addSubview(comingSoonLabel)
-        self.setupComingSoon()
-    }
-    
     init(){
         super.init(nibName: nil, bundle: nil)
         FaultDataRepository.shared.getHeroes(completion: { [weak self] in
@@ -39,12 +33,43 @@ class HeroesViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func setupComingSoon() {
-//        comingSoonLabel.topAnchor.constraint(equalTo: self.mainContentView.topAnchor, constant: 80).isActive = true
-//        comingSoonLabel.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor, constant: 20).isActive = true
-//        comingSoonLabel.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor, constant: -20).isActive = true
-//        self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
-//        self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func makeHeroButton() -> UIButton {
+        let button = UIButton(type: .custom)
+        button.imageView?.contentMode = .scaleAspectFit
+        if let image = UIImage(named: "Belica_icon") {
+            button.setImage(image, for: .normal)
+        }
+        button.addTarget(self, action: #selector(buttonClick(_:)), for: .touchUpInside)
+        return button
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let button1 = makeHeroButton()
+        let button2 = makeHeroButton()
+        let button3 = makeHeroButton()
+        let cell = ImageButtonTableViewCell(button1: button1, button2: button2, button3: button3, tableView: self.baseTableView, reuseIdentifier: nil)
+        return cell
+    }
+    
+    @objc func buttonClick(_ sender: Any?) {
+        let alert = UIAlertController(title: "Hero Selected", message: "Selected hero Lt Belica", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+        self.present(alert, animated: true)
+    }
 
 }
