@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8468855C24E9E3150018DE60 /* Belica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468855B24E9E3150018DE60 /* Belica.swift */; };
 		8468856024EA54C40018DE60 /* ImageButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */; };
+		8468856224EB9FAD0018DE60 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856124EB9FAD0018DE60 /* Hero.swift */; };
+		8468856424EBA1800018DE60 /* HeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856324EBA1800018DE60 /* HeroViewController.swift */; };
 		84A3C44724E91D1C00DFDE5C /* BelicaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* BelicaData.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		8468855B24E9E3150018DE60 /* Belica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Belica.swift; sourceTree = "<group>"; };
 		8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonTableViewCell.swift; sourceTree = "<group>"; };
+		8468856124EB9FAD0018DE60 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		8468856324EBA1800018DE60 /* HeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroViewController.swift; sourceTree = "<group>"; };
 		84A3C44624E91D1C00DFDE5C /* BelicaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BelicaData.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 			children = (
 				84AA324E24D7BD860020D08A /* HeroesViewController.swift */,
 				8468855B24E9E3150018DE60 /* Belica.swift */,
+				8468856124EB9FAD0018DE60 /* Hero.swift */,
+				8468856324EBA1800018DE60 /* HeroViewController.swift */,
 			);
 			path = Heroes;
 			sourceTree = "<group>";
@@ -394,12 +400,14 @@
 				8468856024EA54C40018DE60 /* ImageButtonTableViewCell.swift in Sources */,
 				84AA326024DA22EC0020D08A /* Resource.swift in Sources */,
 				84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */,
+				8468856424EBA1800018DE60 /* HeroViewController.swift in Sources */,
 				84AA326724DA4BD60020D08A /* APIClient.swift in Sources */,
 				84AA325824D8F3A80020D08A /* Theme.swift in Sources */,
 				84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */,
 				84AA323E24D78D410020D08A /* String+Extensions.swift in Sources */,
 				84AA324B24D7BD370020D08A /* ProfileViewController.swift in Sources */,
 				84AA326E24DBBC270020D08A /* GameItem.swift in Sources */,
+				8468856224EB9FAD0018DE60 /* Hero.swift in Sources */,
 				84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */,
 				84AA325E24DA1C6C0020D08A /* FaultAPI.swift in Sources */,
 				84AA326924DA5D0A0020D08A /* FaultDataRepository.swift in Sources */,

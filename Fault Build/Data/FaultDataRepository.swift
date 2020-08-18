@@ -18,7 +18,7 @@ final class FaultDataRepository {
     private var gameItems = [String: GameItem]()
     private var gameItemsFactionDictionary = [String: [GameItem]]()
     private var sortedGameItems = [GameItem]()
-//    private var heroes = [String: Hero]()
+    private var heroesDictionary = [String: Hero]()
     
     func updateGameItems(completion: @escaping (() -> Void)) {
         FaultAPI.shared.getAllItems { (result) in
@@ -118,16 +118,21 @@ final class FaultDataRepository {
         return self.gameItemsFactionDictionary
     }
     
+    func getHeroesDictionary() -> [String: Hero] {
+        return self.heroesDictionary
+    }
+    
     func getHeroes(completion: @escaping (() -> Void)) {
         FaultAPI.shared.getBelicaData() { (result) in
             switch result {
-            case .success(let items):
-                print("\(self) retrieved hero:")
-                dump(items)
-//                self.initGameItemsFromResponseDictionary(responseDictionary: items)
+            case .success(let belica):
+                print("\(self) retrieved Belica data:")
+                dump(belica)
+                let belica = Belica(belicaData: belica)
+                self.heroesDictionary[HeroName.belica.rawValue] = belica
                 completion()
             case .failure(let error):
-                print("\(self) retrieve error on get belica: \(error)")
+                print("\(self) retrieve error on get Belica data: \(error)")
             }
         }
     }

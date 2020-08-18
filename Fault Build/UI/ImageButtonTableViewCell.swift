@@ -15,13 +15,13 @@ class ImageButtonTableViewCell: UITableViewCell {
     var button2: UIButton?
     var button3: UIButton?
     
-    init(button1: UIButton, button2: UIButton?, button3: UIButton?, tableView: UITableView, reuseIdentifier: String?) {
-        self.button1 = button1
-        if let button2 = button2 {
-            self.button2 = button2
+    init(buttons: [UIButton], tableView: UITableView, reuseIdentifier: String?) {
+        self.button1 = buttons[0]
+        if buttons.indices.contains(1){
+            self.button2 = buttons[1]
         }
-        if let button3 = button3 {
-            self.button3 = button3
+        if buttons.indices.contains(2){
+            self.button2 = buttons[2]
         }
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
 //        if let reuseIdentifier = reuseIdentifier {
@@ -58,6 +58,7 @@ class ImageButtonTableViewCell: UITableViewCell {
         let button1Constraints = [
             button1.heightAnchor.constraint(equalToConstant: 100),
             button1.widthAnchor.constraint(equalToConstant: 100)
+            //TODO: Fix these constraints, they are weird and break
         ]
         NSLayoutConstraint.activate(button1Constraints)
         

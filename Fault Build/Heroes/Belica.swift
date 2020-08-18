@@ -9,7 +9,20 @@
 import Foundation
 
 // MARK: - Belica
-class Belica {
+class Belica: Hero {
+    
+    enum BelicaConstants {
+        static let iconName = "Belica_icon"
+        static let bannerName = "Belica_banner"
+        static let eAbilityImageURL = "https://api.playfault.com/imagecdn/abilities/LtBelica/E.png"
+        static let lmbAbilityImageURL = "https://api.playfault.com/imagecdn/abilities/LtBelica/LMB.png"
+        static let pAbilityImageURL = "https://api.playfault.com/imagecdn/abilities/LtBelica/P.png"
+        static let qAbilityImageURL = "https://api.playfault.com/imagecdn/abilities/LtBelica/Q.png"
+        static let rAbilityImageURL = "https://api.playfault.com/imagecdn/abilities/LtBelica/R.png"
+        static let rmbAbilityImageURL = "https://api.playfault.com/imagecdn/abilities/LtBelica/RMB.png"
+        
+    }
+    
     let info: BelicaInfo
     let health, healthPerLevel: Int
     let healthRegen, healthRegenPerLevel: Double
@@ -75,6 +88,33 @@ class Belica {
     }
 }
 
+// MARK: - BelicaInfo
+class BelicaInfo: Codable {
+    let basicRange, niche, role, damageType: String
+    let infoDescription: String
+
+    enum CodingKeys: String, CodingKey {
+        case basicRange, niche, role, damageType
+        case infoDescription = "description"
+    }
+    
+    init(basicRange: String, niche: String, role: String, damageType: String, infoDescription: String) {
+        self.basicRange = basicRange
+        self.niche = niche
+        self.role = role
+        self.damageType = damageType
+        self.infoDescription = infoDescription
+    }
+    
+    init(belicaInfoData: BelicaInfoData) {
+        self.basicRange = belicaInfoData.basicRange
+        self.niche = belicaInfoData.niche
+        self.role = belicaInfoData.role
+        self.damageType = belicaInfoData.damageType
+        self.infoDescription = belicaInfoData.infoDescription
+    }
+}
+
 // MARK: - BelicaEAbility
 class BelicaEAbility: Codable {
     let name, eDescription: String
@@ -118,33 +158,6 @@ class BelicaEAbility: Codable {
         self.scalingFactor = belicaEAbilityData.scalingFactor
         self.delay = belicaEAbilityData.delay
         self.manaperunithit = belicaEAbilityData.manaperunithit
-    }
-}
-
-// MARK: - BelicaInfo
-class BelicaInfo: Codable {
-    let basicRange, niche, role, damageType: String
-    let infoDescription: String
-
-    enum CodingKeys: String, CodingKey {
-        case basicRange, niche, role, damageType
-        case infoDescription = "description"
-    }
-    
-    init(basicRange: String, niche: String, role: String, damageType: String, infoDescription: String) {
-        self.basicRange = basicRange
-        self.niche = niche
-        self.role = role
-        self.damageType = damageType
-        self.infoDescription = infoDescription
-    }
-    
-    init(belicaInfoData: BelicaInfoData) {
-        self.basicRange = belicaInfoData.basicRange
-        self.niche = belicaInfoData.niche
-        self.role = belicaInfoData.role
-        self.damageType = belicaInfoData.damageType
-        self.infoDescription = belicaInfoData.infoDescription
     }
 }
 
@@ -306,3 +319,18 @@ class BelicaRAbility: Codable {
     }
 }
 
+extension Belica {
+    var name: String {
+        get {
+            return "Lt. Belica"
+        }
+    }
+    
+    func getHeroIconName() -> String {
+        return BelicaConstants.iconName
+    }
+    
+    func getHeroBannerName() -> String {
+        return BelicaConstants.bannerName
+    }
+}
