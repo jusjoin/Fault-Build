@@ -73,11 +73,11 @@ class ItemViewController: BaseViewController {
         NSLayoutConstraint.activate(containerViewConstraints)
         
         let headerViewConstraints = [
-                    headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-                    headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-                    headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor)
-                ]
-                NSLayoutConstraint.activate(headerViewConstraints)
+            headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor)
+        ]
+        NSLayoutConstraint.activate(headerViewConstraints)
         
         let imageViewConstraints = [
             imageView.topAnchor.constraint(equalTo: headerView.topAnchor),
@@ -186,8 +186,6 @@ class ItemViewController: BaseViewController {
         default:
             break
         }
-        
-        
         
         return label
     }

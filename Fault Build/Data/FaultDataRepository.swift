@@ -128,7 +128,7 @@ final class FaultDataRepository {
             case .success(let belica):
                 print("\(self) retrieved Belica data:")
                 dump(belica)
-                let belica = Belica(belicaData: belica)
+//                let belica = Belica(belicaData: belica)
                 self.heroesDictionary[HeroName.belica.rawValue] = belica
                 completion()
             case .failure(let error):

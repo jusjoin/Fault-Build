@@ -46,7 +46,7 @@ class HeroesViewController: BaseViewController {
         let button = UIButton(type: .custom)
         button.imageView?.contentMode = .scaleAspectFit
         if let hero = self.heroes[heroName] {
-            if let image = UIImage(named: hero.getHeroIconName()) {
+            if let image = UIImage(named: hero.iconName) {
                 button.setImage(image, for: .normal)
             }
             button.addTarget(self, action: #selector(buttonClick(_:)), for: .touchUpInside)

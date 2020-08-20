@@ -52,13 +52,13 @@ class FaultAPI {
         }
     }
     
-    func getBelicaData(_ completion: @escaping ((Result<BelicaData>) -> Void)) {
+    func getBelicaData(_ completion: @escaping ((Result<Belica>) -> Void)) {
         if let resource = resources[Methods.getBelicaData] {
             apiClient.load(resource) { (result) in
                 switch result {
                 case .success(let data):
                     do {
-                        let belicaData = try JSONDecoder().decode(BelicaData.self, from: data)
+                        let belicaData = try JSONDecoder().decode(Belica.self, from: data)
                         completion(.success(belicaData))
                     }
                     catch {

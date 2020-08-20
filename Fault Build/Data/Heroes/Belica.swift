@@ -1,19 +1,19 @@
 //
-//  HeroData.swift
+//  Hero.swift
 //  Fault Build
 //
 //  Created by Zane on 8/16/20.
 //  Copyright © 2020 JusDev Studios. All rights reserved.
 //
 
-//   let hero = try? JSONDecoder().decode(BelicaData.self, from: jsonData)
+//   let hero = try? JSONDecoder().decode(Belica.self, from: json)
 
 
 import Foundation
 
-// MARK: - BelicaData
-struct BelicaData: Codable {
-    let info: BelicaInfoData
+// MARK: - Belica
+class Belica: Codable, Hero {
+    let info: BelicaInfo
     let health, healthPerLevel: Int
     let healthRegen, healthRegenPerLevel: Double
     let mana, manaPerLevel: Int
@@ -21,12 +21,12 @@ struct BelicaData: Codable {
     let physicalArmor: Int
     let physicalArmorPerLevel, energyArmor, energyArmorPerLevel: Double
     let moveSpeed: Int
-    let lmbAbility: BelicaLMBAbilityData
-    let rmbAbility: BelicaEAbilityData
-    let qAbility: BelicaQAbilityData
-    let eAbility: BelicaEAbilityData
-    let rAbility: BelicaRAbilityData
-    let pAbility: BelicaPAbilityData
+    let lmbAbility: LMBAbility
+    let rmbAbility: BelicaEAbility
+    let qAbility: BelicaQAbility
+    let eAbility: BelicaEAbility
+    let rAbility: BelicaRAbility
+    let pAbility: BelicaPAbility
     
     enum CodingKeys: String, CodingKey {
         case info
@@ -46,8 +46,19 @@ struct BelicaData: Codable {
     }
 }
 
-// MARK: - BelicaEAbilityData
-struct BelicaEAbilityData: Codable {
+// MARK: - BelicaInfo
+class BelicaInfo: Codable {
+    let basicRange, niche, role, damageType: String
+    let infoDescription: String
+
+    enum CodingKeys: String, CodingKey {
+        case basicRange, niche, role, damageType
+        case infoDescription = "description"
+    }
+}
+
+// MARK: - BelicaEAbility
+class BelicaEAbility: Codable, Ability {
     let name, eDescription: String
     let xLevel: String?
     let range, radius, cooldown, resourceCost: String
@@ -62,34 +73,8 @@ struct BelicaEAbilityData: Codable {
     }
 }
 
-// MARK: - BelicaInfoData
-struct BelicaInfoData: Codable {
-    let basicRange, niche, role, damageType: String
-    let infoDescription: String
-
-    enum CodingKeys: String, CodingKey {
-        case basicRange, niche, role, damageType
-        case infoDescription = "description"
-    }
-}
-
-// MARK: - BelicaLMBAbilityData
-struct BelicaLMBAbilityData: Codable {
-    let name, lmbDescription: String
-    let cooldown: Double
-    let range, physicalDamage, energyDamage, attackSpeedPerLevel: Int
-    let adaptiveDamagePerLevel: Double
-    let scalingFactor: String
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case lmbDescription = "description"
-        case cooldown, range, physicalDamage, energyDamage, attackSpeedPerLevel, adaptiveDamagePerLevel, scalingFactor
-    }
-}
-
-// MARK: - BelicaPAbilityData
-struct BelicaPAbilityData: Codable {
+// MARK: - BelicaPAbility
+class BelicaPAbility: Codable, Ability {
     let name, pDescription, readyMovementMultiplier, baseDamage: String
     let scalingFactor: String
 
@@ -100,8 +85,8 @@ struct BelicaPAbilityData: Codable {
     }
 }
 
-// MARK: - BelicaQAbilityData
-struct BelicaQAbilityData: Codable {
+// MARK: - BelicaQAbility
+class BelicaQAbility: Codable, Ability {
     let name, qDescription, level, cooldown: String
     let resourceCost, castTime, range, width: String
     let speed, height, launchspeed, baseDamage: String
@@ -114,8 +99,8 @@ struct BelicaQAbilityData: Codable {
     }
 }
 
-// MARK: - BelicaRAbilityData
-struct BelicaRAbilityData: Codable {
+// MARK: - BelicaRAbility
+class BelicaRAbility: Codable, Ability {
     let name, rDescription, readyMovementMultiplier, range: String
     let cooldown, resourceCost, castTime, baseDamage: String
     let scalingFactor, recoveryTime, missingManaPCT, missingManaPCTMax: String

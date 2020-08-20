@@ -37,6 +37,10 @@ final class FaultBuildHelper {
         return UIImage(named: name) ?? UIImage()
     }
     
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
 //    func getNonFactionImage(type: String) -> UIImage{
 //        var name = ""
 //        switch(type) {
