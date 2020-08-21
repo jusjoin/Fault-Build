@@ -16,6 +16,7 @@
 		8468856A24EE2F6F0018DE60 /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856924EE2F6F0018DE60 /* Ability.swift */; };
 		8468856C24EE3F480018DE60 /* HeroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856B24EE3F480018DE60 /* HeroData.swift */; };
 		8468856F24EE4D9B0018DE60 /* LMBAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856E24EE4D9B0018DE60 /* LMBAbility.swift */; };
+		8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */; };
 		84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* Belica.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
@@ -67,6 +68,7 @@
 		8468856924EE2F6F0018DE60 /* Ability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
 		8468856B24EE3F480018DE60 /* HeroData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroData.swift; sourceTree = "<group>"; };
 		8468856E24EE4D9B0018DE60 /* LMBAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMBAbility.swift; sourceTree = "<group>"; };
+		8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBTableViewCell.swift; sourceTree = "<group>"; };
 		84A3C44624E91D1C00DFDE5C /* Belica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Belica.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */,
 				8468856524EC6BCF0018DE60 /* HeroStatsTableViewCell.swift */,
 				8468856724ED97B30018DE60 /* LMBAbilityTableViewCell.swift */,
+				8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				84AA326E24DBBC270020D08A /* GameItem.swift in Sources */,
 				8468856224EB9FAD0018DE60 /* Hero.swift in Sources */,
 				84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */,
+				8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */,
 				84AA325E24DA1C6C0020D08A /* FaultAPI.swift in Sources */,
 				84AA326924DA5D0A0020D08A /* FaultDataRepository.swift in Sources */,
 				84AA327224E248D10020D08A /* ItemViewController.swift in Sources */,

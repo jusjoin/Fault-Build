@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LMBAbilityTableViewCell: UITableViewCell {
+class LMBAbilityTableViewCell: FBTableViewCell {
 
         var lmbAbility: LMBAbility
         let stackView1 = UIStackView()

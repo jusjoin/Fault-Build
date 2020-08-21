@@ -14,7 +14,10 @@ class BaseViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.backgroundColor = ThemeManager().currentTheme.tableViewBackgroundColor
 //        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 25
         tableView.separatorColor = .clear
         return tableView
     }()

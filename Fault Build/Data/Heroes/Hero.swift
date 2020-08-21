@@ -24,10 +24,13 @@ protocol Hero {
     func getBasicDefense() -> Int
     func getBasicDefensePerLevel() -> Double
     func getBaseHealth() -> Int
+    func getHealthPerLevel() -> Int
     func getHealthRegen() -> Double
+    func getHealthRegenPerLevel() -> Double
     func getManaRegen() -> Double
     func getManaRegenPerLevel() -> Double
     func getAbilityDefense() -> Double
+    func getAbilityDefensePerLevel() -> Double
     func getBasicAttackDamage() -> Int
     func getBasicAttackDamagePerLevel() -> Double
     func getAttackSpeed() -> Double

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageButtonTableViewCell: UITableViewCell {
+class ImageButtonTableViewCell: FBTableViewCell {
 
     let stackView = UIStackView()
     var button1: UIButton

@@ -132,17 +132,16 @@ class HeroViewController: BaseViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        var cell = FBTableViewCell(style: .subtitle, reuseIdentifier: "heroTableViewCell")
+        cell.detailTextLabel?.numberOfLines = 0
         let row = HeroTableSections(rawValue: indexPath.section)
         switch row {
         case .stats:
             cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.baseTableView, reuseIdentifier: nil)
             
         case .passive:
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             cell.textLabel?.text = self.hero.getPAbility().getName()
             cell.detailTextLabel?.text = self.hero.getPAbility().getDetails()
-            cell.detailTextLabel?.numberOfLines = 0
             hero.getAbilityImage(imageURL: self.hero.pAbilityImageURL, completion: { image in
                 DispatchQueue.main.async {
                     guard let image = image else { return }
@@ -211,7 +210,23 @@ class HeroViewController: BaseViewController {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let containerView = UIView()
         let label = UILabel()
+        containerView.addSubview(label)
+//        let containerViewConstraints = [
+//            containerView.topAnchor.constraint(equalTo: containerView.superview.topAnchor, constant: 5),
+//            containerView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+//            containerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
+//            containerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5)
+//        ]
+        let labelConstraints = [
+            label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+            label.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+            label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
+            label.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5)
+        ]
+        NSLayoutConstraint.activate(labelConstraints)
+        
         label.textAlignment = .center
         let sectionType = HeroTableSections(rawValue: section)
         label.text = sectionType?.description

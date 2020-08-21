@@ -302,26 +302,26 @@ extension Belica {
     }
     
     func getAbilityImage(imageURL: String, completion: @escaping (UIImage?) -> ()) {
-           if let imageURL = URL(string: imageURL) {
-               FaultBuildHelper.shared.getData(from: imageURL, completion: { data, response, error in
-                   guard let data = data, error == nil else {
-                       print("Error retrieving data from " + imageURL.absoluteString)
-                       return
-                       
-                   }
-                   print("Successfully retrieved data from " + imageURL.absoluteString)
-                   completion(UIImage(data: data))
-               })
-           }
-       }
+        if let imageURL = URL(string: imageURL) {
+            FaultBuildHelper.shared.getData(from: imageURL, completion: { data, response, error in
+                guard let data = data, error == nil else {
+                    print("Error retrieving data from " + imageURL.absoluteString)
+                    return
+                    
+                }
+                print("Successfully retrieved data from " + imageURL.absoluteString)
+                completion(UIImage(data: data))
+            })
+        }
+    }
     
-//    func getIconName() -> String {
-//        return self.iconName
-//    }
-//
-//    func getBannerName() -> String {
-//        return self.bannerName
-//    }
+    //    func getIconName() -> String {
+    //        return self.iconName
+    //    }
+    //
+    //    func getBannerName() -> String {
+    //        return self.bannerName
+    //    }
     
     func getBaseHealth() -> Int {
         return self.health
@@ -347,6 +347,10 @@ extension Belica {
         return self.energyArmor
     }
     
+    func getAbilityDefensePerLevel() -> Double {
+        return self.energyArmorPerLevel
+    }
+    
     func getBasicAttackDamage() -> Int {
         return max(self.lmbAbility.physicalDamage, self.lmbAbility.energyDamage)
     }
@@ -363,7 +367,7 @@ extension Belica {
         return self.moveSpeed
     }
     
-    func gethealthPerLevel() -> Int {
+    func getHealthPerLevel() -> Int {
         return self.healthPerLevel
     }
     
@@ -391,129 +395,125 @@ extension Belica {
         return self.lmbAbility
     }
     
-//    func getLMBAbilityDetails() -> String {
-//        return ""
-//    }
+    //    func getLMBAbilityDetails() -> String {
+    //        return ""
+    //    }
     
     func getPAbility() -> Ability {
         return self.pAbility
     }
-
-//    func getPAbilityDetails() -> String {
-//        return pAbility.pDescription
-//    }
+    
+    //    func getPAbilityDetails() -> String {
+    //        return pAbility.pDescription
+    //    }
     
     func getQAbility() -> Ability {
         return self.qAbility
     }
-
-//    func getQAbilityDetails() -> String {
-//        return ""
-//    }
-
+    
+    //    func getQAbilityDetails() -> String {
+    //        return ""
+    //    }
+    
     func getEAbility() -> Ability {
         return self.eAbility
     }
-
-//    func getEAbilityDetails() -> String {
-//        return ""
-//    }
-
+    
+    //    func getEAbilityDetails() -> String {
+    //        return ""
+    //    }
+    
     func getRAbility() -> Ability {
         return self.rAbility
     }
-
-//    func getRAbilityDetails() -> String {
-//        return ""
-//    }
-
+    
+    //    func getRAbilityDetails() -> String {
+    //        return ""
+    //    }
+    
     func getRMBAbility() -> Ability {
         return self.rmbAbility
     }
-
-//    func getRMBAbilityDetails() -> String {
-//        return ""
-//    }
+    
+    //    func getRMBAbilityDetails() -> String {
+    //        return ""
+    //    }
 }
 
 extension BelicaPAbility{
     func getName() -> String {
-            return self.name
-        }
+        return self.name
+    }
     
-        func getDetails() -> String {
-//            var details = ""
-//            details += self.eDescription != "" ? self.eDescription + "\n\n" : ""
-//            details += self.range != "" ? self.range + "\n" : ""
-//            details += self.radius != "" ? self.radius + "\n" : ""
-//            details += self.cooldown != "" ? self.cooldown + "\n" : ""
-//            details += self.resourceCost != "" ? self.resourceCost + "\n" : ""
-//            if let lifetime = self.lifetime {
-//                details += lifetime != "" ? lifetime + "\n" : ""
-//            }
-//            details += self.baseDamage != "" ? self.baseDamage + "\n" : ""
-            return self.pDescription
-        }
-}
-
-extension BelicaEAbility{
-    func getName() -> String {
-            return self.name
-        }
-    
-        func getDetails() -> String {
-            var details = ""
-            details += self.eDescription != "" ? self.eDescription + "\n\n" : ""
-            details += self.range != "" ? self.range + "\n" : ""
-            details += self.radius != "" ? self.radius + "\n" : ""
-            details += self.cooldown != "" ? self.cooldown + "\n" : ""
-            details += self.resourceCost != "" ? self.resourceCost + "\n" : ""
-            if let lifetime = self.lifetime {
-                details += lifetime != "" ? lifetime + "\n" : ""
-            }
-            details += self.baseDamage != "" ? self.baseDamage + "\n" : ""
-            return details
-        }
+    func getDetails() -> String {
+        return self.pDescription
+    }
 }
 
 extension BelicaQAbility{
     func getName() -> String {
-            return self.name
-        }
+        return self.name
+    }
     
-        func getDetails() -> String {
-            var details = ""
-//            details += self.eDescription != "" ? self.eDescription + "\n\n" : ""
-//            details += self.range != "" ? self.range + "\n" : ""
-//            details += self.radius != "" ? self.radius + "\n" : ""
-//            details += self.cooldown != "" ? self.cooldown + "\n" : ""
-//            details += self.resourceCost != "" ? self.resourceCost + "\n" : ""
-//            if let lifetime = self.lifetime {
-//                details += lifetime != "" ? lifetime + "\n" : ""
-//            }
-//            details += self.baseDamage != "" ? self.baseDamage + "\n" : ""
-            return details
+    func getDetails() -> String {
+        var details = ""
+        details += self.qDescription != "" ? self.qDescription + "\n\n" : ""
+        details += self.resourceCost != "" ? "Resource Cost: " + self.resourceCost + "\n" : ""
+        details += self.baseDamage != "" ? "Base Damage: " + self.baseDamage + "\n" : ""
+        details += self.range != "" ? "Range: " + self.range + "\n" : ""
+        details += self.width != "" ? "Width: " + self.width + "\n" : ""
+        details += self.height != "" ? "Height: " + self.height + "\n" : ""
+        details += self.castTime != "" ? "Cast Time: " + self.castTime + "\n" : ""
+        details += self.cooldown != "" ? "Cooldown: " + self.cooldown + "\n" : ""
+        details += self.speed != "" ? "Speed: " + self.speed + "\n" : ""
+        details += self.launchspeed != "" ? "Launch Speed: " + self.launchspeed + "\n" : ""
+        details += self.scalingFactor != "" ? "Scaling Factor: " + self.scalingFactor + "\n" : ""
+        details += self.duration != "" ? "Duration: " + self.duration + "\n" : ""
+        return details
+    }
+}
+
+extension BelicaEAbility{
+    func getName() -> String {
+        return self.name
+    }
+    
+    func getDetails() -> String {
+        var details = ""
+        details += self.eDescription != "" ? self.eDescription + "\n\n" : ""
+        details += self.resourceCost != "" ? "Resource Cost: " + self.resourceCost + "\n" : ""
+        details += self.baseDamage != "" ? "Base Damage" + self.baseDamage + "\n" : ""
+        details += self.range != "" ? "Range: " + self.range + "\n" : ""
+        details += self.radius != "" ? "Radius: " + self.radius + "\n" : ""
+        details += self.cooldown != "" ? "Cooldown: " + self.cooldown + "\n" : ""
+        
+        if let lifetime = self.lifetime {
+            details += lifetime != "" ? "Lifetime: " + lifetime + "\n" : ""
         }
+        
+        return details
+    }
 }
 
 extension BelicaRAbility{
     func getName() -> String {
-            return self.name
-        }
+        return self.name
+    }
     
-        func getDetails() -> String {
-            var details = ""
-//            details += self.eDescription != "" ? self.eDescription + "\n\n" : ""
-//            details += self.range != "" ? self.range + "\n" : ""
-//            details += self.radius != "" ? self.radius + "\n" : ""
-//            details += self.cooldown != "" ? self.cooldown + "\n" : ""
-//            details += self.resourceCost != "" ? self.resourceCost + "\n" : ""
-//            if let lifetime = self.lifetime {
-//                details += lifetime != "" ? lifetime + "\n" : ""
-//            }
-//            details += self.baseDamage != "" ? self.baseDamage + "\n" : ""
-            return details
-        }
+    func getDetails() -> String {
+        var details = ""
+        details += self.rDescription != "" ? self.rDescription + "\n\n" : ""
+        details += self.resourceCost != "" ? "Resource Cost: " + self.resourceCost + "\n" : ""
+        details += self.baseDamage != "" ? "Base Damage: " + self.baseDamage + "\n" : ""
+        details += self.range != "" ? "Range: " + self.range + "\n" : ""
+        details += self.castTime != "" ? "Cast Time: " + self.castTime + "\n" : ""
+        details += self.recoveryTime != "" ? "Recovery Time: " + self.recoveryTime + "\n" : ""
+        details += self.cooldown != "" ? "Cooldown" + self.cooldown + "\n" : ""
+        details += self.missingManaPCT != "" ? "Missing Mana PCT: " + self.missingManaPCT + "\n" : ""
+        details += self.missingManaPCTMax != "" ? "Missing Mana PCT Max: " + self.missingManaPCTMax + "\n" : ""
+        details += self.scalingFactor != "" ? "Scaling Factor: " + self.scalingFactor + "\n" : ""
+        return details
+    }
 }
 
 
