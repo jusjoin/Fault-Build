@@ -17,6 +17,10 @@
 		8468856C24EE3F480018DE60 /* HeroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856B24EE3F480018DE60 /* HeroData.swift */; };
 		8468856F24EE4D9B0018DE60 /* LMBAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856E24EE4D9B0018DE60 /* LMBAbility.swift */; };
 		8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */; };
+		8468857324F1A8FB0018DE60 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857224F1A8FB0018DE60 /* Item.swift */; };
+		8468857624F1D8470018DE60 /* ItemBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857524F1D8470018DE60 /* ItemBuilderViewController.swift */; };
+		8468857824F357910018DE60 /* ItemFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857724F357910018DE60 /* ItemFilterTableViewCell.swift */; };
+		8468857C24F3865F0018DE60 /* StackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857B24F3865F0018DE60 /* StackViewFactory.swift */; };
 		84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* Belica.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
@@ -69,6 +73,10 @@
 		8468856B24EE3F480018DE60 /* HeroData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroData.swift; sourceTree = "<group>"; };
 		8468856E24EE4D9B0018DE60 /* LMBAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMBAbility.swift; sourceTree = "<group>"; };
 		8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBTableViewCell.swift; sourceTree = "<group>"; };
+		8468857224F1A8FB0018DE60 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		8468857524F1D8470018DE60 /* ItemBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBuilderViewController.swift; sourceTree = "<group>"; };
+		8468857724F357910018DE60 /* ItemFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFilterTableViewCell.swift; sourceTree = "<group>"; };
+		8468857B24F3865F0018DE60 /* StackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewFactory.swift; sourceTree = "<group>"; };
 		84A3C44624E91D1C00DFDE5C /* Belica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Belica.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 				8468856524EC6BCF0018DE60 /* HeroStatsTableViewCell.swift */,
 				8468856724ED97B30018DE60 /* LMBAbilityTableViewCell.swift */,
 				8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */,
+				8468857724F357910018DE60 /* ItemFilterTableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -150,8 +159,17 @@
 			isa = PBXGroup;
 			children = (
 				84AA325A24D908560020D08A /* GameItemData.swift */,
+				8468857224F1A8FB0018DE60 /* Item.swift */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		8468857424F1D7D90018DE60 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				8468857524F1D8470018DE60 /* ItemBuilderViewController.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 		84AA320024D7591C0020D08A = {
@@ -212,6 +230,7 @@
 		84AA324224D7B6170020D08A /* LandingPages */ = {
 			isa = PBXGroup;
 			children = (
+				8468857424F1D7D90018DE60 /* Builder */,
 				84AA325224D7D2250020D08A /* BaseViewController.swift */,
 				84AA323724D75A740020D08A /* LoginLandingViewController.swift */,
 				84AA324324D7BCAB0020D08A /* MainLandingPageViewController.swift */,
@@ -312,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				84DB29A424E8C44200465587 /* CellFactory.swift */,
+				8468857B24F3865F0018DE60 /* StackViewFactory.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -419,10 +439,13 @@
 				84AA326B24DB687D0020D08A /* UIColor+Extension.swift in Sources */,
 				84AA323824D75A740020D08A /* LoginLandingViewController.swift in Sources */,
 				8468856624EC6BCF0018DE60 /* HeroStatsTableViewCell.swift in Sources */,
+				8468857324F1A8FB0018DE60 /* Item.swift in Sources */,
 				84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */,
+				8468857C24F3865F0018DE60 /* StackViewFactory.swift in Sources */,
 				8468856824ED97B30018DE60 /* LMBAbilityTableViewCell.swift in Sources */,
 				84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */,
 				84AA325324D7D2250020D08A /* BaseViewController.swift in Sources */,
+				8468857824F357910018DE60 /* ItemFilterTableViewCell.swift in Sources */,
 				8468856C24EE3F480018DE60 /* HeroData.swift in Sources */,
 				84AA325124D7BDA90020D08A /* LeaderboardViewController.swift in Sources */,
 				84AA325B24D908560020D08A /* GameItemData.swift in Sources */,
@@ -446,6 +469,7 @@
 				84AA324F24D7BD860020D08A /* HeroesViewController.swift in Sources */,
 				8468855C24E9E3150018DE60 /* Belica+Extension.swift in Sources */,
 				84DB29A524E8C44200465587 /* CellFactory.swift in Sources */,
+				8468857624F1D8470018DE60 /* ItemBuilderViewController.swift in Sources */,
 				84AA326524DA48DF0020D08A /* URLRequest+Resource.swift in Sources */,
 				84AA324424D7BCAB0020D08A /* MainLandingPageViewController.swift in Sources */,
 				84AA326224DA27CA0020D08A /* Result.swift in Sources */,

@@ -30,6 +30,7 @@ class GameItemAttribute {
 }
 
 class GameItem {
+    
     let itemID: String
     let name: String
     let parents: [Int]
@@ -40,6 +41,7 @@ class GameItem {
     let active: String
     let cost: Int
     let color: String
+    var attributeNames: [String]
     
     init(itemID: String, name: String, parents: [Int], children: [Int], treeID: Int, attributes: [GameItemAttribute], passive: String, active: String, cost: Int, color: String) {
         self.itemID = itemID
@@ -52,6 +54,12 @@ class GameItem {
         self.active = active
         self.cost = cost
         self.color = color
+        
+        self.attributeNames = [String]()
+        for attribute in self.attributes {
+            self.attributeNames.append(attribute.attributeName.lowercased())
+        }
+        
     }
     
     init(itemID: String, gameItemData: GameItemData) {
@@ -69,6 +77,10 @@ class GameItem {
             attributes.append(GameItemAttribute(gameItemAttributeData: gameItemAttribute))
         }
         self.attributes = attributes
+        self.attributeNames = [String]()
+        for attribute in self.attributes {
+            self.attributeNames.append(attribute.attributeName.lowercased())
+        }
     }
     
     func getItemImage() -> UIImage{
@@ -175,7 +187,7 @@ class GameItem {
     }
 }
 
-enum GameItemType: Int {
+enum GameItemType: Int, CaseIterable {
     case consumableItems = 0
     case blueItems
     case redItems
@@ -204,5 +216,23 @@ enum GameItemType: Int {
         case .baseItems:
             return "Base Items"
         }
+    }
+}
+
+extension GameItem: Hashable, Equatable {
+//    var hashValue: Int {
+//        return self.itemID.hashValue ^
+//        self.name.hashValue ^
+//            self.color.hashValue
+//    }
+//
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.itemID.hashValue)
+        hasher.combine(self.name.hashValue)
+        hasher.combine(self.color.hashValue)
+    }
+    
+    static func == (lhs: GameItem, rhs: GameItem) -> Bool {
+        return lhs.itemID == rhs.itemID && lhs.name == rhs.name
     }
 }

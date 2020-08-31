@@ -17,6 +17,7 @@ final class FaultDataRepository {
 //    private var sortedGameItems = [(String, GameItemData)]()
     private var gameItems = [String: GameItem]()
     private var gameItemsFactionDictionary = [String: [GameItem]]()
+    private var filteredGameItemsFactionDictionary = [String: [GameItem]]()
     private var sortedGameItems = [GameItem]()
     private var heroesDictionary = [String: Hero]()
     
@@ -135,6 +136,74 @@ final class FaultDataRepository {
                 print("\(self) retrieve error on get Belica data: \(error)")
             }
         }
+    }
+    
+    func FilterGameItemsFactionDictionary(filters: [String]? = nil, searchString: String? = nil){
+        if filters != nil || searchString != nil {
+            
+            var filtersToUse = [String]()
+            var searchStringToUse = ""
+            
+            if let filters = filters {
+                filtersToUse = filters
+            }
+            
+            if let searchString = searchString {
+                searchStringToUse = searchString.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            }
+            
+            var filteredItems = [String: [GameItem]]()
+            let consumablesArray = [GameItem]()
+            let neutralArray = [GameItem]()
+            let baseItemsArray = [GameItem]()
+            let redFactionArray = [GameItem]()
+            let blueFactionArray = [GameItem]()
+            let purpleFactionArray = [GameItem]()
+            let greenFactionArray = [GameItem]()
+            let whiteFactionArray = [GameItem]()
+            filteredItems[GameItemType.consumableItems.description] = consumablesArray
+            filteredItems[GameItemType.neutralItems.description] = neutralArray
+            filteredItems[GameItemType.baseItems.description] = baseItemsArray
+            filteredItems[GameItemType.blueItems.description] = blueFactionArray
+            filteredItems[GameItemType.greenItems.description] = greenFactionArray
+            filteredItems[GameItemType.purpleItems.description] = purpleFactionArray
+            filteredItems[GameItemType.redItems.description] = redFactionArray
+            filteredItems[GameItemType.whiteItems.description] = whiteFactionArray
+            
+            for factionDictionary in self.gameItemsFactionDictionary {
+                let itemArray = factionDictionary.value
+                for item in itemArray {
+                    var shouldAppend = false
+                    let itemName = item.name.lowercased()
+                    if !filtersToUse.isEmpty {
+                        if !Set(item.attributeNames).isDisjoint(with: filtersToUse) {
+                            if (searchStringToUse.count > 0) {
+                                if itemName.contains(searchStringToUse) {
+                                    shouldAppend = true
+                                }
+                            }
+                            else {
+                                shouldAppend = true
+                            }
+                        }
+                    }
+                    else {
+                        if itemName.contains(searchStringToUse) {
+                            shouldAppend = true
+                        }
+                    }
+                    if shouldAppend {
+                        filteredItems[factionDictionary.key]?.append(item)
+                    }
+                }
+            }
+            self.filteredGameItemsFactionDictionary = filteredItems
+            
+        }
+    }
+    
+    func getFilteredGameItemsFactionDictionary() -> [String: [GameItem]]{
+        return self.filteredGameItemsFactionDictionary
     }
     
     //Needs rework and to implement closures and activity indicators

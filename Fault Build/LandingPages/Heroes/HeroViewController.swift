@@ -9,7 +9,7 @@
 import UIKit
 
 class HeroViewController: BaseViewController {
-
+    
     enum HeroTableSections: Int, CaseIterable {
         case stats
         case passive
@@ -55,8 +55,8 @@ class HeroViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRightBarButton()
         setupTableHeader()
-
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,22 +64,27 @@ class HeroViewController: BaseViewController {
         sizeHeaderToFit()
     }
     
+    func setupRightBarButton() {
+        let buildButton = UIBarButtonItem(title: "Build", style: .plain, target: self, action: #selector(navigateToBuildScreen(_:)))
+        self.navigationItem.rightBarButtonItem = buildButton
+    }
+    
     func setupTableHeader() {
         let containerView = UITableViewHeaderFooterView()
         containerView.translatesAutoresizingMaskIntoConstraints = false;
         let imageView = UIImageView(image: UIImage(named: self.hero.bannerName))
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//            let label = UILabel()
-//            label.translatesAutoresizingMaskIntoConstraints = false;
-//            label.text = hero.name
-//            label.textColor = .black
-//            label.textAlignment = .center
-//            label.sizeToFit()
-            
+        //            let label = UILabel()
+        //            label.translatesAutoresizingMaskIntoConstraints = false;
+        //            label.text = hero.name
+        //            label.textColor = .black
+        //            label.textAlignment = .center
+        //            label.sizeToFit()
+        
         let headerView = UIView()
         headerView.translatesAutoresizingMaskIntoConstraints = false;
         headerView.addSubview(imageView)
-//            headerView.addSubview(label)
+        //            headerView.addSubview(label)
         containerView.addSubview(headerView)
         self.baseTableView.tableHeaderView = containerView
         
@@ -106,14 +111,14 @@ class HeroViewController: BaseViewController {
             imageView.widthAnchor.constraint(equalTo: self.baseTableView.widthAnchor)
         ]
         NSLayoutConstraint.activate(imageViewConstraints)
-            
-//            let labelConstraints = [
-//                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
-//                label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-//                label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
-//            ]
-//            NSLayoutConstraint.activate(labelConstraints)
-        }
+        
+        //            let labelConstraints = [
+        //                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
+        //                label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+        //                label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
+        //            ]
+        //            NSLayoutConstraint.activate(labelConstraints)
+    }
     
     func sizeHeaderToFit() {
         if let headerView = self.baseTableView.tableHeaderView {
@@ -213,12 +218,12 @@ class HeroViewController: BaseViewController {
         let containerView = UIView()
         let label = UILabel()
         containerView.addSubview(label)
-//        let containerViewConstraints = [
-//            containerView.topAnchor.constraint(equalTo: containerView.superview.topAnchor, constant: 5),
-//            containerView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
-//            containerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
-//            containerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5)
-//        ]
+        //        let containerViewConstraints = [
+        //            containerView.topAnchor.constraint(equalTo: containerView.superview.topAnchor, constant: 5),
+        //            containerView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+        //            containerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
+        //            containerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5)
+        //        ]
         let labelConstraints = [
             label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
             label.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
@@ -233,5 +238,9 @@ class HeroViewController: BaseViewController {
         
         return label
     }
-
+    
+    @objc func navigateToBuildScreen(_ sender: Any) {
+        let buildViewController = ItemBuilderViewController(withHero: self.hero)
+        self.navigationController?.pushViewController(buildViewController, animated: true)
+    }
 }

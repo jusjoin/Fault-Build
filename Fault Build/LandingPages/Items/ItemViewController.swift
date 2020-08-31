@@ -107,6 +107,7 @@ class ItemViewController: BaseViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.detailTextLabel?.numberOfLines = 0
+        cell.selectionStyle = .none
         let section = ItemTableSection(rawValue: indexPath.section)
         let row = ItemTableRow(rawValue: indexPath.row)
         switch section {
@@ -188,6 +189,14 @@ class ItemViewController: BaseViewController {
         }
         
         return label
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = ItemTableSection(rawValue: indexPath.section)
+        if section == ItemTableSection.buildProcess {
+            let itemViewControleler = ItemViewController(item: self.itemChildren[indexPath.row])
+            self.navigationController?.pushViewController(itemViewControleler, animated: true)
+        }
     }
 
 }

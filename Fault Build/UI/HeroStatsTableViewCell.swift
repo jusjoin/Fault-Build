@@ -30,6 +30,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 20
+        slider.value = 1
         return slider
     }()
     
@@ -48,6 +49,25 @@ class HeroStatsTableViewCell: FBTableViewCell {
     }
     
     func setupViews() {
+        baseHealthLabel.numberOfLines = 0
+        baseHealthLabel.lineBreakMode = .byWordWrapping
+        healthRegenLabel.numberOfLines = 0
+        healthRegenLabel.lineBreakMode = .byWordWrapping
+        baseManaLabel.numberOfLines = 0
+        baseManaLabel.lineBreakMode = .byWordWrapping
+        manaRegenLabel.numberOfLines = 0
+        manaRegenLabel.lineBreakMode = .byWordWrapping
+        moveSpeedLabel.numberOfLines = 0
+        moveSpeedLabel.lineBreakMode = .byWordWrapping
+        abilityDefenseLabel.numberOfLines = 0
+        abilityDefenseLabel.lineBreakMode = .byWordWrapping
+        basicDefenseLabel.numberOfLines = 0
+        basicDefenseLabel.lineBreakMode = .byWordWrapping
+        basicAttackLabel.numberOfLines = 0
+        basicAttackLabel.lineBreakMode = .byWordWrapping
+        attackSpeedLabel.numberOfLines = 0
+        attackSpeedLabel.lineBreakMode = .byWordWrapping
+        
         let containerView = UIView()
         self.stackView1.axis = .horizontal
         self.stackView1.alignment = .center
@@ -144,33 +164,34 @@ class HeroStatsTableViewCell: FBTableViewCell {
     }
     
     func populateHeroDataLabels() {
-        
-        let health = self.hero.getBaseHealth()
-        let mana = self.hero.getBaseMana()
-        let basicDefense = self.hero.getBasicDefense()
-        let healthRegen = String(format: "%.2f",self.hero.getHealthRegen())
-        let manaRegen = String(format: "%.2f",self.hero.getManaRegen())
-        let healthRegenPerLevel = String(format: "%.2f",self.hero.getHealthRegenPerLevel())
-        let energyArmor = String(format: "%.2f",self.hero.getAbilityDefense())
-        let basicAttackDamage = self.hero.getBasicAttackDamage()
+        let heroLevel = Int(levelSlider.value.rounded())
+        let heroLevelDouble =  Double(levelSlider.value.rounded())
+        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * heroLevel)
+        let mana = self.hero.getBaseMana() + (self.hero.getManaPerLevel() * heroLevel)
+        let basicDefense = self.hero.getBasicDefense() + Int(self.hero.getBasicDefensePerLevel() * heroLevelDouble)
+        let healthRegen = String(format: "%.2f",self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * heroLevelDouble)
+        let manaRegen = String(format: "%.2f",self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * heroLevelDouble))
+        let energyArmor = String(format: "%.2f",self.hero.getAbilityDefense() + (self.hero.getAbilityDefensePerLevel() * heroLevelDouble))
+        let basicAttackDamage = self.hero.getBasicAttackDamage() + Int((self.hero.getBasicAttackDamagePerLevel() * heroLevelDouble))
         
         let healthPerLevel = self.hero.getHealthPerLevel()
+        let healthRegenPerLevel = String(format: "%.2f",self.hero.getHealthRegenPerLevel())
         let attackSpeed = String(format: "%.2f", self.hero.getAttackSpeed())
         let attackDamagePerLevel = self.hero.getBasicAttackDamagePerLevel()
         let manaPerLevel = self.hero.getManaPerLevel()
         let basicDefensePerLevel = self.hero.getBasicDefensePerLevel()
         let energyArmorPerLevel = self.hero.getAbilityDefensePerLevel()
         let movementSpeed = String(self.hero.getMoveSpeed())
-        let level = String(format: "%.0f", self.levelSlider)
+        let level = String(format: "%.0f", self.levelSlider.value.rounded())
         
-        self.baseHealthLabel.text = "Health: \(health)(+\(healthPerLevel))"
-        self.baseManaLabel.text = "Mana: \(mana)(+\(manaPerLevel))"
-        self.basicDefenseLabel.text = "Physical Defense: \(basicDefense)(+\(basicDefensePerLevel))"
-        self.healthRegenLabel.text = "Health Regen: \(healthRegen)(+\(healthRegenPerLevel))"
-        self.manaRegenLabel.text = "Mana Regen: \(manaRegen)(+\(manaPerLevel))"
-        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor)(+\(energyArmorPerLevel))"
-        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage)(+\(attackDamagePerLevel))"
-        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed)"
+        self.baseHealthLabel.text = "Health: \(health)\n(+\(healthPerLevel))"
+        self.baseManaLabel.text = "Mana: \(mana)\n(+\(manaPerLevel))"
+        self.basicDefenseLabel.text = "Basic Armor: \(basicDefense)\n(+\(basicDefensePerLevel))"
+        self.healthRegenLabel.text = "Health Regen: \(healthRegen)\n(+\(healthRegenPerLevel))"
+        self.manaRegenLabel.text = "Mana Regen: \(manaRegen)\n(+\(manaPerLevel))"
+        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor)\n(+\(energyArmorPerLevel))"
+        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage)\n(+\(attackDamagePerLevel))"
+        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed)\n"
         self.moveSpeedLabel.text = "Movement Speed: \(movementSpeed)"
         self.sliderLabel.text = "Level: \(level)"
     }
@@ -180,6 +201,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         sender.value = sliderValue
         sliderLabel.text = String(format: "%.0f", sliderValue)
         print("Slider value change to level \(sliderValue)")
+        self.populateHeroDataLabels()
     }
 
 }

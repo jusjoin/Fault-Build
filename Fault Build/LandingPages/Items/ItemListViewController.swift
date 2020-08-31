@@ -9,9 +9,62 @@
 import UIKit
 
 class ItemListViewController: BaseViewController {
-//    private var gameItems:GameItemDictionary?
+    enum ItemListViewSections: Int, CaseIterable {
+        case filters
+        case consumableItems
+        case blueItems
+        case redItems
+        case purpleItems
+        case greenItems
+        case whiteItems
+        case neutralItems
+        case baseItems
+        
+        var description : String {
+            switch self {
+            case .filters:
+                return "Filters"
+            case .consumableItems:
+                return "Consumable Items"
+            case .blueItems:
+                return "Blue Items"
+            case .redItems:
+                return "Red Items"
+            case .purpleItems:
+                return "Purple Items"
+            case .greenItems:
+                return "Green Items"
+            case .whiteItems:
+                return "White Items"
+            case .neutralItems:
+                return "Neutral Items"
+            case .baseItems:
+                return "Base Items"
+            }
+        }
+    }
     
-//    var selectedIndex = IndexPath(row: -1, section: -1)
+    var filters: [ItemAttribute: Bool] = [
+        .ouchPower: false,
+        .ouchieArmor: false,
+        .ouchiePenetration: false,
+        .zapPower: false,
+        .sizzleArmor: false,
+        .sizlePenetration: false,
+        .health: false,
+        .healthRegenRate: false,
+        .mana: false,
+        .manaRegenRate: false,
+        .pctDR: false,
+        .attackSpeed: false,
+        .movementSpeed: false,
+        .critChance: false,
+        .lifesteal: false
+    ]
+    
+    let searchBar: UISearchBar = UISearchBar()
+//    var filteredItems = [String: [GameItem]]()
+//    var itemFilters = [String]()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -33,37 +86,111 @@ class ItemListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.setupComingSoon()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        
+//        let stackView = UIStackView()
+//        stackView.axis = .vertical
+//        stackView.alignment = .center
+//        stackView.distribution = .fillProportionally
+//        let titleLabel = UILabel()
+        
+//        titleLabel.text = "Items"
+//        titleLabel.textAlignment = .center
+        
+        searchBar.searchBarStyle = .prominent
+        searchBar.placeholder = "Item Name"
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
+        
+//        stackView.addArrangedSubview(titleLabel)
+//        stackView.addArrangedSubview(searchBar)
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        self.mainContentView.addSubview(searchBar)
+//        let stackViewConstraints = [
+//            stackView.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor),
+//            stackView.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor),
+//            stackView.topAnchor.constraint(equalTo: self.mainContentView.topAnchor),
+//            stackView.heightAnchor.constraint(equalToConstant: 44)
+//        ]
+//        NSLayoutConstraint.activate(stackViewConstraints)
+//
+//        self.baseTableView.removeConstraint(
+//            self.baseTableView.topAnchor.constraint(equalTo: self.mainContentView.topAnchor))
+//        let tableViewConstraints = [
+//            self.baseTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor)
+//        ]
+//        NSLayoutConstraint.activate(tableViewConstraints)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        let itemDictionary = FaultDataRepository.shared.getGameItemsFactionDictionary()
-        if let itemGroup = GameItemType(rawValue: indexPath.section)?.description {
-            let itemDictionaryForSection = itemDictionary[itemGroup]
-            if let gameItem = itemDictionaryForSection?[indexPath.row] {
-                cell = CellFactory.createBasicItemCell(gameItem: gameItem)
+        let section = ItemListViewSections(rawValue: indexPath.section)
+        switch section {
+        case .filters:
+            cell = ItemFilterTableViewCell(tableView: self.baseTableView, reuseIdentifier: nil, filters: self.filters)
+            if let filterCell = cell as? ItemFilterTableViewCell {
+                filterCell.delegate = self
+            }
+            
+        default:
+            var itemDictionary = [String: [GameItem]]()
+            if self.getActiveFilters().count > 0 || self.isSearchingByName() {
+                itemDictionary = FaultDataRepository.shared.getFilteredGameItemsFactionDictionary()
+            }
+            else {
+                itemDictionary = FaultDataRepository.shared.getGameItemsFactionDictionary()
+            }
+            
+            if let itemGroup = ItemListViewSections(rawValue: indexPath.section)?.description,
+                let itemDictionaryForSection = itemDictionary[itemGroup] {
+                if itemDictionaryForSection.count > 0 {
+                    cell = CellFactory.createBasicItemCell(gameItem: itemDictionaryForSection[indexPath.row])
+                }
+                else {
+                    cell.detailTextLabel?.text = "No items for this category"
+                }
             }
         }
         return cell
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        return ItemListViewSections.allCases.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let gameItemType = GameItemType(rawValue: section)
-        return gameItemType?.description
+        var title = ""
+        if let tableSection = ItemListViewSections(rawValue: section){
+            title = tableSection.description
+        }
+        
+        return title
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0
-        if let gameItemType = GameItemType(rawValue: section)?.description,
-            let count = FaultDataRepository.shared.getGameItemsFactionDictionary()[gameItemType]?.count {
-            rows = count
+        if section == ItemListViewSections.filters.rawValue  {
+            rows = 1
         }
-        
+        else {
+            var itemDictionary = [String: [GameItem]]()
+            if self.getActiveFilters().count > 0 || self.isSearchingByName() {
+                itemDictionary = FaultDataRepository.shared.getFilteredGameItemsFactionDictionary()
+            }
+            else {
+                itemDictionary = FaultDataRepository.shared.getGameItemsFactionDictionary()
+            }
+            if let gameItemType = ItemListViewSections(rawValue: section)?.description,
+                let count = itemDictionary[gameItemType]?.count {
+                rows = count > 0 ? count : 1
+            }
+        }
         return rows
     }
     
@@ -95,4 +222,78 @@ class ItemListViewController: BaseViewController {
 //        return 70
 //    }
     
+    func filterItems() {
+        let itemFilters = self.getActiveFilters()
+        let searchString = self.searchBar.text
+        FaultDataRepository.shared.FilterGameItemsFactionDictionary(filters: itemFilters, searchString: searchString)
+    }
+    
+    func isSearchingByName() -> Bool {
+        var isSearchingByName = false
+        if let searchString = searchBar.text {
+            isSearchingByName = searchString.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
+        }
+        return isSearchingByName
+    }
+    
+}
+
+
+extension ItemListViewController: ItemFilterTableViewCellDelegate {
+    func didSelectFilter(selectedFilter: ItemAttribute) {
+        if let filterState = self.filters[selectedFilter] {
+            self.filters[selectedFilter] = !filterState
+        }
+//        if itemFilters.contains(selectedFilter) {
+//            itemFilters.removeAll(where: {$0 == selectedFilter})
+//        }
+//        else {
+//            itemFilters.append(selectedFilter)
+//        }
+        
+        self.filterItems()
+        let sectionsToReload = IndexSet([
+            ItemListViewSections.consumableItems.rawValue,
+            ItemListViewSections.blueItems.rawValue,
+            ItemListViewSections.redItems.rawValue,
+            ItemListViewSections.purpleItems.rawValue,
+            ItemListViewSections.greenItems.rawValue,
+            ItemListViewSections.whiteItems.rawValue,
+            ItemListViewSections.neutralItems.rawValue,
+            ItemListViewSections.baseItems.rawValue
+        ])
+        self.baseTableView.reloadSections(sectionsToReload, with: .fade)
+    }
+    
+        func getActiveFilters() -> [String] {
+            let activeFilters = self.filters.filter { $0.value == true }
+            var filtersToReturn = [String]()
+            for filter in activeFilters.keys {
+                filtersToReturn.append(filter.description().lowercased())
+            }
+            return filtersToReturn
+        }
+}
+
+extension ItemListViewController: UISearchBarDelegate {
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        filterItems()
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterItems()
+        let sectionsToReload = IndexSet([
+            ItemListViewSections.consumableItems.rawValue,
+            ItemListViewSections.blueItems.rawValue,
+            ItemListViewSections.redItems.rawValue,
+            ItemListViewSections.purpleItems.rawValue,
+            ItemListViewSections.greenItems.rawValue,
+            ItemListViewSections.whiteItems.rawValue,
+            ItemListViewSections.neutralItems.rawValue,
+            ItemListViewSections.baseItems.rawValue
+        ])
+        self.baseTableView.reloadSections(sectionsToReload, with: .fade)
+    }
 }
