@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol Hero {
+    var name: String {get }
     var iconName: String {get }
     var bannerName: String {get }
     var eAbilityImageURL: String {get }

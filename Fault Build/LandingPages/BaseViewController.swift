@@ -8,97 +8,140 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let baseTableView: UITableView = {
-       let tableView = UITableView()
+class BaseViewController: UITableViewController, UISearchBarDelegate {
+
+    let searchBar: UISearchBar = UISearchBar()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setupTableView()
+    }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        sizeHeaderToFit()
+//    }
+    
+    func setupTableView() {
         tableView.backgroundColor = ThemeManager().currentTheme.tableViewBackgroundColor
 //        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = UITableView.automaticDimension
-        tableView.estimatedSectionHeaderHeight = 25
+//        tableView.estimatedSectionHeaderHeight = 25
         tableView.separatorColor = .clear
-        return tableView
-    }()
-    
-    let mainContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = ThemeManager().currentTheme.mainBackgroundColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let comingSoonLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Coming Soon"
-        label.textColor = .red
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(self.mainContentView)
-        self.mainContentView.addSubview(baseTableView)
-        self.setupMainContentView()
-        self.setupBaseTableView()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
-    func setupMainContentView() {
-        //Content view
-        self.mainContentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.mainContentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.mainContentView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.mainContentView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        self.mainContentView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-    }
+    func setupNavigationBar() {
+            
+            searchBar.searchBarStyle = .prominent
+            searchBar.placeholder = "Item Name"
+            searchBar.sizeToFit()
+            searchBar.isTranslucent = false
+            searchBar.backgroundImage = UIImage()
+            searchBar.delegate = self
+            self.navigationItem.titleView = searchBar
+        }
     
-    func setupBaseTableView() {
-        self.baseTableView.delegate = self
-        self.baseTableView.dataSource = self
-        self.baseTableView.topAnchor.constraint(equalTo: self.mainContentView.topAnchor).isActive = true
-        self.baseTableView.bottomAnchor.constraint(equalTo: self.mainContentView.bottomAnchor).isActive = true
-        self.baseTableView.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor).isActive = true
-        self.baseTableView.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor).isActive = true
-        self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
-        self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = "No Data"
         cell.detailTextLabel?.text = "No Data"
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         return
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
     func reloadTableView() {
-        self.baseTableView.reloadData()
+        self.tableView.reloadData()
     }
     
-    func setupComingSoon() {
-        self.mainContentView.addSubview(comingSoonLabel)
-        comingSoonLabel.topAnchor.constraint(equalTo: self.mainContentView.topAnchor, constant: 80).isActive = true
-        comingSoonLabel.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor, constant: 20).isActive = true
-        comingSoonLabel.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor, constant: -20).isActive = true
-        self.mainContentView.centerYAnchor.constraint(equalTo: self.mainContentView.centerYAnchor).isActive = true
-        self.mainContentView.centerXAnchor.constraint(equalTo: self.self.mainContentView.centerXAnchor).isActive = true
+    func setupTableImageHeader(image: UIImage) -> UITableViewHeaderFooterView{
+        let containerView = UITableViewHeaderFooterView()
+        
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let headerView = UIView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false;
+        headerView.addSubview(imageView)
+        containerView.addSubview(headerView)
+
+        let headerViewConstraints = [
+            headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
+            headerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(headerViewConstraints)
+
+        let imageViewConstraints = [
+            imageView.topAnchor.constraint(equalTo: headerView.topAnchor),
+            imageView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            imageView.heightAnchor.constraint(equalToConstant:
+                image.getScaledHeightForWidth(width: self.tableView.frame.width)),
+            imageView.widthAnchor.constraint(equalTo: headerView.widthAnchor)
+        ]
+        NSLayoutConstraint.activate(imageViewConstraints)
+        
+        return containerView
+    }
+    
+    func setupSectionHeaderLabel(title: String) -> UITableViewHeaderFooterView {
+        let containerView = UITableViewHeaderFooterView()
+        //        containerView.translatesAutoresizingMaskIntoConstraints = false;
+        let label = UILabel()
+        label.text = title
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let headerView = UIView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false;
+        headerView.addSubview(label)
+        containerView.addSubview(headerView)
+        
+        let headerViewConstraints = [
+            headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
+            headerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(headerViewConstraints)
+        
+        let labelConstraints = [
+            label.topAnchor.constraint(equalTo: headerView.topAnchor),
+            label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(labelConstraints)
+        
+        return containerView
+    }
+    
+    func sizeHeaderToFit() {
+        if let headerView = self.tableView.tableHeaderView {
+            
+            headerView.setNeedsLayout()
+            headerView.layoutIfNeeded()
+        }
     }
 }

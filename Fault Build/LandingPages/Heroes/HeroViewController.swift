@@ -11,6 +11,7 @@ import UIKit
 class HeroViewController: BaseViewController {
     
     enum HeroTableSections: Int, CaseIterable {
+        case heroBanner
         case stats
         case passive
         case lmbAbility
@@ -36,6 +37,8 @@ class HeroViewController: BaseViewController {
                 description = "R Ability"
             case .rmbAbility:
                 description = "Ultimate Abilty (RMB)"
+            default:
+                break
             }
             
             return description
@@ -55,77 +58,13 @@ class HeroViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = self.hero.name
         setupRightBarButton()
-        setupTableHeader()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        sizeHeaderToFit()
     }
     
     func setupRightBarButton() {
         let buildButton = UIBarButtonItem(title: "Build", style: .plain, target: self, action: #selector(navigateToBuildScreen(_:)))
         self.navigationItem.rightBarButtonItem = buildButton
-    }
-    
-    func setupTableHeader() {
-        let containerView = UITableViewHeaderFooterView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false;
-        let imageView = UIImageView(image: UIImage(named: self.hero.bannerName))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        //            let label = UILabel()
-        //            label.translatesAutoresizingMaskIntoConstraints = false;
-        //            label.text = hero.name
-        //            label.textColor = .black
-        //            label.textAlignment = .center
-        //            label.sizeToFit()
-        
-        let headerView = UIView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false;
-        headerView.addSubview(imageView)
-        //            headerView.addSubview(label)
-        containerView.addSubview(headerView)
-        self.baseTableView.tableHeaderView = containerView
-        
-        let containerViewConstraints = [
-            containerView.topAnchor.constraint(equalTo: self.baseTableView.topAnchor),
-            containerView.widthAnchor.constraint(equalTo: self.baseTableView.widthAnchor),
-            containerView.centerXAnchor.constraint(equalTo: self.baseTableView.centerXAnchor)
-        ]
-        NSLayoutConstraint.activate(containerViewConstraints)
-        
-        let headerViewConstraints = [
-            headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
-            headerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
-        ]
-        NSLayoutConstraint.activate(headerViewConstraints)
-        
-        let imageViewConstraints = [
-            imageView.topAnchor.constraint(equalTo: headerView.topAnchor),
-            imageView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 150),
-            imageView.widthAnchor.constraint(equalTo: self.baseTableView.widthAnchor)
-        ]
-        NSLayoutConstraint.activate(imageViewConstraints)
-        
-        //            let labelConstraints = [
-        //                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
-        //                label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-        //                label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
-        //            ]
-        //            NSLayoutConstraint.activate(labelConstraints)
-    }
-    
-    func sizeHeaderToFit() {
-        if let headerView = self.baseTableView.tableHeaderView {
-            
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -141,8 +80,13 @@ class HeroViewController: BaseViewController {
         cell.detailTextLabel?.numberOfLines = 0
         let row = HeroTableSections(rawValue: indexPath.section)
         switch row {
+        case .heroBanner:
+            if let bannerImage = UIImage(named: self.hero.bannerName) {
+                cell = CellFactory.createBannerImageViewCell(image: bannerImage)
+            }
+            
         case .stats:
-            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.baseTableView, reuseIdentifier: nil)
+            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil)
             
         case .passive:
             cell.textLabel?.text = self.hero.getPAbility().getName()
@@ -151,13 +95,13 @@ class HeroViewController: BaseViewController {
                 DispatchQueue.main.async {
                     guard let image = image else { return }
                     cell.imageView?.backgroundColor = .black
-                    cell.imageView?.image = image
+                    cell.imageView?.image = image.scaledToWidth(width: 50)
                     cell.setNeedsLayout()
                 }
             })
             
         case .lmbAbility:
-            cell = LMBAbilityTableViewCell(lmbAbility: self.hero.getLMBAbility(), tableView: self.baseTableView, reuseIdentifier: nil)
+            cell = LMBAbilityTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: "LMBCell")
             
         case .qAbility:
             cell.textLabel?.text = self.hero.getQAbility().getName()
@@ -166,7 +110,7 @@ class HeroViewController: BaseViewController {
                 DispatchQueue.main.async {
                     guard let image = image else { return }
                     cell.imageView?.backgroundColor = .black
-                    cell.imageView?.image = image
+                    cell.imageView?.image = image.scaledToWidth(width: 50)
                     cell.setNeedsLayout()
                 }
             })
@@ -178,7 +122,7 @@ class HeroViewController: BaseViewController {
                 DispatchQueue.main.async {
                     guard let image = image else { return }
                     cell.imageView?.backgroundColor = .black
-                    cell.imageView?.image = image
+                    cell.imageView?.image = image.scaledToWidth(width: 50)
                     cell.setNeedsLayout()
                 }
             })
@@ -190,7 +134,7 @@ class HeroViewController: BaseViewController {
                 DispatchQueue.main.async {
                     guard let image = image else { return }
                     cell.imageView?.backgroundColor = .black
-                    cell.imageView?.image = image
+                    cell.imageView?.image = image.scaledToWidth(width: 50)
                     cell.setNeedsLayout()
                 }
             })
@@ -202,7 +146,7 @@ class HeroViewController: BaseViewController {
                 DispatchQueue.main.async {
                     guard let image = image else { return }
                     cell.imageView?.backgroundColor = .black
-                    cell.imageView?.image = image
+                    cell.imageView?.image = image.scaledToWidth(width: 50)
                     cell.setNeedsLayout()
                 }
             })
@@ -214,29 +158,21 @@ class HeroViewController: BaseViewController {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let containerView = UIView()
-        let label = UILabel()
-        containerView.addSubview(label)
-        //        let containerViewConstraints = [
-        //            containerView.topAnchor.constraint(equalTo: containerView.superview.topAnchor, constant: 5),
-        //            containerView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
-        //            containerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
-        //            containerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5)
-        //        ]
-        let labelConstraints = [
-            label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
-            label.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
-            label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
-            label.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5)
-        ]
-        NSLayoutConstraint.activate(labelConstraints)
-        
-        label.textAlignment = .center
-        let sectionType = HeroTableSections(rawValue: section)
-        label.text = sectionType?.description
-        
-        return label
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section != HeroTableSections.stats.rawValue {
+            if let sectionType = HeroTableSections(rawValue: section) {
+                return setupSectionHeaderLabel(title: sectionType.description)
+            }
+        }
+        return nil
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == HeroTableSections.heroBanner.rawValue ||
+            section == HeroTableSections.stats.rawValue {
+            return 0
+        }
+        return UITableView.automaticDimension
     }
     
     @objc func navigateToBuildScreen(_ sender: Any) {

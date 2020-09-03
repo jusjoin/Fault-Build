@@ -17,8 +17,9 @@ class ItemViewController: BaseViewController {
         case passive
     }
     
-    enum ItemTableSection: Int {
-        case itemDetails = 0
+    enum ItemTableSection: Int, CaseIterable {
+        case tableHeader = 0
+        case itemDetails
         case buildProcess
     }
     
@@ -38,79 +39,55 @@ class ItemViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableHeader()
+        self.navigationItem.title = self.item.name
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        sizeHeaderToFit()
-    }
-    
-    func setupTableHeader() {
-        let containerView = UITableViewHeaderFooterView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false;
-        let imageView = UIImageView(image: item.getItemImage())
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false;
-//        label.text = item.name
-//        label.textColor = .black
-//        label.textAlignment = .center
-//        label.sizeToFit()
-        
-        let headerView = UIView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false;
-        headerView.backgroundColor = item.getItemImageBackgroundColor()
-        headerView.addSubview(imageView)
-//        headerView.addSubview(label)
-        containerView.addSubview(headerView)
-        self.baseTableView.tableHeaderView = containerView
-        
-        let containerViewConstraints = [
-            containerView.topAnchor.constraint(equalTo: self.baseTableView.topAnchor),
-            containerView.widthAnchor.constraint(equalTo: self.baseTableView.widthAnchor)
-        ]
-        NSLayoutConstraint.activate(containerViewConstraints)
-        
-        let headerViewConstraints = [
-            headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor)
-        ]
-        NSLayoutConstraint.activate(headerViewConstraints)
-        
-        let imageViewConstraints = [
-            imageView.topAnchor.constraint(equalTo: headerView.topAnchor),
-            imageView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 100),
-            imageView.widthAnchor.constraint(equalToConstant: 100)
-        ]
-        NSLayoutConstraint.activate(imageViewConstraints)
-        
-//        let labelConstraints = [
-//            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
-//            label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-//            label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
+//    func setupTableHeader() {
+//        let containerView = UITableViewHeaderFooterView()
+//        containerView.translatesAutoresizingMaskIntoConstraints = false;
+//        let imageView = UIImageView(image: item.getItemImage())
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        let headerView = UIView()
+//        headerView.translatesAutoresizingMaskIntoConstraints = false;
+//        headerView.backgroundColor = item.getItemImageBackgroundColor()
+//        headerView.addSubview(imageView)
+//        containerView.addSubview(headerView)
+//        self.tableView.tableHeaderView = containerView
+//
+//        let containerViewConstraints = [
+//            containerView.topAnchor.constraint(equalTo: self.tableView.topAnchor),
+//            containerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor)
 //        ]
-//        NSLayoutConstraint.activate(labelConstraints)
-    }
-    
-    func sizeHeaderToFit() {
-        if let headerView = self.baseTableView.tableHeaderView {
-            
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-        }
-    }
+//        NSLayoutConstraint.activate(containerViewConstraints)
+//
+//        let headerViewConstraints = [
+//            headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+//            headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+//            headerView.widthAnchor.constraint(equalTo: containerView.widthAnchor)
+//        ]
+//        NSLayoutConstraint.activate(headerViewConstraints)
+//
+//        let imageViewConstraints = [
+//            imageView.topAnchor.constraint(equalTo: headerView.topAnchor),
+//            imageView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+//            imageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+//            imageView.heightAnchor.constraint(equalToConstant: 100),
+//            imageView.widthAnchor.constraint(equalToConstant: 100)
+//        ]
+//        NSLayoutConstraint.activate(imageViewConstraints)
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        var cell = FBTableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.detailTextLabel?.numberOfLines = 0
         cell.selectionStyle = .none
         let section = ItemTableSection(rawValue: indexPath.section)
         let row = ItemTableRow(rawValue: indexPath.row)
         switch section {
+        case .tableHeader:
+            cell = CellFactory.createCenterImageViewCell(image: UIImage(named: "GreenFactionIcon")!)
+            
         case .itemDetails:
             switch row {
             case .statsAndGold:
@@ -143,8 +120,6 @@ class ItemViewController: BaseViewController {
         default:
             break
         }
-        
-        
         return cell
     }
     
@@ -172,23 +147,22 @@ class ItemViewController: BaseViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.item.children.count != 0 ? 2 : 1
+        return self.item.children.count != 0 ? ItemTableSection.allCases.count : ItemTableSection.allCases.count - 1
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.textAlignment = .center
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var header = UITableViewHeaderFooterView()
         let sectionType = ItemTableSection(rawValue: section)
         switch sectionType{
-        case .itemDetails:
-            label.text = item.name
+//        case .itemDetails:
+//            header = setupTableImageHeader(image: item.self.getItemImage())
         case .buildProcess:
-            label.text = "Build Items"
+            header = setupSectionHeaderLabel(title: "Build Items")
         default:
             break
         }
         
-        return label
+        return header
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -197,6 +171,14 @@ class ItemViewController: BaseViewController {
             let itemViewControleler = ItemViewController(item: self.itemChildren[indexPath.row])
             self.navigationController?.pushViewController(itemViewControleler, animated: true)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == ItemTableSection.itemDetails.rawValue ||
+            section == ItemTableSection.tableHeader.rawValue {
+            return 0
+        }
+        return UITableView.automaticDimension
     }
 
 }

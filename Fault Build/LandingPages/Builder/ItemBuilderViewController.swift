@@ -55,34 +55,23 @@ class ItemBuilderViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableHeader()
+//        setupTableHeader()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        sizeHeaderToFit()
     }
     
-    func setupTableHeader() {
+    func setupTableHeader() -> UITableViewHeaderFooterView{
         let containerView = UITableViewHeaderFooterView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false;
         let imageView = UIImageView(image: UIImage(named: self.hero.bannerName))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         let headerView = UIView()
         headerView.translatesAutoresizingMaskIntoConstraints = false;
         headerView.addSubview(imageView)
-        //            headerView.addSubview(label)
         containerView.addSubview(headerView)
-        self.baseTableView.tableHeaderView = containerView
-        
-        let containerViewConstraints = [
-            containerView.topAnchor.constraint(equalTo: self.baseTableView.topAnchor),
-            containerView.widthAnchor.constraint(equalTo: self.baseTableView.widthAnchor),
-            containerView.centerXAnchor.constraint(equalTo: self.baseTableView.centerXAnchor)
-        ]
-        NSLayoutConstraint.activate(containerViewConstraints)
-        
+
         let headerViewConstraints = [
             headerView.topAnchor.constraint(equalTo: containerView.topAnchor),
             headerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
@@ -90,23 +79,17 @@ class ItemBuilderViewController: BaseViewController {
             headerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
         ]
         NSLayoutConstraint.activate(headerViewConstraints)
-        
+
         let imageViewConstraints = [
             imageView.topAnchor.constraint(equalTo: headerView.topAnchor),
             imageView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 150),
-            imageView.widthAnchor.constraint(equalTo: self.baseTableView.widthAnchor)
+            imageView.widthAnchor.constraint(equalTo: headerView.widthAnchor)
         ]
         NSLayoutConstraint.activate(imageViewConstraints)
-    }
-    
-    func sizeHeaderToFit() {
-        if let headerView = self.baseTableView.tableHeaderView {
-            
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-        }
+        
+        return containerView
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -123,7 +106,7 @@ class ItemBuilderViewController: BaseViewController {
         let row = ItemBuilderTableSections(rawValue: indexPath.section)
         switch row {
         case .stats:
-            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.baseTableView, reuseIdentifier: nil)
+            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil)
             
         default:
             break

@@ -95,7 +95,7 @@ class HeroesViewController: BaseViewController {
 //            button.tag = hero3
 //            buttons.append(button)
 //        }
-        let cell = ImageButtonTableViewCell(buttons: buttons, tableView: self.baseTableView, reuseIdentifier: nil)
+        let cell = ImageButtonTableViewCell(buttons: buttons, tableView: self.tableView, reuseIdentifier: nil)
         return cell
     }
     

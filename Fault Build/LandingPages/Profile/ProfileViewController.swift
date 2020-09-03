@@ -21,7 +21,7 @@ class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.mainContentView.addSubview(comingSoonLabel)
-        self.setupComingSoon()
+//        self.setupComingSoon()
     }
     
 //    func setupComingSoon() {

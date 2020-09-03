@@ -62,7 +62,6 @@ class ItemListViewController: BaseViewController {
         .lifesteal: false
     ]
     
-    let searchBar: UISearchBar = UISearchBar()
 //    var filteredItems = [String: [GameItem]]()
 //    var itemFilters = [String]()
     
@@ -89,51 +88,12 @@ class ItemListViewController: BaseViewController {
         self.setupNavigationBar()
     }
     
-    func setupNavigationBar() {
-        
-//        let stackView = UIStackView()
-//        stackView.axis = .vertical
-//        stackView.alignment = .center
-//        stackView.distribution = .fillProportionally
-//        let titleLabel = UILabel()
-        
-//        titleLabel.text = "Items"
-//        titleLabel.textAlignment = .center
-        
-        searchBar.searchBarStyle = .prominent
-        searchBar.placeholder = "Item Name"
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = false
-        searchBar.backgroundImage = UIImage()
-        searchBar.delegate = self
-        self.navigationItem.titleView = searchBar
-        
-//        stackView.addArrangedSubview(titleLabel)
-//        stackView.addArrangedSubview(searchBar)
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        self.mainContentView.addSubview(searchBar)
-//        let stackViewConstraints = [
-//            stackView.leadingAnchor.constraint(equalTo: self.mainContentView.leadingAnchor),
-//            stackView.trailingAnchor.constraint(equalTo: self.mainContentView.trailingAnchor),
-//            stackView.topAnchor.constraint(equalTo: self.mainContentView.topAnchor),
-//            stackView.heightAnchor.constraint(equalToConstant: 44)
-//        ]
-//        NSLayoutConstraint.activate(stackViewConstraints)
-//
-//        self.baseTableView.removeConstraint(
-//            self.baseTableView.topAnchor.constraint(equalTo: self.mainContentView.topAnchor))
-//        let tableViewConstraints = [
-//            self.baseTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor)
-//        ]
-//        NSLayoutConstraint.activate(tableViewConstraints)
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         let section = ItemListViewSections(rawValue: indexPath.section)
         switch section {
         case .filters:
-            cell = ItemFilterTableViewCell(tableView: self.baseTableView, reuseIdentifier: nil, filters: self.filters)
+            cell = ItemFilterTableViewCell(tableView: self.tableView, reuseIdentifier: nil, filters: self.filters)
             if let filterCell = cell as? ItemFilterTableViewCell {
                 filterCell.delegate = self
             }
@@ -157,6 +117,7 @@ class ItemListViewController: BaseViewController {
                 }
             }
         }
+        
         return cell
     }
     
@@ -164,7 +125,7 @@ class ItemListViewController: BaseViewController {
         return ItemListViewSections.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title = ""
         if let tableSection = ItemListViewSections(rawValue: section){
             title = tableSection.description
@@ -196,11 +157,18 @@ class ItemListViewController: BaseViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        if selectedIndex == self.baseTableView.indexPathsForSelectedRows?.first {
-            self.baseTableView.deselectRow(at: indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: true)
 //        }
 //        self.selectedIndex = self.baseTableView.indexPathsForSelectedRows?.first ?? IndexPath(row: -1, section: -1)
-        let itemDictionary = FaultDataRepository.shared.getGameItemsFactionDictionary()
-        if let itemGroup = GameItemType(rawValue: indexPath.section)?.description {
+        var itemDictionary = [String: [GameItem]]()
+        if self.getActiveFilters().count > 0 || self.isSearchingByName() {
+            itemDictionary = FaultDataRepository.shared.getFilteredGameItemsFactionDictionary()
+        }
+        else {
+            itemDictionary = FaultDataRepository.shared.getGameItemsFactionDictionary()
+        }
+        
+        if let itemGroup = ItemListViewSections(rawValue: indexPath.section)?.description {
             let itemDictionaryForSection = itemDictionary[itemGroup]
             if let gameItem = itemDictionaryForSection?[indexPath.row] {
                 let itemViewController = ItemViewController(item: gameItem)
@@ -262,7 +230,7 @@ extension ItemListViewController: ItemFilterTableViewCellDelegate {
             ItemListViewSections.neutralItems.rawValue,
             ItemListViewSections.baseItems.rawValue
         ])
-        self.baseTableView.reloadSections(sectionsToReload, with: .fade)
+        self.tableView.reloadSections(sectionsToReload, with: .fade)
     }
     
         func getActiveFilters() -> [String] {
@@ -273,14 +241,6 @@ extension ItemListViewController: ItemFilterTableViewCellDelegate {
             }
             return filtersToReturn
         }
-}
-
-extension ItemListViewController: UISearchBarDelegate {
-
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        filterItems()
-        
-    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterItems()
@@ -294,6 +254,6 @@ extension ItemListViewController: UISearchBarDelegate {
             ItemListViewSections.neutralItems.rawValue,
             ItemListViewSections.baseItems.rawValue
         ])
-        self.baseTableView.reloadSections(sectionsToReload, with: .fade)
+        self.tableView.reloadSections(sectionsToReload, with: .fade)
     }
 }

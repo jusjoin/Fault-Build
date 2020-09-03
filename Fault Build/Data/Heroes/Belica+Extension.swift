@@ -297,7 +297,7 @@ extension Belica {
     
     var name: String {
         get {
-            return "Lt. Belica"
+            return HeroName.belica.rawValue
         }
     }
     

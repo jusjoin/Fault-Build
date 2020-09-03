@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846048B224FEE71900E4A2F6 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */; };
 		8468855C24E9E3150018DE60 /* Belica+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468855B24E9E3150018DE60 /* Belica+Extension.swift */; };
 		8468856024EA54C40018DE60 /* ImageButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */; };
 		8468856224EB9FAD0018DE60 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856124EB9FAD0018DE60 /* Hero.swift */; };
@@ -45,7 +46,7 @@
 		84AA326524DA48DF0020D08A /* URLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326424DA48DF0020D08A /* URLRequest+Resource.swift */; };
 		84AA326724DA4BD60020D08A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326624DA4BD60020D08A /* APIClient.swift */; };
 		84AA326924DA5D0A0020D08A /* FaultDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326824DA5D0A0020D08A /* FaultDataRepository.swift */; };
-		84AA326B24DB687D0020D08A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326A24DB687D0020D08A /* UIColor+Extension.swift */; };
+		84AA326B24DB687D0020D08A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326A24DB687D0020D08A /* UIColor+Extensions.swift */; };
 		84AA326E24DBBC270020D08A /* GameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326D24DBBC270020D08A /* GameItem.swift */; };
 		84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */; };
 		84AA327224E248D10020D08A /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA327124E248D10020D08A /* ItemViewController.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		8468855B24E9E3150018DE60 /* Belica+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Belica+Extension.swift"; sourceTree = "<group>"; };
 		8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonTableViewCell.swift; sourceTree = "<group>"; };
 		8468856124EB9FAD0018DE60 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		84AA326424DA48DF0020D08A /* URLRequest+Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Resource.swift"; sourceTree = "<group>"; };
 		84AA326624DA4BD60020D08A /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		84AA326824DA5D0A0020D08A /* FaultDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultDataRepository.swift; sourceTree = "<group>"; };
-		84AA326A24DB687D0020D08A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		84AA326A24DB687D0020D08A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		84AA326D24DBBC270020D08A /* GameItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItem.swift; sourceTree = "<group>"; };
 		84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultBuildHelper.swift; sourceTree = "<group>"; };
 		84AA327124E248D10020D08A /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
@@ -319,9 +321,10 @@
 		84AA326324DA48A30020D08A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */,
 				84AA323D24D78D410020D08A /* String+Extensions.swift */,
 				84AA326424DA48DF0020D08A /* URLRequest+Resource.swift */,
-				84AA326A24DB687D0020D08A /* UIColor+Extension.swift */,
+				84AA326A24DB687D0020D08A /* UIColor+Extensions.swift */,
 			);
 			name = Extensions;
 			path = ../Extensions;
@@ -436,7 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84AA326B24DB687D0020D08A /* UIColor+Extension.swift in Sources */,
+				84AA326B24DB687D0020D08A /* UIColor+Extensions.swift in Sources */,
 				84AA323824D75A740020D08A /* LoginLandingViewController.swift in Sources */,
 				8468856624EC6BCF0018DE60 /* HeroStatsTableViewCell.swift in Sources */,
 				8468857324F1A8FB0018DE60 /* Item.swift in Sources */,
@@ -462,6 +465,7 @@
 				84AA326E24DBBC270020D08A /* GameItem.swift in Sources */,
 				8468856224EB9FAD0018DE60 /* Hero.swift in Sources */,
 				84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */,
+				846048B224FEE71900E4A2F6 /* UIImage+Extensions.swift in Sources */,
 				8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */,
 				84AA325E24DA1C6C0020D08A /* FaultAPI.swift in Sources */,
 				84AA326924DA5D0A0020D08A /* FaultDataRepository.swift in Sources */,
