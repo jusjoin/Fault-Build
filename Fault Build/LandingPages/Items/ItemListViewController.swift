@@ -243,6 +243,7 @@ extension ItemListViewController: ItemFilterTableViewCellDelegate {
         }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //TODO: Add cancel button on search active and hide keyboard when clicked
         filterItems()
         let sectionsToReload = IndexSet([
             ItemListViewSections.consumableItems.rawValue,

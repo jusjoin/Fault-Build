@@ -11,7 +11,7 @@ import UIKit
 class LMBAbilityTableViewCell: FBTableViewCell {
     
     var hero: Hero
-    var imageView_ = UIImageView()
+//    var imageView = UIImageView()
     let stackView1 = UIStackView()
     let stackView2 = UIStackView()
     let stackView3 = UIStackView()
@@ -41,7 +41,6 @@ class LMBAbilityTableViewCell: FBTableViewCell {
     }
     
     func setupViews() {
-        self.imageView_.contentMode = .center
         let containerView = UIView()
         let stackContainerView = UIStackView()
         stackContainerView.axis = .vertical
@@ -66,7 +65,7 @@ class LMBAbilityTableViewCell: FBTableViewCell {
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         stackContainerView.translatesAutoresizingMaskIntoConstraints = false
-        self.imageView_.translatesAutoresizingMaskIntoConstraints = false
+//        self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.stackView1.translatesAutoresizingMaskIntoConstraints = false
         self.stackView2.translatesAutoresizingMaskIntoConstraints = false
         self.stackView3.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +75,6 @@ class LMBAbilityTableViewCell: FBTableViewCell {
         //            self.contentView.addSubview(containerView)
         self.contentView.addSubview(containerView)
         containerView.addSubview(stackContainerView)
-        containerView.addSubview(self.imageView_)
         stackContainerView.addArrangedSubview(stackView1)
         stackContainerView.addArrangedSubview(stackView2)
         stackContainerView.addArrangedSubview(stackView3)
@@ -91,19 +89,23 @@ class LMBAbilityTableViewCell: FBTableViewCell {
         ]
         NSLayoutConstraint.activate(containerViewConstraints)
         
-        let stackContainerViewConstraints = [
-            stackContainerView.leadingAnchor.constraint(equalTo: self.imageView_.trailingAnchor, constant: 16),
-            stackContainerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            stackContainerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            stackContainerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(stackContainerViewConstraints)
+        if let imageView = self.imageView {
+            imageView.contentMode = .center
+            containerView.addSubview(imageView)
+            let stackContainerViewConstraints = [
+                stackContainerView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+                stackContainerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                stackContainerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+                stackContainerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ]
+            NSLayoutConstraint.activate(stackContainerViewConstraints)
+        }
         
-        let imageViewConstraints = [
-            imageView_.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            imageView_.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
-        ]
-        NSLayoutConstraint.activate(imageViewConstraints)
+//        let imageViewConstraints = [
+//            self.imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+//            self.imageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+//        ]
+//        NSLayoutConstraint.activate(imageViewConstraints)
         
         let stackView1Constraints = [
 //            stackView1.topAnchor.constraint(equalTo: stackContainerView.topAnchor),
@@ -166,8 +168,10 @@ class LMBAbilityTableViewCell: FBTableViewCell {
         hero.getAbilityImage(imageURL: self.hero.lmbAbilityImageURL, completion: { image in
             DispatchQueue.main.async {
                 guard let image = image else { return }
-                self.imageView_ = UIImageView(image: image.scaledToWidth(width: 50))
-                self.imageView_.backgroundColor = .black
+                if let imageView = self.imageView {
+                    imageView.image = image.scaledToWidth(width: 50)
+                    imageView.backgroundColor = .black
+                }
                 self.setupViews()
                 self.setNeedsLayout()
             }

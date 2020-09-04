@@ -91,6 +91,32 @@ class CellFactory{
     static func createCenterImageViewCell(image: UIImage) -> FBTableViewCell {
         let cell = FBTableViewCell(style: .default, reuseIdentifier: "CenterImageViewCell")
         
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+               
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false;
+        cell.contentView.addSubview(containerView)
+        containerView.addSubview(imageView)
+        
+        if let superview = containerView.superview {
+            let containerViewConstraints = [
+                containerView.topAnchor.constraint(equalTo: superview.topAnchor),
+                containerView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+                containerView.leadingAnchor.constraint(equalTo: superview.trailingAnchor),
+                containerView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+                containerView.centerXAnchor.constraint(equalTo: superview.centerXAnchor)
+            ]
+            NSLayoutConstraint.activate(containerViewConstraints)
+        }
+        
+        let imageViewConstraints = [
+            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(imageViewConstraints)
+        
         return cell
     }
 }

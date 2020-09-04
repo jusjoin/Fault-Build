@@ -29,7 +29,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
     var levelSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
-        slider.maximumValue = 20
+        slider.maximumValue = 18
         slider.value = 1
         return slider
     }()
@@ -166,13 +166,13 @@ class HeroStatsTableViewCell: FBTableViewCell {
     func populateHeroDataLabels() {
         let heroLevel = Int(levelSlider.value.rounded())
         let heroLevelDouble =  Double(levelSlider.value.rounded())
-        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * heroLevel)
-        let mana = self.hero.getBaseMana() + (self.hero.getManaPerLevel() * heroLevel)
-        let basicDefense = self.hero.getBasicDefense() + Int(self.hero.getBasicDefensePerLevel() * heroLevelDouble)
-        let healthRegen = String(format: "%.2f",self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * heroLevelDouble)
-        let manaRegen = String(format: "%.2f",self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * heroLevelDouble))
-        let energyArmor = String(format: "%.2f",self.hero.getAbilityDefense() + (self.hero.getAbilityDefensePerLevel() * heroLevelDouble))
-        let basicAttackDamage = self.hero.getBasicAttackDamage() + Int((self.hero.getBasicAttackDamagePerLevel() * heroLevelDouble))
+        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1))
+        let mana = self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1))
+        let basicDefense = self.hero.getBasicDefense() + Int(self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1))
+        let healthRegen = String(format: "%.2f",self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * (heroLevelDouble - 1))
+        let manaRegen = String(format: "%.2f",self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * (heroLevelDouble - 1)))
+        let energyArmor = String(format: "%.2f",self.hero.getAbilityDefense() + (self.hero.getAbilityDefensePerLevel() * (heroLevelDouble - 1)))
+        let basicAttackDamage = self.hero.getBasicAttackDamage() + Int((self.hero.getBasicAttackDamagePerLevel() * (heroLevelDouble - 1)))
         
         let healthPerLevel = self.hero.getHealthPerLevel()
         let healthRegenPerLevel = String(format: "%.2f",self.hero.getHealthRegenPerLevel())

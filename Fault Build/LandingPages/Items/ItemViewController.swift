@@ -86,7 +86,9 @@ class ItemViewController: BaseViewController {
         let row = ItemTableRow(rawValue: indexPath.row)
         switch section {
         case .tableHeader:
-            cell = CellFactory.createCenterImageViewCell(image: UIImage(named: "GreenFactionIcon")!)
+            cell = CellFactory.createCenterImageViewCell(
+                image: self.item.getItemImage().resize(scaledToSize: CGSize(width: 100, height: 100)))
+            cell.backgroundColor = self.item.getItemImageBackgroundColor()
             
         case .itemDetails:
             switch row {
@@ -124,7 +126,7 @@ class ItemViewController: BaseViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rows = 0
+        var rows = 1
         let tableSection = ItemTableSection(rawValue: section)
         switch tableSection {
         case .itemDetails:
