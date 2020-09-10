@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol HeroStatsDelegate {
+    func getBuildItems() -> [GameItem]
+    func getAffinities() -> [String: Int]
+}
+
 class HeroStatsTableViewCell: FBTableViewCell {
 
     var hero: Hero
@@ -33,12 +38,12 @@ class HeroStatsTableViewCell: FBTableViewCell {
         slider.value = 1
         return slider
     }()
-    
+    var itemBuilder: HeroStatsDelegate?
         
-    init(hero: Hero, tableView: UITableView, reuseIdentifier: String?) {
+    init(hero: Hero, tableView: UITableView, reuseIdentifier: String?, itemBuilder: HeroStatsDelegate? = nil) {
         self.hero = hero
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        
+        self.itemBuilder = itemBuilder
         self.levelSlider.addTarget(self, action: #selector(self.sliderValueDidChange(_:)), for: .valueChanged)
         self.setupViews()
         self.populateHeroDataLabels()
@@ -164,9 +169,12 @@ class HeroStatsTableViewCell: FBTableViewCell {
     }
     
     func populateHeroDataLabels() {
+        let itemHealth = healthFromItems()
+        let itemMana = manaFromItems()
+        
         let heroLevel = Int(levelSlider.value.rounded())
         let heroLevelDouble =  Double(levelSlider.value.rounded())
-        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1))
+        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1)) + itemHealth
         let mana = self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1))
         let basicDefense = self.hero.getBasicDefense() + Int(self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1))
         let healthRegen = String(format: "%.2f",self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * (heroLevelDouble - 1))
@@ -184,6 +192,8 @@ class HeroStatsTableViewCell: FBTableViewCell {
         let movementSpeed = String(self.hero.getMoveSpeed())
         let level = String(format: "%.0f", self.levelSlider.value.rounded())
         
+        //TODO: Add gained amount in square brackets at the end of each label
+        //For example "[\(itemHealth)]"
         self.baseHealthLabel.text = "Health: \(health)\n(+\(healthPerLevel))"
         self.baseManaLabel.text = "Mana: \(mana)\n(+\(manaPerLevel))"
         self.basicDefenseLabel.text = "Basic Armor: \(basicDefense)\n(+\(basicDefensePerLevel))"
@@ -196,6 +206,29 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.sliderLabel.text = "Level: \(level)"
     }
     
+    func healthFromItems() -> Int {
+        var healthGained = 0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.health.description() {
+                        healthGained = Int(attribute.value)
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                healthGained = healthGained + (Int(attribute.rankValue) * affinityRank)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return healthGained
+    }
+    
+    func manaFromItems() -> Int {
+        return 0
+    }
+    
     @objc func sliderValueDidChange(_ sender: UISlider) {
         let sliderValue = sender.value.rounded()
         sender.value = sliderValue
@@ -203,5 +236,10 @@ class HeroStatsTableViewCell: FBTableViewCell {
         print("Slider value change to level \(sliderValue)")
         self.populateHeroDataLabels()
     }
+}
 
+extension HeroStatsTableViewCell: ItemBuilderDelegate {
+    func updateHeroStats() {
+        self.populateHeroDataLabels()
+    }
 }

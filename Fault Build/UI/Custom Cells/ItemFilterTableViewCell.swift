@@ -13,7 +13,7 @@ protocol ItemFilterTableViewCellDelegate: AnyObject {
     func getActiveFilters() -> [String]
 }
 
-class ItemFilterTableViewCell: UITableViewCell {
+class ItemFilterTableViewCell: FBTableViewCell {
     
     //TODO:Make dynamic, pass filters with state to init
     var filters: [ItemAttribute: Bool]

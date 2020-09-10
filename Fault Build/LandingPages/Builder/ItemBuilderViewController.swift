@@ -8,22 +8,23 @@
 
 import UIKit
 
+protocol ItemBuilderDelegate {
+    func updateHeroStats()
+}
+
 class ItemBuilderViewController: BaseViewController {
     
     enum ItemBuilderTableSections: Int, CaseIterable {
         case heroBanner
         case stats
+        case affinity
         case buildItems
-        case allItems
         
         var description: String {
             var description = ""
             switch self {
             case .buildItems:
                 description = "Build Items"
-                
-            case .allItems:
-                description = "All Items"
                 
             default:
                 break
@@ -36,6 +37,9 @@ class ItemBuilderViewController: BaseViewController {
     var hero: Hero
     let numberOfItemsInBuild: Int = 6
     var buildItems = [GameItem]()
+    var selectedItem = -1
+    var affinities: [String: Int]?
+    var heroStats: ItemBuilderDelegate?
     
     init(withHero hero: Hero) {
         self.hero = hero
@@ -74,9 +78,6 @@ class ItemBuilderViewController: BaseViewController {
         case .buildItems:
             rows = numberOfItemsInBuild
             
-        case .allItems:
-            break
-            
         default:
             break
         }
@@ -95,26 +96,43 @@ class ItemBuilderViewController: BaseViewController {
         }
             
         case .stats:
-            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil)
-        
-        case .buildItems:
-            //TODO: Default cell for items if no items in build or display items in build
-            break
+            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil, itemBuilder: self)
+            if let delegate = cell as? ItemBuilderDelegate {
+                self.heroStats = delegate
+            }
             
-        case .allItems:
-            //TODO: Add items grouped as in item list tableview
-            break
+        case .affinity:
+            cell = AffinityLevelTableViewCell(tableView: self.tableView, delegate: self)
+            
+        case .buildItems:
+            if buildItems.indices.contains(indexPath.row) {
+                cell = CellFactory.createBasicItemCell(gameItem: buildItems[indexPath.row])
+            }
+            else {
+                cell.textLabel?.text = "Add item from all items section."
+            }
+            if indexPath.row > buildItems.count {
+                cell.isUserInteractionEnabled = false
+            }
         
         default:
             break
         }
         
+        self.tableView.deselectRow(at: indexPath, animated: false)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let itemListViewController = ItemListViewController()
+        itemListViewController.delegate = self
+        self.selectedItem = indexPath.row
+        self.navigationController?.pushViewController(itemListViewController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let tableSection = ItemBuilderTableSections(rawValue: section)
-        if tableSection == .heroBanner || tableSection == .stats {
+        if tableSection == .heroBanner || tableSection == .stats || tableSection == .affinity {
             return 0
         }
         return UITableView.automaticDimension
@@ -127,9 +145,6 @@ class ItemBuilderViewController: BaseViewController {
             case .buildItems:
                 title = ItemBuilderTableSections.buildItems.description
                 
-            case .allItems:
-                title = ItemBuilderTableSections.allItems.description
-                
             default:
                 break
             }
@@ -137,4 +152,90 @@ class ItemBuilderViewController: BaseViewController {
         return title == "" ? nil : title
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if buildItems.indices.contains(indexPath.row) {
+            let deleteActionTitle = "Delete"
+            let detailActionTitle = "Details"
+            let deleteAction = UIContextualAction(style: .normal
+                , title: deleteActionTitle, handler: { (action, view, completionHandler) in
+                    self.deleteAction(itemIndex: indexPath.row)
+            })
+            let renameAction = UIContextualAction(style: .normal
+                , title: detailActionTitle, handler: {(action, view, completionHandler) in
+                    self.navigateToItemDetails(gameItem: self.buildItems[indexPath.row])
+            })
+            deleteAction.backgroundColor = .red
+            renameAction.backgroundColor = .green
+            return UISwipeActionsConfiguration(actions: [deleteAction, renameAction])
+        }
+        return nil
+        
+    }
+    
+    func reloadItems() {
+        let sectionToReload = IndexSet([ItemBuilderTableSections.buildItems.rawValue])
+        self.tableView.reloadSections(sectionToReload, with: .fade)
+    }
+    
+    func deleteAction(itemIndex: Int) {
+        self.buildItems.remove(at: itemIndex)
+        self.reloadItems()
+    }
+    
+    func navigateToItemDetails(gameItem: GameItem) {
+        let itemViewController = ItemViewController(item: gameItem)
+        self.navigationController?.pushViewController(itemViewController, animated: true)
+    }
 }
+
+extension ItemBuilderViewController: AffinityLevelTableViewCellDelegate {
+    func didSelectAffinity1() {
+        
+    }
+    
+    func didSelectAffinity2() {
+        
+    }
+    
+    func didIncreaseAffinity1() {
+        
+    }
+    
+    func didDecreaseAffinity1() {
+        
+    }
+    
+    func didIncreaseAffinity2() {
+        
+    }
+    
+    func didDecreaseAffinity2() {
+        
+    }
+}
+
+extension ItemBuilderViewController: ItemListViewDelegate {
+    func didSelectItem(gameItem: GameItem) {
+        if buildItems.indices.contains(selectedItem) {
+            buildItems[selectedItem] = gameItem
+        }
+        else {
+            buildItems.append(gameItem)
+        }
+        heroStats?.updateHeroStats()
+        self.reloadItems()
+    }
+}
+
+extension ItemBuilderViewController: HeroStatsDelegate {
+    func getBuildItems() -> [GameItem] {
+        return self.buildItems
+    }
+    
+    func getAffinities() -> [String : Int] {
+        return self.affinities ?? [String: Int]()
+    }
+    
+    
+}
+

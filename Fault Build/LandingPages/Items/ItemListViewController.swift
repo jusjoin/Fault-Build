@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ItemListViewDelegate {
+    func didSelectItem(gameItem: GameItem)
+}
+
 class ItemListViewController: BaseViewController {
     enum ItemListViewSections: Int, CaseIterable {
         case filters
@@ -62,8 +66,7 @@ class ItemListViewController: BaseViewController {
         .lifesteal: false
     ]
     
-//    var filteredItems = [String: [GameItem]]()
-//    var itemFilters = [String]()
+    var delegate: ItemListViewDelegate?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -156,10 +159,7 @@ class ItemListViewController: BaseViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if selectedIndex == self.baseTableView.indexPathsForSelectedRows?.first {
-            self.tableView.deselectRow(at: indexPath, animated: true)
-//        }
-//        self.selectedIndex = self.baseTableView.indexPathsForSelectedRows?.first ?? IndexPath(row: -1, section: -1)
+        self.tableView.deselectRow(at: indexPath, animated: true)
         var itemDictionary = [String: [GameItem]]()
         if self.getActiveFilters().count > 0 || self.isSearchingByName() {
             itemDictionary = FaultDataRepository.shared.getFilteredGameItemsFactionDictionary()
@@ -171,14 +171,23 @@ class ItemListViewController: BaseViewController {
         if let itemGroup = ItemListViewSections(rawValue: indexPath.section)?.description {
             let itemDictionaryForSection = itemDictionary[itemGroup]
             if let gameItem = itemDictionaryForSection?[indexPath.row] {
-                let itemViewController = ItemViewController(item: gameItem)
-                self.navigationController?.pushViewController(itemViewController, animated: true)
+                if let delegate = self.delegate {
+                    delegate.didSelectItem(gameItem: gameItem)
+                    self.navigationController?.popViewController(animated: true)
+                }
+                else {
+                    let itemViewController = ItemViewController(item: gameItem)
+                    self.navigationController?.pushViewController(itemViewController, animated: true)
+                }
             }
         }
-        //Update after resize row with heightForRowAt
-//        tableView.beginUpdates()
-//        tableView.endUpdates()
+        
     }
+    
+    //Place this in row action where height changes
+    //Update after resize row with heightForRowAt
+    //        tableView.beginUpdates()
+    //        tableView.endUpdates()
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        if indexPath == self.baseTableView.indexPathsForSelectedRows?.first {
