@@ -32,7 +32,7 @@ protocol Hero {
     func getManaRegenPerLevel() -> Double
     func getAbilityDefense() -> Double
     func getAbilityDefensePerLevel() -> Double
-    func getBasicAttackDamage() -> Int
+    func getBasicAttackDamage() -> Double
     func getBasicAttackDamagePerLevel() -> Double
     func getAttackSpeed() -> Double
     func getMoveSpeed() -> Int

@@ -86,7 +86,7 @@ class HeroViewController: BaseViewController {
             }
             
         case .stats:
-            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil)
+            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil, showAllStats: false)
             
         case .passive:
             cell.textLabel?.text = self.hero.getPAbility().getName()

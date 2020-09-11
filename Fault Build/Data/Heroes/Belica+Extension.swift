@@ -351,8 +351,8 @@ extension Belica {
         return self.energyArmorPerLevel
     }
     
-    func getBasicAttackDamage() -> Int {
-        return max(self.lmbAbility.physicalDamage, self.lmbAbility.energyDamage)
+    func getBasicAttackDamage() -> Double {
+        return max(Double(self.lmbAbility.physicalDamage), Double(self.lmbAbility.energyDamage))
     }
     
     func getBasicAttackDamagePerLevel() -> Double {

@@ -96,7 +96,7 @@ class ItemBuilderViewController: BaseViewController {
         }
             
         case .stats:
-            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil, itemBuilder: self)
+            cell = HeroStatsTableViewCell(hero: self.hero, tableView: self.tableView, reuseIdentifier: nil, itemBuilder: self, showAllStats: true)
             if let delegate = cell as? ItemBuilderDelegate {
                 self.heroStats = delegate
             }
@@ -180,6 +180,8 @@ class ItemBuilderViewController: BaseViewController {
     func deleteAction(itemIndex: Int) {
         self.buildItems.remove(at: itemIndex)
         self.reloadItems()
+        heroStats?.updateHeroStats()
+        //TODO:Update build stats based on deleted items
     }
     
     func navigateToItemDetails(gameItem: GameItem) {

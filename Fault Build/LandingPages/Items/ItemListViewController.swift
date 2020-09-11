@@ -54,7 +54,7 @@ class ItemListViewController: BaseViewController {
         .ouchiePenetration: false,
         .zapPower: false,
         .sizzleArmor: false,
-        .sizlePenetration: false,
+        .sizzlePenetration: false,
         .health: false,
         .healthRegenRate: false,
         .mana: false,

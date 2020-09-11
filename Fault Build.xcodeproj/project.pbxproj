@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		846048B224FEE71900E4A2F6 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */; };
 		846048B5250467C500E4A2F6 /* AffinityLevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B4250467C500E4A2F6 /* AffinityLevelTableViewCell.swift */; };
+		846048B9250AFF3C00E4A2F6 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B8250AFF3C00E4A2F6 /* Double+Extensions.swift */; };
 		8468855C24E9E3150018DE60 /* Belica+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468855B24E9E3150018DE60 /* Belica+Extension.swift */; };
 		8468856024EA54C40018DE60 /* ImageButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */; };
 		8468856224EB9FAD0018DE60 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856124EB9FAD0018DE60 /* Hero.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		846048B4250467C500E4A2F6 /* AffinityLevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffinityLevelTableViewCell.swift; sourceTree = "<group>"; };
+		846048B8250AFF3C00E4A2F6 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		8468855B24E9E3150018DE60 /* Belica+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Belica+Extension.swift"; sourceTree = "<group>"; };
 		8468855F24EA54C40018DE60 /* ImageButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonTableViewCell.swift; sourceTree = "<group>"; };
 		8468856124EB9FAD0018DE60 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				84AA323D24D78D410020D08A /* String+Extensions.swift */,
 				84AA326424DA48DF0020D08A /* URLRequest+Resource.swift */,
 				84AA326A24DB687D0020D08A /* UIColor+Extensions.swift */,
+				846048B8250AFF3C00E4A2F6 /* Double+Extensions.swift */,
 			);
 			name = Extensions;
 			path = ../Extensions;
@@ -460,6 +463,7 @@
 				8468856824ED97B30018DE60 /* LMBAbilityTableViewCell.swift in Sources */,
 				84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */,
 				84AA325324D7D2250020D08A /* BaseViewController.swift in Sources */,
+				846048B9250AFF3C00E4A2F6 /* Double+Extensions.swift in Sources */,
 				8468857824F357910018DE60 /* ItemFilterTableViewCell.swift in Sources */,
 				8468856C24EE3F480018DE60 /* HeroData.swift in Sources */,
 				84AA325124D7BDA90020D08A /* LeaderboardViewController.swift in Sources */,

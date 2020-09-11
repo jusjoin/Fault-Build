@@ -21,6 +21,10 @@ class HeroStatsTableViewCell: FBTableViewCell {
     let stackView3 = UIStackView()
     let stackView4 = UIStackView()
     let stackView5 = UIStackView()
+    let stackView6 = UIStackView()
+    let stackView7 = UIStackView()
+    let stackView8 = UIStackView()
+    let stackView9 = UIStackView()
     let baseHealthLabel = UILabel()
     let healthRegenLabel = UILabel()
     let baseManaLabel = UILabel()
@@ -31,6 +35,13 @@ class HeroStatsTableViewCell: FBTableViewCell {
     let basicAttackLabel = UILabel()
     let attackSpeedLabel = UILabel()
     let sliderLabel = UILabel()
+    let cooldownLabel = UILabel()
+    let physicalPenLabel = UILabel()
+    let energyPenLabel = UILabel()
+    let lifestealLabel = UILabel()
+    let physicalPowerLabel = UILabel()
+    let energyPowerLabel = UILabel()
+    let critChanceLabel = UILabel()
     var levelSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
@@ -39,9 +50,26 @@ class HeroStatsTableViewCell: FBTableViewCell {
         return slider
     }()
     var itemBuilder: HeroStatsDelegate?
+    var showAllStats: Bool
+    var itemHealth = 0.0
+    var itemMana = 0.0
+    var itemHealthRegen = 0.0
+    var itemManaRegen = 0.0
+    var itemBasicArmor = 0.0
+    var itemEnergyArmor = 0.0
+    var itemAttackSpeed = 0.0
+    var itemMovementSpeed = 0.0
+    var itemCooldown = 0.0
+    var itemCritChance = 0.0
+    var itemLifesteal = 0.0
+    var itemPhysicalPenetration = 0.0
+    var itemEnergyPenetration = 0.0
+    var itemPhysicalPower = 0.0
+    var itemEnergyPower = 0.0
         
-    init(hero: Hero, tableView: UITableView, reuseIdentifier: String?, itemBuilder: HeroStatsDelegate? = nil) {
+    init(hero: Hero, tableView: UITableView, reuseIdentifier: String?, itemBuilder: HeroStatsDelegate? = nil, showAllStats: Bool) {
         self.hero = hero
+        self.showAllStats = showAllStats
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         self.itemBuilder = itemBuilder
         self.levelSlider.addTarget(self, action: #selector(self.sliderValueDidChange(_:)), for: .valueChanged)
@@ -72,6 +100,20 @@ class HeroStatsTableViewCell: FBTableViewCell {
         basicAttackLabel.lineBreakMode = .byWordWrapping
         attackSpeedLabel.numberOfLines = 0
         attackSpeedLabel.lineBreakMode = .byWordWrapping
+        cooldownLabel.numberOfLines = 0
+        cooldownLabel.lineBreakMode = .byWordWrapping
+        physicalPenLabel.numberOfLines = 0
+        physicalPenLabel.lineBreakMode = .byWordWrapping
+        energyPenLabel.numberOfLines = 0
+        energyPenLabel.lineBreakMode = .byWordWrapping
+        lifestealLabel.numberOfLines = 0
+        lifestealLabel.lineBreakMode = .byWordWrapping
+        physicalPowerLabel.numberOfLines = 0
+        physicalPowerLabel.lineBreakMode = .byWordWrapping
+        energyPowerLabel.numberOfLines = 0
+        energyPowerLabel.lineBreakMode = .byWordWrapping
+        critChanceLabel.numberOfLines = 0
+        critChanceLabel.lineBreakMode = .byWordWrapping
         
         let containerView = UIView()
         self.stackView1.axis = .horizontal
@@ -86,9 +128,21 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.stackView4.axis = .horizontal
         self.stackView4.alignment = .center
         self.stackView4.distribution = .fillEqually
-        self.stackView5.axis = .vertical
+        self.stackView5.axis = .horizontal
         self.stackView5.alignment = .center
-        self.stackView5.distribution = .fillProportionally
+        self.stackView5.distribution = .fillEqually
+        self.stackView6.axis = .horizontal
+        self.stackView6.alignment = .center
+        self.stackView6.distribution = .fillEqually
+        self.stackView7.axis = .horizontal
+        self.stackView7.alignment = .center
+        self.stackView7.distribution = .fillEqually
+        self.stackView8.axis = .horizontal
+        self.stackView8.alignment = .center
+        self.stackView8.distribution = .fillEqually
+        self.stackView9.axis = .vertical
+        self.stackView9.alignment = .center
+        self.stackView9.distribution = .fillProportionally
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         self.stackView1.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +150,10 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.stackView3.translatesAutoresizingMaskIntoConstraints = false
         self.stackView4.translatesAutoresizingMaskIntoConstraints = false
         self.stackView5.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView6.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView7.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView8.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView9.translatesAutoresizingMaskIntoConstraints = false
         self.levelSlider.translatesAutoresizingMaskIntoConstraints = false
         
         self.contentView.addSubview(containerView)
@@ -104,6 +162,10 @@ class HeroStatsTableViewCell: FBTableViewCell {
         containerView.addSubview(self.stackView3)
         containerView.addSubview(self.stackView4)
         containerView.addSubview(self.stackView5)
+        containerView.addSubview(self.stackView6)
+        containerView.addSubview(self.stackView7)
+        containerView.addSubview(self.stackView8)
+        containerView.addSubview(self.stackView9)
 //        containerView.addSubview(self.levelSlider)
         
         let containerViewConstraints = [
@@ -145,10 +207,38 @@ class HeroStatsTableViewCell: FBTableViewCell {
         let stackView5Constraints = [
             self.stackView5.topAnchor.constraint(equalTo: stackView4.bottomAnchor),
             self.stackView5.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            self.stackView5.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            self.stackView5.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            self.stackView5.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView5Constraints)
+        
+        let stackView6Constraints = [
+            self.stackView6.topAnchor.constraint(equalTo: stackView5.bottomAnchor),
+            self.stackView6.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            self.stackView6.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(stackView6Constraints)
+        
+        let stackView7Constraints = [
+            self.stackView7.topAnchor.constraint(equalTo: stackView6.bottomAnchor),
+            self.stackView7.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            self.stackView7.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(stackView7Constraints)
+        
+        let stackView8Constraints = [
+            self.stackView8.topAnchor.constraint(equalTo: stackView7.bottomAnchor),
+            self.stackView8.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            self.stackView8.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(stackView8Constraints)
+        
+        let stackView9Constraints = [
+            self.stackView9.topAnchor.constraint(equalTo: stackView8.bottomAnchor),
+            self.stackView9.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            self.stackView9.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            self.stackView9.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(stackView9Constraints)
         
         self.stackView1.addArrangedSubview(self.baseHealthLabel)
         self.stackView1.addArrangedSubview(self.baseManaLabel)
@@ -158,64 +248,96 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.stackView3.addArrangedSubview(self.abilityDefenseLabel)
         self.stackView4.addArrangedSubview(self.basicAttackLabel)
         self.stackView4.addArrangedSubview(self.attackSpeedLabel)
-        self.stackView5.addArrangedSubview(self.moveSpeedLabel)
-        self.stackView5.addArrangedSubview(self.sliderLabel)
-        self.stackView5.addArrangedSubview(self.levelSlider)
+        if self.showAllStats {
+            self.stackView5.addArrangedSubview(self.lifestealLabel)
+            self.stackView5.addArrangedSubview(self.cooldownLabel)
+            self.stackView6.addArrangedSubview(self.physicalPenLabel)
+            self.stackView6.addArrangedSubview(self.energyPenLabel)
+            self.stackView7.addArrangedSubview(self.physicalPowerLabel)
+            self.stackView7.addArrangedSubview(self.energyPowerLabel)
+            self.stackView8.addArrangedSubview(self.critChanceLabel)
+            self.stackView8.addArrangedSubview(self.moveSpeedLabel)
+        }
+        else {
+            self.stackView9.addArrangedSubview(self.moveSpeedLabel)
+        }
+        self.stackView9.addArrangedSubview(self.sliderLabel)
+        self.stackView9.addArrangedSubview(self.levelSlider)
         
         let sliderConstraints = [
-            self.levelSlider.widthAnchor.constraint(equalTo: self.stackView5.widthAnchor)
+            self.levelSlider.widthAnchor.constraint(equalTo: self.stackView9.widthAnchor)
         ]
         NSLayoutConstraint.activate(sliderConstraints)
     }
     
     func populateHeroDataLabels() {
-        let itemHealth = healthFromItems()
-        let itemMana = manaFromItems()
+        self.itemHealth = self.itemHealth + healthFromItems()
+        self.itemMana = self.itemMana + manaFromItems()
+        self.itemHealthRegen = self.itemHealthRegen + healthRegenFromItems()
+        self.itemManaRegen = self.itemManaRegen + manaRegenFromItems()
+        self.itemBasicArmor = self.itemBasicArmor + basicArmorFromItems()
+        self.itemEnergyArmor = self.itemEnergyArmor + energyArmorFromItems()
+        self.itemAttackSpeed = self.itemAttackSpeed + attackSpeedFromItems()
+        self.itemMovementSpeed = self.itemMovementSpeed + movementSpeedFromItems()
+        self.itemCooldown = self.itemCooldown + cooldownFromItems()
+        self.itemCritChance = self.itemCritChance + critChanceFromItems()
+        self.itemLifesteal = self.itemLifesteal + lifestealFromItems()
+        self.itemPhysicalPenetration = self.itemPhysicalPenetration + physicalPenetrationFromItems()
+        self.itemEnergyPenetration = self.itemEnergyPenetration + energyPenetrationFromItems()
+        self.itemPhysicalPower = self.itemPhysicalPower + physicalPowerFromItems()
+        self.itemEnergyPower = self.itemEnergyPower + energyPowerFromItems()
         
         let heroLevel = Int(levelSlider.value.rounded())
         let heroLevelDouble =  Double(levelSlider.value.rounded())
-        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1)) + itemHealth
-        let mana = self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1))
-        let basicDefense = self.hero.getBasicDefense() + Int(self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1))
-        let healthRegen = String(format: "%.2f",self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * (heroLevelDouble - 1))
-        let manaRegen = String(format: "%.2f",self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * (heroLevelDouble - 1)))
-        let energyArmor = String(format: "%.2f",self.hero.getAbilityDefense() + (self.hero.getAbilityDefensePerLevel() * (heroLevelDouble - 1)))
-        let basicAttackDamage = self.hero.getBasicAttackDamage() + Int((self.hero.getBasicAttackDamagePerLevel() * (heroLevelDouble - 1)))
+        let health = Double(self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1))) + itemHealth
+        let mana = Double(self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1))) + itemMana
+        let basicDefense = Double(self.hero.getBasicDefense()) + self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1) + itemBasicArmor
+        let healthRegen = Double(self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * (heroLevelDouble - 1)) + itemHealthRegen
+        let manaRegen = Double(self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * (heroLevelDouble - 1))) + itemManaRegen
+        let energyArmor = Double(self.hero.getAbilityDefense() + (self.hero.getAbilityDefensePerLevel() * (heroLevelDouble - 1))) + itemEnergyArmor
+        let basicAttackDamage = self.hero.getBasicAttackDamage() + (self.hero.getBasicAttackDamagePerLevel() * (heroLevelDouble - 1))
         
         let healthPerLevel = self.hero.getHealthPerLevel()
-        let healthRegenPerLevel = String(format: "%.2f",self.hero.getHealthRegenPerLevel())
-        let attackSpeed = String(format: "%.2f", self.hero.getAttackSpeed())
+        let healthRegenPerLevel = self.hero.getHealthRegenPerLevel()
+        let attackSpeed = Double(self.hero.getAttackSpeed()) + itemAttackSpeed
         let attackDamagePerLevel = self.hero.getBasicAttackDamagePerLevel()
         let manaPerLevel = self.hero.getManaPerLevel()
         let basicDefensePerLevel = self.hero.getBasicDefensePerLevel()
         let energyArmorPerLevel = self.hero.getAbilityDefensePerLevel()
-        let movementSpeed = String(self.hero.getMoveSpeed())
+        let movementSpeed = Double(self.hero.getMoveSpeed()) + itemMovementSpeed
         let level = String(format: "%.0f", self.levelSlider.value.rounded())
         
         //TODO: Add gained amount in square brackets at the end of each label
         //For example "[\(itemHealth)]"
-        self.baseHealthLabel.text = "Health: \(health)\n(+\(healthPerLevel))"
-        self.baseManaLabel.text = "Mana: \(mana)\n(+\(manaPerLevel))"
-        self.basicDefenseLabel.text = "Basic Armor: \(basicDefense)\n(+\(basicDefensePerLevel))"
-        self.healthRegenLabel.text = "Health Regen: \(healthRegen)\n(+\(healthRegenPerLevel))"
-        self.manaRegenLabel.text = "Mana Regen: \(manaRegen)\n(+\(manaPerLevel))"
-        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor)\n(+\(energyArmorPerLevel))"
-        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage)\n(+\(attackDamagePerLevel))"
-        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed)\n"
-        self.moveSpeedLabel.text = "Movement Speed: \(movementSpeed)"
+        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel))"
+        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel))"
+        self.basicDefenseLabel.text = "Basic Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0)))"
+        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2)))"
+        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel))"
+        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0)))"
+        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage.stringDP(2))\n(+\(attackDamagePerLevel.stringDP(2)))"
+        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n"
+        self.cooldownLabel.text = "Cooldown: \(itemCooldown.stringDP(2))\n"
+        self.physicalPenLabel.text = "Physical Pen: \(itemPhysicalPenetration.stringDP(2))\n"
+        self.energyPenLabel.text = "Energy Pen: \(itemEnergyPenetration.stringDP(2))\n"
+        self.lifestealLabel.text = "Lifesteal: \(itemLifesteal.stringDP(2))\n"
+        self.physicalPowerLabel.text = "Physical Power: \(itemPhysicalPower.stringDP(2))\n"
+        self.energyPowerLabel.text = "Energy Power: \(itemEnergyPower.stringDP(2))\n"
+        self.critChanceLabel.text = "Crit Chance: \(itemCritChance.stringDP(2))\n"
+        self.moveSpeedLabel.text = "Move Speed: \(movementSpeed.stringDP(2))\n"
         self.sliderLabel.text = "Level: \(level)"
     }
     
-    func healthFromItems() -> Int {
-        var healthGained = 0
+    func healthFromItems() -> Double {
+        var healthGained = 0.0
         if let buildItems = self.itemBuilder?.getBuildItems() {
             for item in buildItems {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.health.description() {
-                        healthGained = Int(attribute.value)
+                        healthGained = attribute.value
                         if let affinityRank = itemBuilder?.getAffinities()[item.color] {
                             if attribute.rankValue > 0 {
-                                healthGained = healthGained + (Int(attribute.rankValue) * affinityRank)
+                                healthGained = healthGained + (attribute.rankValue * Double(affinityRank))
                             }
                         }
                     }
@@ -225,8 +347,271 @@ class HeroStatsTableViewCell: FBTableViewCell {
         return healthGained
     }
     
-    func manaFromItems() -> Int {
-        return 0
+    func manaFromItems() -> Double {
+        var manaGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.mana.description() {
+                        manaGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                manaGained = manaGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return manaGained
+    }
+    
+    func healthRegenFromItems() -> Double {
+        var healthRegenGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.healthRegenRate.description() {
+                        healthRegenGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                healthRegenGained = healthRegenGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return healthRegenGained
+    }
+    
+    func manaRegenFromItems() -> Double{
+        var manaRegenGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.manaRegenRate.description() {
+                        manaRegenGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                manaRegenGained = manaRegenGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return manaRegenGained
+    }
+    
+    func basicArmorFromItems() -> Double {
+        var physicalArmorGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.ouchieArmor.description() {
+                        physicalArmorGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                physicalArmorGained = physicalArmorGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return physicalArmorGained
+    }
+    
+    func energyArmorFromItems() -> Double {
+        var energyArmorGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.sizzleArmor.description() {
+                        energyArmorGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                energyArmorGained = energyArmorGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return energyArmorGained
+    }
+    
+    func attackSpeedFromItems() -> Double {
+        var attackSpeedGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.attackSpeed.description() {
+                        attackSpeedGained = (attribute.value / 100) * self.hero.getAttackSpeed()
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                let percentGain = ((attribute.value + (attribute.rankValue * Double(affinityRank))) / 100)
+                                attackSpeedGained = percentGain * self.hero.getAttackSpeed()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return attackSpeedGained
+    }
+    
+    func movementSpeedFromItems() -> Double {
+        var movementSpeedGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.movementSpeed.description() {
+                        movementSpeedGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                movementSpeedGained = movementSpeedGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return movementSpeedGained
+    }
+    
+    func cooldownFromItems() -> Double {
+        var cooldownGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.pctDR.description() {
+                        cooldownGained = attribute.value * 100
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                cooldownGained = cooldownGained + (attribute.rankValue * Double(affinityRank * 100))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return cooldownGained
+    }
+    
+    func critChanceFromItems() -> Double {
+        var critChanceGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.critChance.description() {
+                        critChanceGained = attribute.value * 100
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                critChanceGained = critChanceGained + (attribute.rankValue * Double(affinityRank * 100))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return critChanceGained
+    }
+    
+    func lifestealFromItems() -> Double {
+        var lifestealGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.lifesteal.description() {
+                        lifestealGained = attribute.value * 100
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                lifestealGained = lifestealGained + (attribute.rankValue * Double(affinityRank * 100))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return lifestealGained
+    }
+    
+    func physicalPenetrationFromItems() -> Double {
+        var physicalPenetrationGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.ouchiePenetration.description() {
+                        physicalPenetrationGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                physicalPenetrationGained = physicalPenetrationGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return physicalPenetrationGained
+    }
+    
+    func energyPenetrationFromItems() -> Double {
+        var energyPenetrationGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.sizzlePenetration.description() {
+                        energyPenetrationGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                energyPenetrationGained = energyPenetrationGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return energyPenetrationGained
+    }
+    
+    func physicalPowerFromItems() -> Double {
+        var physicalPowerGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.ouchPower.description() {
+                        physicalPowerGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                physicalPowerGained = physicalPowerGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return physicalPowerGained
+    }
+    
+    func energyPowerFromItems() -> Double {
+        var energyPowerGained = 0.0
+        if let buildItems = self.itemBuilder?.getBuildItems() {
+            for item in buildItems {
+                for attribute in item.attributes {
+                    if attribute.attributeName == ItemAttribute.zapPower.description() {
+                        energyPowerGained = attribute.value
+                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                            if attribute.rankValue > 0 {
+                                energyPowerGained = energyPowerGained + (attribute.rankValue * Double(affinityRank))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return energyPowerGained
     }
     
     @objc func sliderValueDidChange(_ sender: UISlider) {

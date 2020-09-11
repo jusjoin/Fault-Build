@@ -167,10 +167,10 @@ class ItemFilterTableViewCell: FBTableViewCell {
         energyArmorButton.addTarget(self, action: #selector(toggleFilter(sender:)), for: .touchUpInside)
         
         let energyPenetrationButton = UIButton(type: .roundedRect)
-        if let state = filters[ItemAttribute.sizlePenetration] {
+        if let state = filters[ItemAttribute.sizzlePenetration] {
         energyPenetrationButton.setTitle(titleForButton(isEnabled: state), for: .normal)
         }
-        energyPenetrationButton.tag = ItemAttribute.sizlePenetration.rawValue
+        energyPenetrationButton.tag = ItemAttribute.sizzlePenetration.rawValue
         energyPenetrationButton.addTarget(self, action: #selector(toggleFilter(sender:)), for: .touchUpInside)
         
         let healthButton = UIButton(type: .roundedRect)

@@ -14,7 +14,7 @@ enum ItemAttribute: Int, CaseIterable {
     case ouchiePenetration
     case zapPower
     case sizzleArmor
-    case sizlePenetration
+    case sizzlePenetration
     case health
     case healthRegenRate
     case mana
@@ -39,7 +39,7 @@ enum ItemAttribute: Int, CaseIterable {
             description = "ZapPower"
         case .sizzleArmor:
             description = "SizzleArmor"
-        case .sizlePenetration:
+        case .sizzlePenetration:
             description = "FlatSizzlePenetration"
         case .health:
             description = "Health"
