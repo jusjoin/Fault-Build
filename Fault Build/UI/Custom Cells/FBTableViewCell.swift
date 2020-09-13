@@ -12,6 +12,9 @@ class FBTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+//        self.layer.borderWidth = 1
+//        self.layer.cornerRadius = 8
     }
     
     required init?(coder: NSCoder) {

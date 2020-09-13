@@ -145,7 +145,7 @@ final class FaultDataRepository {
             var searchStringToUse = ""
             
             if let filters = filters {
-                filtersToUse = filters
+                filtersToUse = filters.map( { $0.lowercased() } )
             }
             
             if let searchString = searchString {

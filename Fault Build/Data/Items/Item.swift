@@ -19,7 +19,7 @@ enum ItemAttribute: Int, CaseIterable {
     case healthRegenRate
     case mana
     case manaRegenRate
-    case pctDR //cooldown
+    case pctCDR //cooldown
     case attackSpeed
     case movementSpeed
     case critChance
@@ -49,8 +49,8 @@ enum ItemAttribute: Int, CaseIterable {
             description = "Mana"
         case .manaRegenRate:
             description = "ManaRegenRate"
-        case .pctDR:
-            description = "PCTDR"
+        case .pctCDR:
+            description = "PCTCDR"
         case .attackSpeed:
             description = "AttackSpeed"
         case .movementSpeed:
@@ -64,6 +64,44 @@ enum ItemAttribute: Int, CaseIterable {
         return description
     }
     
+    func displayName() -> String {
+        var display = ""
+        
+        switch self {
+        case .ouchPower:
+            display = "Physical Power"
+        case .ouchieArmor:
+            display = "Physical Armor"
+        case .ouchiePenetration:
+            display = "Physical Penetration"
+        case .zapPower:
+            display = "Energy Power"
+        case .sizzleArmor:
+            display = "Energy Armor"
+        case .sizzlePenetration:
+            display = "Energy Penetration"
+        case .health:
+            display = "Health"
+        case .healthRegenRate:
+            display = "Health Regen"
+        case .mana:
+            display = "Mana"
+        case .manaRegenRate:
+            display = "Mana Regen"
+        case .pctCDR:
+            display = "CD Reduction"
+        case .attackSpeed:
+            display = "Attack Speed"
+        case .movementSpeed:
+            display = "Movement Speed"
+        case .critChance:
+            display = "Crit Chance"
+        case .lifesteal:
+            display = "Lifesteal"
+        }
+        
+        return display
+    }
 }
 
 
@@ -98,7 +136,7 @@ enum ItemAttribute: Int, CaseIterable {
 //case ItemAttribute.manaRegenRate.intValue():
 //    break
 //    
-//case ItemAttribute.pctDR.intValue():
+//case ItemAttribute.pctCDR.intValue():
 //    break
 //    
 //case ItemAttribute.attackSpeed.intValue():

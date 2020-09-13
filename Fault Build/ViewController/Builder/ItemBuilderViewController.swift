@@ -41,6 +41,7 @@ class ItemBuilderViewController: BaseViewController {
     var affinities: [String: Int]?
     var heroStats: ItemBuilderDelegate?
     
+    
     init(withHero hero: Hero) {
         self.hero = hero
         super.init(nibName: nil, bundle: nil)
@@ -124,10 +125,13 @@ class ItemBuilderViewController: BaseViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let itemListViewController = ItemListViewController()
-        itemListViewController.delegate = self
-        self.selectedItem = indexPath.row
-        self.navigationController?.pushViewController(itemListViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
+        if indexPath.section == ItemBuilderTableSections.buildItems.rawValue {
+            let itemListViewController = ItemListViewController()
+            itemListViewController.delegate = self
+            self.selectedItem = indexPath.row
+            self.navigationController?.pushViewController(itemListViewController, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

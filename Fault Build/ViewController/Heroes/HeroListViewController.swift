@@ -8,7 +8,7 @@
 //There are 14 heroes
 import UIKit
 
-class HeroesViewController: BaseViewController {
+class HeroListViewController: BaseViewController {
     private let comingSoonLabel:UILabel = {
         let label = UILabel()
         label.text = "Coming Soon"
@@ -40,6 +40,7 @@ class HeroesViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Heroes"
     }
     
     func makeHeroButton(heroName: String) -> UIButton {

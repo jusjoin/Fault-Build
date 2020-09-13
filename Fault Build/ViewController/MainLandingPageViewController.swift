@@ -20,7 +20,7 @@ class MainLandingPageViewController: UITabBarController {
         let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
         
-        let heroesViewController = UINavigationController(rootViewController: HeroesViewController())
+        let heroesViewController = UINavigationController(rootViewController: HeroListViewController())
         heroesViewController.tabBarItem = UITabBarItem(title: "Heroes", image: UIImage(named: "second"), selectedImage: UIImage(named: "first"))
         
         let itemListViewController = UINavigationController(rootViewController: ItemListViewController())

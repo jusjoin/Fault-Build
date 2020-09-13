@@ -202,10 +202,10 @@ class ItemFilterTableViewCell: FBTableViewCell {
         manaRegenButton.addTarget(self, action: #selector(toggleFilter(sender:)), for: .touchUpInside)
         
         let cooldownButton = UIButton(type: .roundedRect)
-        if let state = filters[ItemAttribute.pctDR] {
+        if let state = filters[ItemAttribute.pctCDR] {
         cooldownButton.setTitle(titleForButton(isEnabled: state), for: .normal)
         }
-        cooldownButton.tag = ItemAttribute.pctDR.rawValue
+        cooldownButton.tag = ItemAttribute.pctCDR.rawValue
         cooldownButton.addTarget(self, action: #selector(toggleFilter(sender:)), for: .touchUpInside)
         
         let attackSpeedButton = UIButton(type: .roundedRect)

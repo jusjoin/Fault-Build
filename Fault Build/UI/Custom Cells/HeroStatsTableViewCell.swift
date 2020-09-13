@@ -329,12 +329,12 @@ class HeroStatsTableViewCell: FBTableViewCell {
     }
     
     func healthFromItems() -> Double {
-        var healthGained = 0.0
+        var healthGained = self.itemHealth
         if let buildItems = self.itemBuilder?.getBuildItems() {
             for item in buildItems {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.health.description() {
-                        healthGained = attribute.value
+                        healthGained = healthGained + attribute.value
                         if let affinityRank = itemBuilder?.getAffinities()[item.color] {
                             if attribute.rankValue > 0 {
                                 healthGained = healthGained + (attribute.rankValue * Double(affinityRank))
@@ -348,12 +348,12 @@ class HeroStatsTableViewCell: FBTableViewCell {
     }
     
     func manaFromItems() -> Double {
-        var manaGained = 0.0
+        var manaGained = self.itemMana
         if let buildItems = self.itemBuilder?.getBuildItems() {
             for item in buildItems {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.mana.description() {
-                        manaGained = attribute.value
+                        manaGained = manaGained + attribute.value
                         if let affinityRank = itemBuilder?.getAffinities()[item.color] {
                             if attribute.rankValue > 0 {
                                 manaGained = manaGained + (attribute.rankValue * Double(affinityRank))
@@ -486,7 +486,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         if let buildItems = self.itemBuilder?.getBuildItems() {
             for item in buildItems {
                 for attribute in item.attributes {
-                    if attribute.attributeName == ItemAttribute.pctDR.description() {
+                    if attribute.attributeName == ItemAttribute.pctCDR.description() {
                         cooldownGained = attribute.value * 100
                         if let affinityRank = itemBuilder?.getAffinities()[item.color] {
                             if attribute.rankValue > 0 {
@@ -619,12 +619,31 @@ class HeroStatsTableViewCell: FBTableViewCell {
         sender.value = sliderValue
         sliderLabel.text = String(format: "%.0f", sliderValue)
         print("Slider value change to level \(sliderValue)")
+        self.resetStats()
+    }
+    
+    func resetStats() {
+        self.itemHealth = 0.0
+        self.itemMana = 0.0
+        self.itemHealthRegen = 0.0
+        self.itemManaRegen = 0.0
+        self.itemBasicArmor = 0.0
+        self.itemEnergyArmor = 0.0
+        self.itemAttackSpeed = 0.0
+        self.itemMovementSpeed = 0.0
+        self.itemCooldown = 0.0
+        self.itemCritChance = 0.0
+        self.itemLifesteal = 0.0
+        self.itemPhysicalPenetration = 0.0
+        self.itemEnergyPenetration = 0.0
+        self.itemPhysicalPower = 0.0
+        self.itemEnergyPower = 0.0
         self.populateHeroDataLabels()
     }
 }
 
 extension HeroStatsTableViewCell: ItemBuilderDelegate {
     func updateHeroStats() {
-        self.populateHeroDataLabels()
+        self.resetStats()
     }
 }
