@@ -38,9 +38,12 @@ class ItemBuilderViewController: BaseViewController {
     let numberOfItemsInBuild: Int = 6
     var buildItems = [GameItem]()
     var selectedItem = -1
-    var affinities: [String: Int]?
+    var affinity1 = ItemAffinity.none
+    var affinity1Rank = 0
+    var affinity2 = ItemAffinity.none
+    var affinity2Rank = 0
     var heroStats: ItemBuilderDelegate?
-    
+    var shouldReloadAffinitySection = false
     
     init(withHero hero: Hero) {
         self.hero = hero
@@ -61,12 +64,15 @@ class ItemBuilderViewController: BaseViewController {
         super.viewDidLayoutSubviews()
     }
     
-    //TODO: Create an affinity slider cell which has slider in content view and a button for imageView which allows selecting affinity in popup
-    //TODO: Plus and minus buttons on either side of affinity slider? Maybe add this to level slider as well?
+    override func viewWillAppear(_ animated: Bool) {
+        if self.shouldReloadAffinitySection {
+            self.tableView.reloadSections(IndexSet([ItemBuilderTableSections.affinity.rawValue]), with: .fade)
+            self.shouldReloadAffinitySection = false
+        }
+    }
+    
     //TODO: Create a popup which allows selecting affinity
-    //TODO: On did select row in all items section allow adding to build with popup, check for number allowed per build
-    //TODO: On did select row in build items section if cell is populated allow removing from build in popup
-    //TODO: Add search bar and filter items in all items section
+    //TODO: Affinity rank calculations
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return ItemBuilderTableSections.allCases.count
@@ -103,7 +109,14 @@ class ItemBuilderViewController: BaseViewController {
             }
             
         case .affinity:
-            cell = AffinityLevelTableViewCell(tableView: self.tableView, delegate: self)
+            cell = AffinityLevelTableViewCell(
+                tableView: self.tableView,
+                delegate: self,
+                affinity1: self.affinity1,
+                affinity1Rank: self.affinity1Rank,
+                affinity2: self.affinity2,
+                affinity2Rank: self.affinity2Rank
+            )
             
         case .buildItems:
             if buildItems.indices.contains(indexPath.row) {
@@ -194,13 +207,31 @@ class ItemBuilderViewController: BaseViewController {
     }
 }
 
+extension ItemBuilderViewController: SelectAffinityDelegate {
+    func didSelectAffinity(selectedAffinity: ItemAffinity, affinityNumber: Int) {
+        switch affinityNumber {
+        case 1:
+            self.affinity1 = selectedAffinity
+            
+        case 2:
+            self.affinity2 = selectedAffinity
+            
+        default:
+            break
+        }
+        self.shouldReloadAffinitySection = true
+    }
+}
+
 extension ItemBuilderViewController: AffinityLevelTableViewCellDelegate {
     func didSelectAffinity1() {
-        
+        let selectAffinityViewController = SelectAffinityViewController(delegate: self, affinityNumber: 1, affinity: self.affinity1)
+        self.navigationController?.pushViewController(selectAffinityViewController, animated: true)
     }
     
     func didSelectAffinity2() {
-        
+        let selectAffinityViewController = SelectAffinityViewController(delegate: self, affinityNumber: 2, affinity: self.affinity2)
+        self.navigationController?.pushViewController(selectAffinityViewController, animated: true)
     }
     
     func didIncreaseAffinity1() {
@@ -238,8 +269,11 @@ extension ItemBuilderViewController: HeroStatsDelegate {
         return self.buildItems
     }
     
-    func getAffinities() -> [String : Int] {
-        return self.affinities ?? [String: Int]()
+    func getAffinities() -> [ItemAffinity : Int] {
+        var affinities = [ItemAffinity: Int]()
+        affinities[affinity1] = self.affinity1Rank
+        affinities[affinity2] = self.affinity2Rank
+        return affinities
     }
     
     

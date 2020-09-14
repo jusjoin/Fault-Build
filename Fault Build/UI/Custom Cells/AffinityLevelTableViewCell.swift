@@ -47,11 +47,25 @@ class AffinityLevelTableViewCell: FBTableViewCell {
     let affinity2ImageButton = UIButton(type: .custom)
     let affinity1RankLabel = UILabel()
     let affinity2RankLabel = UILabel()
+    var affinity1: ItemAffinity?
+    var affinity1Rank = 0
+    var affinity2: ItemAffinity?
+    var affinity2Rank = 0
     var delegate: AffinityLevelTableViewCellDelegate?
     
-    init(tableView: UITableView, delegate: AffinityLevelTableViewCellDelegate) {
+    init(
+        tableView: UITableView,
+        delegate: AffinityLevelTableViewCellDelegate,
+        affinity1: ItemAffinity?,
+        affinity1Rank: Int?,
+        affinity2: ItemAffinity?,
+        affinity2Rank: Int?) {
         super.init(style: .default, reuseIdentifier: "AffinityLevelTableViewCell")
         self.delegate = delegate
+        self.affinity1 = affinity1
+        self.affinity1Rank = affinity1Rank ?? 0
+        self.affinity2 = affinity2
+        self.affinity2Rank = affinity2Rank ?? 0
         self.setupViews()
     }
     
@@ -60,9 +74,9 @@ class AffinityLevelTableViewCell: FBTableViewCell {
     }
     
     func setupViews() {
-        affinity1RankLabel.text = "0"
+        affinity1RankLabel.text = "\(self.affinity1Rank)"
         affinity1RankLabel.textAlignment = .center
-        affinity2RankLabel.text = "0"
+        affinity2RankLabel.text = "\(affinity2Rank)"
         affinity2RankLabel.textAlignment = .center
         
         affinity1IncreaseButton.addTarget(self, action: #selector(affinity1IncreaseButtonTapped), for: .touchUpInside)
@@ -70,10 +84,15 @@ class AffinityLevelTableViewCell: FBTableViewCell {
         affinity1IncreaseButton.addTarget(self, action: #selector(affinity2IncreaseButtonTapped), for: .touchUpInside)
         affinity1IncreaseButton.addTarget(self, action: #selector(affinity2DecreaseButtonTapped), for: .touchUpInside)
         
-        affinity1ImageButton.setImage(UIImage(named: "GreenFactionLogo")?.resize(scaledToSize: CGSize(width: 50, height: 50)), for: .normal)
-        affinity1ImageButton.backgroundColor = .black
-        affinity2ImageButton.setImage(UIImage(named: "GreenFactionLogo")?.resize(scaledToSize: CGSize(width: 50, height: 50)), for: .normal)
-        affinity2ImageButton.backgroundColor = .black
+        let affinity1Image = self.affinity1?.image ?? UIImage(named: "FaultFactionLogo")
+        affinity1ImageButton.setImage(affinity1Image?.resize(scaledToSize: CGSize(width: 50, height: 50)), for: .normal)
+        affinity1ImageButton.backgroundColor = affinity1?.color()
+        affinity1ImageButton.addTarget(self, action: #selector(affinity1ImageButtonTapped), for: .touchUpInside)
+        
+        let affinity2Image = self.affinity2?.image ?? UIImage(named: "FaultFactionLogo")
+        affinity2ImageButton.setImage(affinity2Image?.resize(scaledToSize: CGSize(width: 50, height: 50)), for: .normal)
+        affinity2ImageButton.backgroundColor = affinity2?.color()
+        affinity2ImageButton.addTarget(self, action: #selector(affinity2ImageButtonTapped), for: .touchUpInside)
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,12 +150,20 @@ class AffinityLevelTableViewCell: FBTableViewCell {
         NSLayoutConstraint.activate(affinity2StackViewConstraints)
     }
 
+    @objc func affinity1ImageButtonTapped() {
+        delegate?.didSelectAffinity1()
+    }
+    
     @objc func affinity1IncreaseButtonTapped() {
         delegate?.didDecreaseAffinity1()
     }
     
     @objc func affinity1DecreaseButtonTapped() {
         delegate?.didDecreaseAffinity1()
+    }
+    
+    @objc func affinity2ImageButtonTapped() {
+        delegate?.didSelectAffinity2()
     }
     
     @objc func affinity2IncreaseButtonTapped() {

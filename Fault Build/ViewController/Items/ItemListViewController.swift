@@ -187,17 +187,17 @@ class ItemListViewController: BaseViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        let section = ItemListViewSections(rawValue: indexPath.section)
+        let section = self.sectionsToDisplay.count == ItemListViewSections.allCases.count ? ItemListViewSections(rawValue: indexPath.section) : self.sectionsToDisplay[indexPath.section]
         if section == .filters {
-            let selectFilterViewController = SelectItemFilterViewController()
-            selectFilterViewController.delegate = self
+            let selectFilterViewController = SelectItemFilterViewController(delegate: self, filters: self.itemFilters)
             self.navigationController?.pushViewController(selectFilterViewController, animated: true)
         }
         let itemDictionary = self.getItemDictionaryToUse()
-        
-        if let itemGroup = ItemListViewSections(rawValue: indexPath.section)?.description {
-            let itemDictionaryForSection = itemDictionary[itemGroup]
-            if let gameItem = itemDictionaryForSection?[indexPath.row] {
+        //TODO: Fix this section with changes from cellForRowAt
+        if let itemGroup = section?.description,
+            let itemDictionaryForSection = itemDictionary[itemGroup] {
+            if itemDictionaryForSection.count > 0 {
+                let gameItem = itemDictionaryForSection[indexPath.row]
                 if let delegate = self.delegate {
                     delegate.didSelectItem(gameItem: gameItem)
                     self.navigationController?.popViewController(animated: true)
@@ -206,6 +206,7 @@ class ItemListViewController: BaseViewController {
                     let itemViewController = ItemViewController(item: gameItem)
                     self.navigationController?.pushViewController(itemViewController, animated: true)
                 }
+                
             }
         }
         

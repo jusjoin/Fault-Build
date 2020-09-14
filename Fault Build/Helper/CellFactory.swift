@@ -119,4 +119,16 @@ class CellFactory{
         
         return cell
     }
+    
+    static func createAffinityCell(affinity: ItemAffinity) -> FBTableViewCell {
+            let cell = FBTableViewCell(style: .subtitle, reuseIdentifier: ReuseIdentifiers.basicItemCell)
+        cell.imageView?.image = affinity.image.resize(scaledToSize: CGSize(width: 50, height: 50))
+        cell.imageView?.backgroundColor = affinity.color()
+            cell.textLabel?.text = affinity.name
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderWidth = 1
+    //        cell.layer.cornerRadius = 8
+            
+            return cell
+        }
 }

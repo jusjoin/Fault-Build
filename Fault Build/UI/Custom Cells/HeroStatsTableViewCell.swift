@@ -10,7 +10,7 @@ import UIKit
 
 protocol HeroStatsDelegate {
     func getBuildItems() -> [GameItem]
-    func getAffinities() -> [String: Int]
+    func getAffinities() -> [ItemAffinity: Int]
 }
 
 class HeroStatsTableViewCell: FBTableViewCell {
@@ -31,7 +31,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
     let manaRegenLabel = UILabel()
     let moveSpeedLabel = UILabel()
     let abilityDefenseLabel = UILabel()
-    let basicDefenseLabel = UILabel()
+    let PhysicalArmorLabel = UILabel()
     let basicAttackLabel = UILabel()
     let attackSpeedLabel = UILabel()
     let sliderLabel = UILabel()
@@ -55,7 +55,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
     var itemMana = 0.0
     var itemHealthRegen = 0.0
     var itemManaRegen = 0.0
-    var itemBasicArmor = 0.0
+    var itemPhysicalArmor = 0.0
     var itemEnergyArmor = 0.0
     var itemAttackSpeed = 0.0
     var itemMovementSpeed = 0.0
@@ -94,8 +94,8 @@ class HeroStatsTableViewCell: FBTableViewCell {
         moveSpeedLabel.lineBreakMode = .byWordWrapping
         abilityDefenseLabel.numberOfLines = 0
         abilityDefenseLabel.lineBreakMode = .byWordWrapping
-        basicDefenseLabel.numberOfLines = 0
-        basicDefenseLabel.lineBreakMode = .byWordWrapping
+        PhysicalArmorLabel.numberOfLines = 0
+        PhysicalArmorLabel.lineBreakMode = .byWordWrapping
         basicAttackLabel.numberOfLines = 0
         basicAttackLabel.lineBreakMode = .byWordWrapping
         attackSpeedLabel.numberOfLines = 0
@@ -244,7 +244,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.stackView1.addArrangedSubview(self.baseManaLabel)
         self.stackView2.addArrangedSubview(self.healthRegenLabel)
         self.stackView2.addArrangedSubview(self.manaRegenLabel)
-        self.stackView3.addArrangedSubview(self.basicDefenseLabel)
+        self.stackView3.addArrangedSubview(self.PhysicalArmorLabel)
         self.stackView3.addArrangedSubview(self.abilityDefenseLabel)
         self.stackView4.addArrangedSubview(self.basicAttackLabel)
         self.stackView4.addArrangedSubview(self.attackSpeedLabel)
@@ -275,7 +275,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.itemMana = self.itemMana + manaFromItems()
         self.itemHealthRegen = self.itemHealthRegen + healthRegenFromItems()
         self.itemManaRegen = self.itemManaRegen + manaRegenFromItems()
-        self.itemBasicArmor = self.itemBasicArmor + basicArmorFromItems()
+        self.itemPhysicalArmor = self.itemPhysicalArmor + basicArmorFromItems()
         self.itemEnergyArmor = self.itemEnergyArmor + energyArmorFromItems()
         self.itemAttackSpeed = self.itemAttackSpeed + attackSpeedFromItems()
         self.itemMovementSpeed = self.itemMovementSpeed + movementSpeedFromItems()
@@ -291,7 +291,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         let heroLevelDouble =  Double(levelSlider.value.rounded())
         let health = Double(self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1))) + itemHealth
         let mana = Double(self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1))) + itemMana
-        let basicDefense = Double(self.hero.getBasicDefense()) + self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1) + itemBasicArmor
+        let basicDefense = Double(self.hero.getBasicDefense()) + self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1) + itemPhysicalArmor
         let healthRegen = Double(self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * (heroLevelDouble - 1)) + itemHealthRegen
         let manaRegen = Double(self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * (heroLevelDouble - 1))) + itemManaRegen
         let energyArmor = Double(self.hero.getAbilityDefense() + (self.hero.getAbilityDefensePerLevel() * (heroLevelDouble - 1))) + itemEnergyArmor
@@ -307,16 +307,16 @@ class HeroStatsTableViewCell: FBTableViewCell {
         let movementSpeed = Double(self.hero.getMoveSpeed()) + itemMovementSpeed
         let level = String(format: "%.0f", self.levelSlider.value.rounded())
         
-        //TODO: Add gained amount in square brackets at the end of each label
+        //Amount gained from items in square brackets at the end of each label if can be gained otherwise
         //For example "[\(itemHealth)]"
-        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel))"
-        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel))"
-        self.basicDefenseLabel.text = "Basic Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0)))"
-        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2)))"
-        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel))"
-        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0)))"
+        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel)) [+\(itemHealth)]"
+        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel)) [+\(itemMana)]"
+        self.PhysicalArmorLabel.text = "Physical Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0))) [+\(itemPhysicalArmor)]"
+        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2))) [+\(itemHealthRegen)]"
+        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel)) [+\(itemManaRegen)]"
+        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0))) [+\(itemEnergyArmor)]"
         self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage.stringDP(2))\n(+\(attackDamagePerLevel.stringDP(2)))"
-        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n"
+        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n [+\(itemAttackSpeed)]"
         self.cooldownLabel.text = "Cooldown: \(itemCooldown.stringDP(2))\n"
         self.physicalPenLabel.text = "Physical Pen: \(itemPhysicalPenetration.stringDP(2))\n"
         self.energyPenLabel.text = "Energy Pen: \(itemEnergyPenetration.stringDP(2))\n"
@@ -335,7 +335,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.health.description() {
                         healthGained = healthGained + attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 healthGained = healthGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -354,7 +354,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.mana.description() {
                         manaGained = manaGained + attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)]{
                             if attribute.rankValue > 0 {
                                 manaGained = manaGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -373,7 +373,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.healthRegenRate.description() {
                         healthRegenGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 healthRegenGained = healthRegenGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -392,7 +392,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.manaRegenRate.description() {
                         manaRegenGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 manaRegenGained = manaRegenGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -411,7 +411,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.ouchieArmor.description() {
                         physicalArmorGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 physicalArmorGained = physicalArmorGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -430,7 +430,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.sizzleArmor.description() {
                         energyArmorGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)]{
                             if attribute.rankValue > 0 {
                                 energyArmorGained = energyArmorGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -449,7 +449,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.attackSpeed.description() {
                         attackSpeedGained = (attribute.value / 100) * self.hero.getAttackSpeed()
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 let percentGain = ((attribute.value + (attribute.rankValue * Double(affinityRank))) / 100)
                                 attackSpeedGained = percentGain * self.hero.getAttackSpeed()
@@ -469,7 +469,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.movementSpeed.description() {
                         movementSpeedGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 movementSpeedGained = movementSpeedGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -488,7 +488,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.pctCDR.description() {
                         cooldownGained = attribute.value * 100
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 cooldownGained = cooldownGained + (attribute.rankValue * Double(affinityRank * 100))
                             }
@@ -507,7 +507,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.critChance.description() {
                         critChanceGained = attribute.value * 100
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 critChanceGained = critChanceGained + (attribute.rankValue * Double(affinityRank * 100))
                             }
@@ -526,7 +526,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.lifesteal.description() {
                         lifestealGained = attribute.value * 100
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 lifestealGained = lifestealGained + (attribute.rankValue * Double(affinityRank * 100))
                             }
@@ -545,7 +545,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.ouchiePenetration.description() {
                         physicalPenetrationGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 physicalPenetrationGained = physicalPenetrationGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -564,7 +564,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.sizzlePenetration.description() {
                         energyPenetrationGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 energyPenetrationGained = energyPenetrationGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -583,7 +583,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.ouchPower.description() {
                         physicalPowerGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 physicalPowerGained = physicalPowerGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -602,7 +602,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
                 for attribute in item.attributes {
                     if attribute.attributeName == ItemAttribute.zapPower.description() {
                         energyPowerGained = attribute.value
-                        if let affinityRank = itemBuilder?.getAffinities()[item.color] {
+                        if let affinityRank = itemBuilder?.getAffinities()[ItemAffinity.fromColor(name: item.color)] {
                             if attribute.rankValue > 0 {
                                 energyPowerGained = energyPowerGained + (attribute.rankValue * Double(affinityRank))
                             }
@@ -627,7 +627,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.itemMana = 0.0
         self.itemHealthRegen = 0.0
         self.itemManaRegen = 0.0
-        self.itemBasicArmor = 0.0
+        self.itemPhysicalArmor = 0.0
         self.itemEnergyArmor = 0.0
         self.itemAttackSpeed = 0.0
         self.itemMovementSpeed = 0.0

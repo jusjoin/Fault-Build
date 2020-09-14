@@ -20,11 +20,13 @@
 		8468856C24EE3F480018DE60 /* HeroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856B24EE3F480018DE60 /* HeroData.swift */; };
 		8468856F24EE4D9B0018DE60 /* LMBAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468856E24EE4D9B0018DE60 /* LMBAbility.swift */; };
 		8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */; };
-		8468857324F1A8FB0018DE60 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857224F1A8FB0018DE60 /* Item.swift */; };
+		8468857324F1A8FB0018DE60 /* ItemAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857224F1A8FB0018DE60 /* ItemAttribute.swift */; };
 		8468857624F1D8470018DE60 /* ItemBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857524F1D8470018DE60 /* ItemBuilderViewController.swift */; };
 		8468857824F357910018DE60 /* ItemFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857724F357910018DE60 /* ItemFilterTableViewCell.swift */; };
 		8468857C24F3865F0018DE60 /* StackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468857B24F3865F0018DE60 /* StackViewFactory.swift */; };
 		8469066A250CA66B007CC039 /* SelectItemFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84690669250CA66B007CC039 /* SelectItemFilterViewController.swift */; };
+		8469066C250EBD81007CC039 /* SelectAffinityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469066B250EBD81007CC039 /* SelectAffinityViewController.swift */; };
+		8469066E250F56D8007CC039 /* ItemAffinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469066D250F56D8007CC039 /* ItemAffinity.swift */; };
 		84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* Belica.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
@@ -80,11 +82,13 @@
 		8468856B24EE3F480018DE60 /* HeroData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroData.swift; sourceTree = "<group>"; };
 		8468856E24EE4D9B0018DE60 /* LMBAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMBAbility.swift; sourceTree = "<group>"; };
 		8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBTableViewCell.swift; sourceTree = "<group>"; };
-		8468857224F1A8FB0018DE60 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		8468857224F1A8FB0018DE60 /* ItemAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAttribute.swift; sourceTree = "<group>"; };
 		8468857524F1D8470018DE60 /* ItemBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBuilderViewController.swift; sourceTree = "<group>"; };
 		8468857724F357910018DE60 /* ItemFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFilterTableViewCell.swift; sourceTree = "<group>"; };
 		8468857B24F3865F0018DE60 /* StackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewFactory.swift; sourceTree = "<group>"; };
 		84690669250CA66B007CC039 /* SelectItemFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemFilterViewController.swift; sourceTree = "<group>"; };
+		8469066B250EBD81007CC039 /* SelectAffinityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAffinityViewController.swift; sourceTree = "<group>"; };
+		8469066D250F56D8007CC039 /* ItemAffinity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAffinity.swift; sourceTree = "<group>"; };
 		84A3C44624E91D1C00DFDE5C /* Belica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Belica.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,7 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				84AA325A24D908560020D08A /* GameItemData.swift */,
-				8468857224F1A8FB0018DE60 /* Item.swift */,
+				8468857224F1A8FB0018DE60 /* ItemAttribute.swift */,
+				8469066D250F56D8007CC039 /* ItemAffinity.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				8468857524F1D8470018DE60 /* ItemBuilderViewController.swift */,
+				8469066B250EBD81007CC039 /* SelectAffinityViewController.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -459,9 +465,11 @@
 				84AA326B24DB687D0020D08A /* UIColor+Extensions.swift in Sources */,
 				84AA323824D75A740020D08A /* LoginLandingViewController.swift in Sources */,
 				8468856624EC6BCF0018DE60 /* HeroStatsTableViewCell.swift in Sources */,
-				8468857324F1A8FB0018DE60 /* Item.swift in Sources */,
+				8468857324F1A8FB0018DE60 /* ItemAttribute.swift in Sources */,
+				8469066E250F56D8007CC039 /* ItemAffinity.swift in Sources */,
 				846048B5250467C500E4A2F6 /* AffinityLevelTableViewCell.swift in Sources */,
 				84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */,
+				8469066C250EBD81007CC039 /* SelectAffinityViewController.swift in Sources */,
 				8468857C24F3865F0018DE60 /* StackViewFactory.swift in Sources */,
 				8468856824ED97B30018DE60 /* LMBAbilityTableViewCell.swift in Sources */,
 				84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */,

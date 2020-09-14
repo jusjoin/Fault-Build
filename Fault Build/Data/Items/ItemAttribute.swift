@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ItemAttribute: Int, CaseIterable {
     case ouchPower
@@ -103,53 +104,3 @@ enum ItemAttribute: Int, CaseIterable {
         return display
     }
 }
-
-
-//switch sender.tag {
-//case ItemAttribute.ouchPower.intValue():
-//    break
-//    
-//case ItemAttribute.ouchieArmor.intValue():
-//    break
-//    
-//case ItemAttribute.ouchiePenetration.intValue():
-//    break
-//    
-//case ItemAttribute.zapPower.intValue():
-//    break
-//    
-//case ItemAttribute.sizzleArmor.intValue():
-//    break
-//    
-//case ItemAttribute.sizlePenetration.intValue():
-//    break
-//    
-//case ItemAttribute.health.intValue():
-//    break
-//    
-//case ItemAttribute.healthRegenRate.intValue():
-//    break
-//    
-//case ItemAttribute.mana.intValue():
-//    break
-//    
-//case ItemAttribute.manaRegenRate.intValue():
-//    break
-//    
-//case ItemAttribute.pctCDR.intValue():
-//    break
-//    
-//case ItemAttribute.attackSpeed.intValue():
-//    break
-//    
-//case ItemAttribute.movementSpeed.intValue():
-//    break
-//    
-//case ItemAttribute.critChance.intValue():
-//    break
-//    
-//case ItemAttribute.lifesteal.intValue():
-//    break
-//    
-//default:
-//    break

@@ -16,6 +16,16 @@ class SelectItemFilterViewController: BaseViewController {
     var delegate: ItemFilterDelegate?
     var itemFilters = [ItemAttribute: String]()
     
+    init(delegate: ItemFilterDelegate, filters: [ItemAttribute: String]) {
+        super.init(nibName: nil, bundle: nil)
+        self.delegate = delegate
+        self.itemFilters = filters
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Filters"
@@ -28,67 +38,16 @@ class SelectItemFilterViewController: BaseViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return ItemAttribute.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = ItemAttribute(rawValue: indexPath.row)
         let cell = FBTableViewCell(style: .default, reuseIdentifier: "ItemFilterCell")
-        switch row {
-        case .attackSpeed:
-            cell.textLabel?.text = ItemAttribute.attackSpeed.displayName()
-            
-        case .critChance:
-            cell.textLabel?.text = ItemAttribute.critChance.displayName()
-            
-        case .health:
-            cell.textLabel?.text = ItemAttribute.health.displayName()
-            
-        case .healthRegenRate:
-            cell.textLabel?.text = ItemAttribute.healthRegenRate.displayName()
-            
-        case .lifesteal:
-            cell.textLabel?.text = ItemAttribute.lifesteal.displayName()
-            
-        case .mana:
-            cell.textLabel?.text = ItemAttribute.mana.displayName()
-            
-        case .manaRegenRate:
-            cell.textLabel?.text = ItemAttribute.manaRegenRate.displayName()
-            
-        case .movementSpeed:
-            cell.textLabel?.text = ItemAttribute.movementSpeed.displayName()
-            
-        case .ouchieArmor:
-            cell.textLabel?.text = ItemAttribute.ouchieArmor.displayName()
-            
-        case .ouchiePenetration:
-            cell.textLabel?.text = ItemAttribute.ouchiePenetration.displayName()
-            
-        case .ouchPower:
-            cell.textLabel?.text = ItemAttribute.ouchPower.displayName()
-            
-        case .pctCDR:
-            cell.textLabel?.text = ItemAttribute.pctCDR.displayName()
-            
-        case .sizzleArmor:
-            cell.textLabel?.text = ItemAttribute.sizzleArmor.displayName()
-            
-        case .sizzlePenetration:
-            cell.textLabel?.text = ItemAttribute.sizzlePenetration.displayName()
-            
-        case .zapPower:
-            cell.textLabel?.text = ItemAttribute.zapPower.displayName()
-            
-        default:
-            break
+        if let attribute = ItemAttribute(rawValue: indexPath.row) {
+            cell.textLabel?.text = attribute.displayName()
+            cell.accessoryType = self.itemFilters[attribute] != nil ? .checkmark : .none
         }
         
         return cell
