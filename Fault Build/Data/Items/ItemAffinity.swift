@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ItemAffinity: Int, CaseIterable {
     case none

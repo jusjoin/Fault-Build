@@ -309,14 +309,14 @@ class HeroStatsTableViewCell: FBTableViewCell {
         
         //Amount gained from items in square brackets at the end of each label if can be gained otherwise
         //For example "[\(itemHealth)]"
-        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel)) [+\(itemHealth)]"
-        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel)) [+\(itemMana)]"
-        self.PhysicalArmorLabel.text = "Physical Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0))) [+\(itemPhysicalArmor)]"
-        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2))) [+\(itemHealthRegen)]"
-        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel)) [+\(itemManaRegen)]"
-        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0))) [+\(itemEnergyArmor)]"
-        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage.stringDP(2))\n(+\(attackDamagePerLevel.stringDP(2)))"
-        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n [+\(itemAttackSpeed)]"
+        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel)) [+\(itemHealth)]\n"
+        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel)) [+\(itemMana)]\n"
+        self.PhysicalArmorLabel.text = "Physical Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0))) [+\(itemPhysicalArmor)]\n"
+        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2))) [+\(itemHealthRegen)]\n"
+        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel)) [+\(itemManaRegen)]\n"
+        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0))) [+\(itemEnergyArmor.stringDP(0))]\n"
+        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage.stringDP(2))\n(+\(attackDamagePerLevel.stringDP(2)))\n"
+        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n [+\(itemAttackSpeed.stringDP(2))]\n"
         self.cooldownLabel.text = "Cooldown: \(itemCooldown.stringDP(2))\n"
         self.physicalPenLabel.text = "Physical Pen: \(itemPhysicalPenetration.stringDP(2))\n"
         self.energyPenLabel.text = "Energy Pen: \(itemEnergyPenetration.stringDP(2))\n"
@@ -324,7 +324,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.physicalPowerLabel.text = "Physical Power: \(itemPhysicalPower.stringDP(2))\n"
         self.energyPowerLabel.text = "Energy Power: \(itemEnergyPower.stringDP(2))\n"
         self.critChanceLabel.text = "Crit Chance: \(itemCritChance.stringDP(2))\n"
-        self.moveSpeedLabel.text = "Move Speed: \(movementSpeed.stringDP(2))\n"
+        self.moveSpeedLabel.text = "Move Speed: \(movementSpeed.stringDP(0))\n"
         self.sliderLabel.text = "Level: \(level)"
     }
     

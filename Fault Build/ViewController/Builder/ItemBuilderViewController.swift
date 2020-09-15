@@ -220,6 +220,7 @@ extension ItemBuilderViewController: SelectAffinityDelegate {
             break
         }
         self.shouldReloadAffinitySection = true
+        heroStats?.updateHeroStats()
     }
 }
 
@@ -234,21 +235,23 @@ extension ItemBuilderViewController: AffinityLevelTableViewCellDelegate {
         self.navigationController?.pushViewController(selectAffinityViewController, animated: true)
     }
     
-    func didIncreaseAffinity1() {
-        
+    func didUpdateAffinity1(rank: Int) {
+        self.affinity1Rank = rank
+        heroStats?.updateHeroStats()
     }
     
-    func didDecreaseAffinity1() {
-        
+//    func didDecreaseAffinity1() {
+//
+//    }
+    
+    func didUpdateAffinity2(rank: Int) {
+        self.affinity2Rank = rank
+        heroStats?.updateHeroStats()
     }
     
-    func didIncreaseAffinity2() {
-        
-    }
-    
-    func didDecreaseAffinity2() {
-        
-    }
+//    func didDecreaseAffinity2() {
+//
+//    }
 }
 
 extension ItemBuilderViewController: ItemListViewDelegate {
