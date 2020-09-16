@@ -15,6 +15,7 @@ final class FaultBuildHelper {
         return instance
     }()
     
+    //Make static
     func getFactionImage(faction: String) -> UIImage {
         var name = ""
         switch(faction) {
@@ -37,8 +38,23 @@ final class FaultBuildHelper {
         return UIImage(named: name) ?? UIImage()
     }
     
+    //Make static
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    static func getAbilityImage(imageURL: String, completion: @escaping (UIImage?) -> ()) {
+        if let imageURL = URL(string: imageURL) {
+            FaultBuildHelper.shared.getData(from: imageURL, completion: { data, response, error in
+                guard let data = data, error == nil else {
+                    print("Error retrieving data from " + imageURL.absoluteString)
+                    return
+                    
+                }
+                print("Successfully retrieved data from " + imageURL.absoluteString)
+                completion(UIImage(data: data))
+            })
+        }
     }
     
 //    func getNonFactionImage(type: String) -> UIImage{

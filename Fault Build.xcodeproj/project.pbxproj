@@ -27,6 +27,12 @@
 		8469066A250CA66B007CC039 /* SelectItemFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84690669250CA66B007CC039 /* SelectItemFilterViewController.swift */; };
 		8469066C250EBD81007CC039 /* SelectAffinityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469066B250EBD81007CC039 /* SelectAffinityViewController.swift */; };
 		8469066E250F56D8007CC039 /* ItemAffinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469066D250F56D8007CC039 /* ItemAffinity.swift */; };
+		846906702511556C007CC039 /* Boris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469066F2511556C007CC039 /* Boris.swift */; };
+		846906722511576F007CC039 /* Boris+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906712511576F007CC039 /* Boris+Extension.swift */; };
+		8469067625116414007CC039 /* HeroCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469067525116414007CC039 /* HeroCommon.swift */; };
+		846906782511C8BD007CC039 /* HeroInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906772511C8BD007CC039 /* HeroInfo.swift */; };
+		8469067A2511CF18007CC039 /* Countess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906792511CF18007CC039 /* Countess.swift */; };
+		8469067C2511E9E0007CC039 /* Countess+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469067B2511E9E0007CC039 /* Countess+Extension.swift */; };
 		84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* Belica.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
@@ -89,6 +95,12 @@
 		84690669250CA66B007CC039 /* SelectItemFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemFilterViewController.swift; sourceTree = "<group>"; };
 		8469066B250EBD81007CC039 /* SelectAffinityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAffinityViewController.swift; sourceTree = "<group>"; };
 		8469066D250F56D8007CC039 /* ItemAffinity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAffinity.swift; sourceTree = "<group>"; };
+		8469066F2511556C007CC039 /* Boris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boris.swift; sourceTree = "<group>"; };
+		846906712511576F007CC039 /* Boris+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Boris+Extension.swift"; sourceTree = "<group>"; };
+		8469067525116414007CC039 /* HeroCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCommon.swift; sourceTree = "<group>"; };
+		846906772511C8BD007CC039 /* HeroInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroInfo.swift; sourceTree = "<group>"; };
+		846906792511CF18007CC039 /* Countess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countess.swift; sourceTree = "<group>"; };
+		8469067B2511E9E0007CC039 /* Countess+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Countess+Extension.swift"; sourceTree = "<group>"; };
 		84A3C44624E91D1C00DFDE5C /* Belica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Belica.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +176,12 @@
 				8468856B24EE3F480018DE60 /* HeroData.swift */,
 				8468856924EE2F6F0018DE60 /* Ability.swift */,
 				8468856E24EE4D9B0018DE60 /* LMBAbility.swift */,
+				8469066F2511556C007CC039 /* Boris.swift */,
+				846906712511576F007CC039 /* Boris+Extension.swift */,
+				8469067525116414007CC039 /* HeroCommon.swift */,
+				846906772511C8BD007CC039 /* HeroInfo.swift */,
+				846906792511CF18007CC039 /* Countess.swift */,
+				8469067B2511E9E0007CC039 /* Countess+Extension.swift */,
 			);
 			path = Heroes;
 			sourceTree = "<group>";
@@ -462,14 +480,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8469067A2511CF18007CC039 /* Countess.swift in Sources */,
 				84AA326B24DB687D0020D08A /* UIColor+Extensions.swift in Sources */,
+				846906782511C8BD007CC039 /* HeroInfo.swift in Sources */,
 				84AA323824D75A740020D08A /* LoginLandingViewController.swift in Sources */,
 				8468856624EC6BCF0018DE60 /* HeroStatsTableViewCell.swift in Sources */,
 				8468857324F1A8FB0018DE60 /* ItemAttribute.swift in Sources */,
 				8469066E250F56D8007CC039 /* ItemAffinity.swift in Sources */,
 				846048B5250467C500E4A2F6 /* AffinityLevelTableViewCell.swift in Sources */,
+				846906702511556C007CC039 /* Boris.swift in Sources */,
 				84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */,
 				8469066C250EBD81007CC039 /* SelectAffinityViewController.swift in Sources */,
+				8469067C2511E9E0007CC039 /* Countess+Extension.swift in Sources */,
 				8468857C24F3865F0018DE60 /* StackViewFactory.swift in Sources */,
 				8468856824ED97B30018DE60 /* LMBAbilityTableViewCell.swift in Sources */,
 				84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */,
@@ -484,6 +506,7 @@
 				84AA326024DA22EC0020D08A /* Resource.swift in Sources */,
 				84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */,
 				8468856424EBA1800018DE60 /* HeroViewController.swift in Sources */,
+				8469067625116414007CC039 /* HeroCommon.swift in Sources */,
 				84AA326724DA4BD60020D08A /* APIClient.swift in Sources */,
 				84AA325824D8F3A80020D08A /* Theme.swift in Sources */,
 				84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */,
@@ -500,6 +523,7 @@
 				84AA324F24D7BD860020D08A /* HeroListViewController.swift in Sources */,
 				8468855C24E9E3150018DE60 /* Belica+Extension.swift in Sources */,
 				84DB29A524E8C44200465587 /* CellFactory.swift in Sources */,
+				846906722511576F007CC039 /* Boris+Extension.swift in Sources */,
 				8468857624F1D8470018DE60 /* ItemBuilderViewController.swift in Sources */,
 				84AA326524DA48DF0020D08A /* URLRequest+Resource.swift in Sources */,
 				84AA324424D7BCAB0020D08A /* MainLandingPageViewController.swift in Sources */,

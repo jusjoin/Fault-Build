@@ -23,7 +23,7 @@ class FBTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
+        self.contentView.frame = self.bounds.inset(by: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
     }
     
 }

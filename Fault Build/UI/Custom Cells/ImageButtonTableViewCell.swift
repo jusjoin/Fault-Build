@@ -21,7 +21,7 @@ class ImageButtonTableViewCell: FBTableViewCell {
             self.button2 = buttons[1]
         }
         if buttons.indices.contains(2){
-            self.button2 = buttons[2]
+            self.button3 = buttons[2]
         }
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
 //        if let reuseIdentifier = reuseIdentifier {

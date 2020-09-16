@@ -19,10 +19,10 @@ class HeroListViewController: BaseViewController {
     }()
     
     let numberOfHeroesPerRow = 3
-    var heroes: [String: Hero]
+    var heroes = [String: Hero]()
     
     init(){
-        self.heroes = [String: Belica]()
+//        self.heroes = [String: Belica]()
         super.init(nibName: nil, bundle: nil)
         FaultDataRepository.shared.getHeroes(completion: { [weak self] in
             if let self = self {
@@ -69,15 +69,17 @@ class HeroListViewController: BaseViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var buttons = [UIButton]()
-        for n in 0...2 {
+        for n in 0...self.numberOfHeroesPerRow-1 {
             let hero = indexPath.row * numberOfHeroesPerRow + n
             if Array(self.heroes.keys).indices.contains(hero) {
-                let button = makeHeroButton(heroName: Array(self.heroes.keys)[hero])
-                button.tag = Heroes.heroIDFromName(name: HeroName.belica)
+                let heroName = Array(self.heroes.keys)[hero]
+                let button = makeHeroButton(heroName: heroName)
+                button.tag = Heroes.heroIDFromName(name: heroName)
                 buttons.append(button)
             }
         }
-        
+        let cell = ImageButtonTableViewCell(buttons: buttons, tableView: self.tableView, reuseIdentifier: nil)
+        return cell
 //        let hero1 = indexPath.row * numberOfHeroesPerRow
 //        let hero2 = indexPath.row * numberOfHeroesPerRow + 1
 //        let hero3 = indexPath.row * numberOfHeroesPerRow + 2
@@ -96,20 +98,27 @@ class HeroListViewController: BaseViewController {
 //            button.tag = hero3
 //            buttons.append(button)
 //        }
-        let cell = ImageButtonTableViewCell(buttons: buttons, tableView: self.tableView, reuseIdentifier: nil)
-        return cell
+        
     }
     
     @objc func buttonClick(_ sender: UIButton) {
+        var hero: Hero?
         switch sender.tag {
         case Heroes.belica.rawValue:
-            if let hero = self.heroes[HeroName.belica.rawValue] {
-                let heroViewController = HeroViewController(withHero: hero)
-                self.navigationController?.pushViewController(heroViewController, animated: true)
-            }
+            hero = self.heroes[Heroes.belica.name]
+            
+            case Heroes.boris.rawValue:
+            hero = self.heroes[Heroes.boris.name]
+            
+            case Heroes.countess.rawValue:
+            hero = self.heroes[Heroes.countess.name]
             
         default:
             break
+        }
+        if let hero = hero {
+            let heroViewController = HeroViewController(withHero: hero)
+            self.navigationController?.pushViewController(heroViewController, animated: true)
         }
     }
 

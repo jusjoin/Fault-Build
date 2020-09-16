@@ -165,7 +165,8 @@ class LMBAbilityTableViewCell: FBTableViewCell {
         self.AdaptiveDamagePerLevelLabel.text = "Damage/Level: " + String(format: "%.2f",hero.getLMBAbility().getAdaptiveDamagePerLevel())
         self.scalingFactorLabel.text = "Scaling: " + String(hero.getLMBAbility().getScalingFactor())
         
-        hero.getAbilityImage(imageURL: self.hero.lmbAbilityImageURL, completion: { image in
+        //Any hero could be used here
+        FaultBuildHelper.getAbilityImage(imageURL: self.hero.lmbAbilityImageURL, completion: { image in
             DispatchQueue.main.async {
                 guard let image = image else { return }
                 if let imageView = self.imageView {

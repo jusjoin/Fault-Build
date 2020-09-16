@@ -82,6 +82,7 @@ class HeroStatsTableViewCell: FBTableViewCell {
     }
     
     func setupViews() {
+        let stackViewVerticalSpacing:CGFloat = 5
         baseHealthLabel.numberOfLines = 0
         baseHealthLabel.lineBreakMode = .byWordWrapping
         healthRegenLabel.numberOfLines = 0
@@ -184,56 +185,56 @@ class HeroStatsTableViewCell: FBTableViewCell {
         NSLayoutConstraint.activate(stackView1Constraints)
         
         let stackView2Constraints = [
-            self.stackView2.topAnchor.constraint(equalTo: stackView1.bottomAnchor),
+            self.stackView2.topAnchor.constraint(equalTo: stackView1.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView2.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView2.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView2Constraints)
         
         let stackView3Constraints = [
-            self.stackView3.topAnchor.constraint(equalTo: stackView2.bottomAnchor),
+            self.stackView3.topAnchor.constraint(equalTo: stackView2.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView3.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView3.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView3Constraints)
         
         let stackView4Constraints = [
-            self.stackView4.topAnchor.constraint(equalTo: stackView3.bottomAnchor),
+            self.stackView4.topAnchor.constraint(equalTo: stackView3.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView4.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView4.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView4Constraints)
         
         let stackView5Constraints = [
-            self.stackView5.topAnchor.constraint(equalTo: stackView4.bottomAnchor),
+            self.stackView5.topAnchor.constraint(equalTo: stackView4.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView5.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView5.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView5Constraints)
         
         let stackView6Constraints = [
-            self.stackView6.topAnchor.constraint(equalTo: stackView5.bottomAnchor),
+            self.stackView6.topAnchor.constraint(equalTo: stackView5.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView6.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView6.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView6Constraints)
         
         let stackView7Constraints = [
-            self.stackView7.topAnchor.constraint(equalTo: stackView6.bottomAnchor),
+            self.stackView7.topAnchor.constraint(equalTo: stackView6.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView7.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView7.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView7Constraints)
         
         let stackView8Constraints = [
-            self.stackView8.topAnchor.constraint(equalTo: stackView7.bottomAnchor),
+            self.stackView8.topAnchor.constraint(equalTo: stackView7.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView8.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView8.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ]
         NSLayoutConstraint.activate(stackView8Constraints)
         
         let stackView9Constraints = [
-            self.stackView9.topAnchor.constraint(equalTo: stackView8.bottomAnchor),
+            self.stackView9.topAnchor.constraint(equalTo: stackView8.bottomAnchor, constant: stackViewVerticalSpacing),
             self.stackView9.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             self.stackView9.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             self.stackView9.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
@@ -309,22 +310,22 @@ class HeroStatsTableViewCell: FBTableViewCell {
         
         //Amount gained from items in square brackets at the end of each label if can be gained otherwise
         //For example "[\(itemHealth)]"
-        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel)) [+\(itemHealth)]\n"
-        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel)) [+\(itemMana)]\n"
-        self.PhysicalArmorLabel.text = "Physical Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0))) [+\(itemPhysicalArmor)]\n"
-        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2))) [+\(itemHealthRegen)]\n"
-        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel)) [+\(itemManaRegen)]\n"
-        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0))) [+\(itemEnergyArmor.stringDP(0))]\n"
-        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage.stringDP(2))\n(+\(attackDamagePerLevel.stringDP(2)))\n"
-        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n [+\(itemAttackSpeed.stringDP(2))]\n"
-        self.cooldownLabel.text = "Cooldown: \(itemCooldown.stringDP(2))\n"
-        self.physicalPenLabel.text = "Physical Pen: \(itemPhysicalPenetration.stringDP(2))\n"
-        self.energyPenLabel.text = "Energy Pen: \(itemEnergyPenetration.stringDP(2))\n"
-        self.lifestealLabel.text = "Lifesteal: \(itemLifesteal.stringDP(2))\n"
-        self.physicalPowerLabel.text = "Physical Power: \(itemPhysicalPower.stringDP(2))\n"
-        self.energyPowerLabel.text = "Energy Power: \(itemEnergyPower.stringDP(2))\n"
-        self.critChanceLabel.text = "Crit Chance: \(itemCritChance.stringDP(2))\n"
-        self.moveSpeedLabel.text = "Move Speed: \(movementSpeed.stringDP(0))\n"
+        self.baseHealthLabel.text = "Health: \(health.stringDP(0))\n(+\(healthPerLevel)) [+\(itemHealth)]"
+        self.baseManaLabel.text = "Mana: \(mana.stringDP(0))\n(+\(manaPerLevel)) [+\(itemMana)]"
+        self.PhysicalArmorLabel.text = "Physical Armor: \(basicDefense.stringDP(0))\n(+\(basicDefensePerLevel.stringDP(0))) [+\(itemPhysicalArmor)]"
+        self.healthRegenLabel.text = "Health Regen: \(healthRegen.stringDP(2))\n(+\(healthRegenPerLevel.stringDP(2))) [+\(itemHealthRegen)]"
+        self.manaRegenLabel.text = "Mana Regen: \(manaRegen.stringDP(2))\n(+\(manaPerLevel)) [+\(itemManaRegen)]"
+        self.abilityDefenseLabel.text = "Energy Armor: \(energyArmor.stringDP(0))\n(+\(energyArmorPerLevel.stringDP(0))) [+\(itemEnergyArmor.stringDP(0))]"
+        self.basicAttackLabel.text = "Basic Attack: \(basicAttackDamage.stringDP(2))\n(+\(attackDamagePerLevel.stringDP(2)))"
+        self.attackSpeedLabel.text = "Attack Speed: \(attackSpeed.stringDP(2))\n [+\(itemAttackSpeed.stringDP(2))]"
+        self.cooldownLabel.text = "Cooldown: \(itemCooldown.stringDP(2))"
+        self.physicalPenLabel.text = "Physical Pen: \(itemPhysicalPenetration.stringDP(2))"
+        self.energyPenLabel.text = "Energy Pen: \(itemEnergyPenetration.stringDP(2))"
+        self.lifestealLabel.text = "Lifesteal: \(itemLifesteal.stringDP(2))"
+        self.physicalPowerLabel.text = "Physical Power: \(itemPhysicalPower.stringDP(2))"
+        self.energyPowerLabel.text = "Energy Power: \(itemEnergyPower.stringDP(2))"
+        self.critChanceLabel.text = "Crit Chance: \(itemCritChance.stringDP(2))"
+        self.moveSpeedLabel.text = "Move Speed: \(movementSpeed.stringDP(0))"
         self.sliderLabel.text = "Level: \(level)"
     }
     

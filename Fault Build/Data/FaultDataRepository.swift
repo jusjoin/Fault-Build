@@ -130,10 +130,34 @@ final class FaultDataRepository {
                 print("\(self) retrieved Belica data:")
                 dump(belica)
 //                let belica = Belica(belicaData: belica)
-                self.heroesDictionary[HeroName.belica.rawValue] = belica
+                self.heroesDictionary[Heroes.belica.name] = belica
                 completion()
             case .failure(let error):
                 print("\(self) retrieve error on get Belica data: \(error)")
+            }
+        }
+        
+        FaultAPI.shared.getBorisData() { (result) in
+            switch result {
+            case .success(let boris):
+                print("\(self) retrieved Boris data:")
+                dump(boris)
+                self.heroesDictionary[Heroes.boris.name] = boris
+                completion()
+            case .failure(let error):
+                print("\(self) retrieve error on get Boris data: \(error)")
+            }
+        }
+        
+        FaultAPI.shared.getCountessData() { (result) in
+            switch result {
+            case .success(let countess):
+                print("\(self) retrieved Countess data:")
+                dump(countess)
+                self.heroesDictionary[Heroes.countess.name] = countess
+                completion()
+            case .failure(let error):
+                print("\(self) retrieve error on get Countess data: \(error)")
             }
         }
     }

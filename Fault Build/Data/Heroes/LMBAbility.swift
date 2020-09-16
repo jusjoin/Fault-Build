@@ -12,7 +12,7 @@ import Foundation
 class LMBAbility: Codable {
     let name, lmbDescription: String
     let cooldown: Double
-    let range, physicalDamage, energyDamage, attackSpeedPerLevel: Int
+    let range, physicalDamage, energyDamage, attackSpeedPerLevel: Double
     let adaptiveDamagePerLevel: Double
     let scalingFactor: String
 
@@ -26,18 +26,18 @@ class LMBAbility: Codable {
         return self.cooldown
     }
     
-    func getRange() -> Int {
+    func getRange() -> Double {
         return self.range
     }
     
-    func getPhysicalDamager() -> Int {
+    func getPhysicalDamager() -> Double {
         return self.physicalDamage
     }
     
-    func getEnergyDamage() -> Int {
+    func getEnergyDamage() -> Double {
         return self.energyDamage
     }
-    func getAttackSpeedPerLevel()  -> Int {
+    func getAttackSpeedPerLevel()  -> Double {
         return self.attackSpeedPerLevel
     }
     

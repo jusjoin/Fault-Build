@@ -13,7 +13,7 @@ import Foundation
 
 // MARK: - Belica
 class Belica: Codable, Hero {
-    let info: BelicaInfo
+    let info: HeroInfo
     let health, healthPerLevel: Int
     let healthRegen, healthRegenPerLevel: Double
     let mana, manaPerLevel: Int
@@ -47,15 +47,15 @@ class Belica: Codable, Hero {
 }
 
 // MARK: - BelicaInfo
-class BelicaInfo: Codable {
-    let basicRange, niche, role, damageType: String
-    let infoDescription: String
-
-    enum CodingKeys: String, CodingKey {
-        case basicRange, niche, role, damageType
-        case infoDescription = "description"
-    }
-}
+//class BelicaInfo: Codable {
+//    let basicRange, niche, role, damageType: String
+//    let infoDescription: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case basicRange, niche, role, damageType
+//        case infoDescription = "description"
+//    }
+//}
 
 // MARK: - BelicaEAbility
 class BelicaEAbility: Codable, Ability {

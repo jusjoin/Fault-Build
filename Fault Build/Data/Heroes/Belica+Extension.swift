@@ -272,9 +272,11 @@ extension Belica {
     
     var iconName: String {
         return "Belica_icon"
+        //"https://api.playfault.com/imagecdn/portraits/10.jpg"
     }
     var bannerName: String {
         return "Belica_banner"
+        //"https://global-uploads.webflow.com/5d44771a95c1f5121689f944/5eb614cf6207032ea863e375_T_LtBelicaDefault_Portrait.jpg"
     }
     var eAbilityImageURL: String {
         return "https://api.playfault.com/imagecdn/abilities/LtBelica/E.png"
@@ -297,23 +299,23 @@ extension Belica {
     
     var name: String {
         get {
-            return HeroName.belica.rawValue
+            return Heroes.belica.name
         }
     }
     
-    func getAbilityImage(imageURL: String, completion: @escaping (UIImage?) -> ()) {
-        if let imageURL = URL(string: imageURL) {
-            FaultBuildHelper.shared.getData(from: imageURL, completion: { data, response, error in
-                guard let data = data, error == nil else {
-                    print("Error retrieving data from " + imageURL.absoluteString)
-                    return
-                    
-                }
-                print("Successfully retrieved data from " + imageURL.absoluteString)
-                completion(UIImage(data: data))
-            })
-        }
-    }
+//    func getAbilityImage(imageURL: String, completion: @escaping (UIImage?) -> ()) {
+//        if let imageURL = URL(string: imageURL) {
+//            FaultBuildHelper.shared.getData(from: imageURL, completion: { data, response, error in
+//                guard let data = data, error == nil else {
+//                    print("Error retrieving data from " + imageURL.absoluteString)
+//                    return
+//                    
+//                }
+//                print("Successfully retrieved data from " + imageURL.absoluteString)
+//                completion(UIImage(data: data))
+//            })
+//        }
+//    }
     
     //    func getIconName() -> String {
     //        return self.iconName
@@ -457,18 +459,18 @@ extension BelicaQAbility{
     
     func getDetails() -> String {
         var details = ""
-        details += self.qDescription != "" ? self.qDescription + "\n\n" : ""
-        details += self.resourceCost != "" ? "Resource Cost: " + self.resourceCost + "\n" : ""
-        details += self.baseDamage != "" ? "Base Damage: " + self.baseDamage + "\n" : ""
-        details += self.range != "" ? "Range: " + self.range + "\n" : ""
-        details += self.width != "" ? "Width: " + self.width + "\n" : ""
-        details += self.height != "" ? "Height: " + self.height + "\n" : ""
-        details += self.castTime != "" ? "Cast Time: " + self.castTime + "\n" : ""
-        details += self.cooldown != "" ? "Cooldown: " + self.cooldown + "\n" : ""
-        details += self.speed != "" ? "Speed: " + self.speed + "\n" : ""
-        details += self.launchspeed != "" ? "Launch Speed: " + self.launchspeed + "\n" : ""
-        details += self.scalingFactor != "" ? "Scaling Factor: " + self.scalingFactor + "\n" : ""
-        details += self.duration != "" ? "Duration: " + self.duration + "\n" : ""
+        details.append(self.qDescription + "\n\n")
+        details.append("Resource Cost: " + self.resourceCost + "\n")
+        details.append("Cooldown: " + self.cooldown + "\n")
+        details.append("Range: " + self.range + "\n")
+        details.append("Base Damage: " + self.baseDamage + "\n")
+        details.append("Width: " + self.width + "\n")
+        details.append("Height: " + self.height + "\n")
+        details.append("Cast Time: " + self.castTime + "\n")
+        details.append("Speed: " + self.speed + "\n")
+        details.append("Launch Speed: " + self.launchspeed + "\n")
+        details.append("Scaling Factor: " + self.scalingFactor + "\n")
+        details.append("Duration: " + self.duration + "\n")
         return details
     }
 }
@@ -480,15 +482,15 @@ extension BelicaEAbility{
     
     func getDetails() -> String {
         var details = ""
-        details += self.eDescription != "" ? self.eDescription + "\n\n" : ""
-        details += self.resourceCost != "" ? "Resource Cost: " + self.resourceCost + "\n" : ""
-        details += self.baseDamage != "" ? "Base Damage" + self.baseDamage + "\n" : ""
-        details += self.range != "" ? "Range: " + self.range + "\n" : ""
-        details += self.radius != "" ? "Radius: " + self.radius + "\n" : ""
-        details += self.cooldown != "" ? "Cooldown: " + self.cooldown + "\n" : ""
+        details.append(self.eDescription + "\n\n")
+        details.append("Resource Cost: " + self.resourceCost + "\n")
+        details.append("Cooldown: " + self.cooldown + "\n")
+        details.append("Range: " + self.range + "\n")
+        details.append("Base Damage" + self.baseDamage + "\n")
+        details.append("Radius: " + self.radius + "\n")
         
         if let lifetime = self.lifetime {
-            details += lifetime != "" ? "Lifetime: " + lifetime + "\n" : ""
+            details.append(lifetime != "" ? "Lifetime: " + lifetime + "\n" : "")
         }
         
         return details
@@ -502,16 +504,16 @@ extension BelicaRAbility{
     
     func getDetails() -> String {
         var details = ""
-        details += self.rDescription != "" ? self.rDescription + "\n\n" : ""
-        details += self.resourceCost != "" ? "Resource Cost: " + self.resourceCost + "\n" : ""
-        details += self.baseDamage != "" ? "Base Damage: " + self.baseDamage + "\n" : ""
-        details += self.range != "" ? "Range: " + self.range + "\n" : ""
-        details += self.castTime != "" ? "Cast Time: " + self.castTime + "\n" : ""
-        details += self.recoveryTime != "" ? "Recovery Time: " + self.recoveryTime + "\n" : ""
-        details += self.cooldown != "" ? "Cooldown" + self.cooldown + "\n" : ""
-        details += self.missingManaPCT != "" ? "Missing Mana PCT: " + self.missingManaPCT + "\n" : ""
-        details += self.missingManaPCTMax != "" ? "Missing Mana PCT Max: " + self.missingManaPCTMax + "\n" : ""
-        details += self.scalingFactor != "" ? "Scaling Factor: " + self.scalingFactor + "\n" : ""
+        details.append(self.rDescription + "\n\n")
+        details.append("Resource Cost: " + self.resourceCost + "\n")
+        details.append("Cooldown" + self.cooldown + "\n")
+        details.append("Range: " + self.range + "\n")
+        details.append("Base Damage: " + self.baseDamage + "\n")
+        details.append("Cast Time: " + self.castTime + "\n")
+        details.append("Recovery Time: " + self.recoveryTime + "\n")
+        details.append("Missing Mana PCT: " + self.missingManaPCT + "\n")
+        details.append("Missing Mana PCT Max: " + self.missingManaPCTMax + "\n")
+        details.append("Scaling Factor: " + self.scalingFactor + "\n")
         return details
     }
 }
