@@ -270,9 +270,8 @@ import UIKit
 
 extension Belica {
     
-    var iconName: String {
-        return "Belica_icon"
-        //"https://api.playfault.com/imagecdn/portraits/10.jpg"
+    var iconURL: String {
+        return "https://api.playfault.com/imagecdn/portraits/10.jpg"
     }
     var bannerName: String {
         return "Belica_banner"
@@ -325,15 +324,15 @@ extension Belica {
     //        return self.bannerName
     //    }
     
-    func getBaseHealth() -> Int {
+    func getBaseHealth() -> Double {
         return self.health
     }
     
-    func getBaseMana() -> Int {
+    func getBaseMana() -> Double {
         return self.mana
     }
     
-    func getBasicDefense() -> Int {
+    func getBasicDefense() -> Double {
         return self.physicalArmor
     }
     
@@ -365,11 +364,11 @@ extension Belica {
         return 1.0 / self.lmbAbility.cooldown
     }
     
-    func getMoveSpeed() -> Int {
+    func getMoveSpeed() -> Double {
         return self.moveSpeed
     }
     
-    func getHealthPerLevel() -> Int {
+    func getHealthPerLevel() -> Double {
         return self.healthPerLevel
     }
     
@@ -377,7 +376,7 @@ extension Belica {
         return self.healthRegenPerLevel
     }
     
-    func getManaPerLevel() -> Int {
+    func getManaPerLevel() -> Double {
         return self.manaPerLevel
     }
     

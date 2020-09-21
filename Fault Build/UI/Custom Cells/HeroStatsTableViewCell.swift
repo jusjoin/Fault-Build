@@ -288,10 +288,10 @@ class HeroStatsTableViewCell: FBTableViewCell {
         self.itemPhysicalPower = self.itemPhysicalPower + physicalPowerFromItems()
         self.itemEnergyPower = self.itemEnergyPower + energyPowerFromItems()
         
-        let heroLevel = Int(levelSlider.value.rounded())
+        let heroLevel = Double(levelSlider.value.rounded())
         let heroLevelDouble =  Double(levelSlider.value.rounded())
-        let health = Double(self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1))) + itemHealth
-        let mana = Double(self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1))) + itemMana
+        let health = self.hero.getBaseHealth() + (self.hero.getHealthPerLevel() * (heroLevel - 1)) + itemHealth
+        let mana = self.hero.getBaseMana() + (self.hero.getManaPerLevel() * (heroLevel - 1)) + itemMana
         let basicDefense = Double(self.hero.getBasicDefense()) + self.hero.getBasicDefensePerLevel() * (heroLevelDouble - 1) + itemPhysicalArmor
         let healthRegen = Double(self.hero.getHealthRegen() + (self.hero.getHealthRegenPerLevel()) * (heroLevelDouble - 1)) + itemHealthRegen
         let manaRegen = Double(self.hero.getManaRegen() + (self.hero.getManaRegenPerLevel() * (heroLevelDouble - 1))) + itemManaRegen

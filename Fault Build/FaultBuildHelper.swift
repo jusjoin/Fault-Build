@@ -43,7 +43,7 @@ final class FaultBuildHelper {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
-    static func getAbilityImage(imageURL: String, completion: @escaping (UIImage?) -> ()) {
+    static func getImage(imageURL: String, completion: @escaping (UIImage?) -> ()) {
         if let imageURL = URL(string: imageURL) {
             FaultBuildHelper.shared.getData(from: imageURL, completion: { data, response, error in
                 guard let data = data, error == nil else {

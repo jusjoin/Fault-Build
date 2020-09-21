@@ -41,6 +41,13 @@ class LMBAbilityTableViewCell: FBTableViewCell {
     }
     
     func setupViews() {
+        cooldownLabel.numberOfLines = 0
+        rangeLabel.numberOfLines = 0
+        physicalDamageLabel.numberOfLines = 0
+        energyDamageLabel.numberOfLines = 0
+        attackSpeedPerLevelLabel.numberOfLines = 0
+        AdaptiveDamagePerLevelLabel.numberOfLines = 0
+        scalingFactorLabel.numberOfLines = 0
         let containerView = UIView()
         let stackContainerView = UIStackView()
         stackContainerView.axis = .vertical
@@ -158,15 +165,15 @@ class LMBAbilityTableViewCell: FBTableViewCell {
     func populateLMBAbilityDataLabels() {
         self.cooldownLabel.text = "Cooldown: " + String(hero.getLMBAbility().getCooldown())
         self.rangeLabel.text = "Range: " + String(format: "%.2f",hero.getLMBAbility().getRange())
-        self.physicalDamageLabel.text = "Phys. Damage: " + String(hero.getLMBAbility().getPhysicalDamager())
-        self.energyDamageLabel.text = "Energy Damage: " + String(hero.getLMBAbility().getEnergyDamage())
-        self.attackSpeedPerLevelLabel.text = "AtkSpd/Level: " + String(hero.getLMBAbility().getAttackSpeedPerLevel())
+        self.physicalDamageLabel.text = "P. Dmg: " + String(hero.getLMBAbility().getPhysicalDamager())
+        self.energyDamageLabel.text = "E. Dmg: " + String(hero.getLMBAbility().getEnergyDamage())
+        self.attackSpeedPerLevelLabel.text = "AtkSpd/Lvl: " + String(hero.getLMBAbility().getAttackSpeedPerLevel())
         
-        self.AdaptiveDamagePerLevelLabel.text = "Damage/Level: " + String(format: "%.2f",hero.getLMBAbility().getAdaptiveDamagePerLevel())
+        self.AdaptiveDamagePerLevelLabel.text = "Dmg/Lvl: " + String(format: "%.2f",hero.getLMBAbility().getAdaptiveDamagePerLevel())
         self.scalingFactorLabel.text = "Scaling: " + String(hero.getLMBAbility().getScalingFactor())
         
         //Any hero could be used here
-        FaultBuildHelper.getAbilityImage(imageURL: self.hero.lmbAbilityImageURL, completion: { image in
+        FaultBuildHelper.getImage(imageURL: self.hero.lmbAbilityImageURL, completion: { image in
             DispatchQueue.main.async {
                 guard let image = image else { return }
                 if let imageView = self.imageView {

@@ -13,13 +13,15 @@ import Foundation
 // MARK: - HeroData
 class Boris: Codable {
     let info: HeroInfo
-    let health, healthPerLevel: Int
-    let healthRegen, healthRegenPerLevel: Double
-    let mana, manaPerLevel: Int
-    let manaRegen, manaRegenPerLevel: Double
-    let physicalArmor: Int
-    let physicalArmorPerLevel, energyArmor, energyArmorPerLevel: Double
-    let moveSpeed: Int
+    let health, healthPerLevel: Double
+    let healthRegenPerLevel, healthRegen, manaRegen: Double
+    let mana, manaPerLevel: Double
+    let manaRegenPerLevel: Double
+    let physicalArmor: Double
+    let physicalArmorPerLevel: Double
+    let energyArmor: Double
+    let energyArmorPerLevel: Double
+    let moveSpeed: Double
     let lmbAbility: LMBAbility
     let rmbAbility: BorisRMBAbility
     let qAbility: BorisQAbility
@@ -46,7 +48,7 @@ class Boris: Codable {
 }
 
 // MARK: - E
-struct BorisEAbility: Codable {
+class BorisEAbility: Codable {
     let name, eDescription, rateScale, energyperUnit: String
     let energyperJungleBuff, energyperHero, energyperCanister, maxTotalEnergy: String
     let pickupRadius, castTime, cooldown, resourceCost: String
@@ -61,7 +63,7 @@ struct BorisEAbility: Codable {
 }
 
 // MARK: - P
-struct BorisPAbility: Codable {
+class BorisPAbility: Codable {
     let name, pDescription, lifesteal, bBADmgPerSMHP: String
     let bBADmgPerTMHP: String
 
@@ -75,7 +77,7 @@ struct BorisPAbility: Codable {
 }
 
 // MARK: - Q
-struct BorisQAbility: Codable {
+class BorisQAbility: Codable {
     let name, qDescription, triggerPCTMaxHealth, castTime: String
     let range, cooldown, resourceCost, duration: String
     let attackSpeedBonus, movementSpeedBonus: String
@@ -88,7 +90,7 @@ struct BorisQAbility: Codable {
 }
 
 // MARK: - R
-struct BorisRAbility: Codable {
+class BorisRAbility: Codable {
     let name, rDescription, range, cooldown: String
     let resourceCost, movementDuration, baseDamage, scalingFactor: String
     let bDmgPTrgtMissHP, hpExeThresh, recoveryTime: String
@@ -104,7 +106,7 @@ struct BorisRAbility: Codable {
 }
 
 // MARK: - Rmb
-struct BorisRMBAbility: Codable {
+class BorisRMBAbility: Codable {
     let name, rmbDescription, leapDistance, duration: String
     let cooldown, resourceCost, baseBADamage: String
 

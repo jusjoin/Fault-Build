@@ -13,15 +13,17 @@ import Foundation
 import Foundation
 
 // MARK: - HeroData
-struct Countess: Codable {
+class Countess: Codable {
     let info: HeroInfo
-    let health, healthPerLevel: Int
-    let healthRegen, healthRegenPerLevel: Double
-    let mana, manaPerLevel: Int
-    let manaRegen, manaRegenPerLevel: Double
-    let physicalArmor: Int
-    let physicalArmorPerLevel, energyArmor, energyArmorPerLevel: Double
-    let moveSpeed: Int
+    let health, healthPerLevel: Double
+    let healthRegenPerLevel, healthRegen, manaRegen: Double
+    let mana, manaPerLevel: Double
+    let manaRegenPerLevel: Double
+    let physicalArmor: Double
+    let physicalArmorPerLevel: Double
+    let energyArmor: Double
+    let energyArmorPerLevel: Double
+    let moveSpeed: Double
     let lmbAbility: LMBAbility
     let rmbAbility: CountessRMBAbility
     let qAbility: CountessQAbility
@@ -48,7 +50,7 @@ struct Countess: Codable {
 }
 
 // MARK: - E
-struct CountessEAbility: Codable {
+class CountessEAbility: Codable {
     let name, eDescription, readyMovementMultiplier, cooldown: String
     let resourceCost, castTime, width, height: String
     let speed, range, baseDamage, scalingFactor: String
@@ -62,7 +64,7 @@ struct CountessEAbility: Codable {
 }
 
 // MARK: - Info
-//struct Info: Codable {
+//class Info: Codable {
 //    let basicRange, niche, role, damageType: String
 //    let infoDescription: String
 //
@@ -73,7 +75,7 @@ struct CountessEAbility: Codable {
 //}
 
 // MARK: - P
-struct CountessPAbility: Codable {
+class CountessPAbility: Codable {
     let name, pDescription, castMovementMultiplier, baseHealthonMinions: String
     let baseHealthonHeroes, duration: String
 
@@ -88,7 +90,7 @@ struct CountessPAbility: Codable {
 }
 
 // MARK: - Q
-struct CountessQAbility: Codable {
+class CountessQAbility: Codable {
     let name, qDescription, range, cooldown: String
     let resourceCost, initialRecoveryTime, baseDamage, scalingFactor: String
     let slow, slowDuration, recastDelay, recastTimeout: String
@@ -101,7 +103,7 @@ struct CountessQAbility: Codable {
 }
 
 // MARK: - R
-struct CountessRAbility: Codable {
+class CountessRAbility: Codable {
     let name, rDescription, range, cooldown: String
     let resourceCost, channelDuration, duration, baseDamage: String
     let scalingFactor, recoveryTime: String
@@ -114,7 +116,7 @@ struct CountessRAbility: Codable {
 }
 
 // MARK: - Rmb
-struct CountessRMBAbility: Codable {
+class CountessRMBAbility: Codable {
     let name, rmbDescription, castTime, cooldown: String
     let resourceCost, radius, height, bonusToPassive: String
     let baseDamage, scalingFactor, ofPassiveEffect, dmgBonusQ: String

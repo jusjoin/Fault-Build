@@ -33,6 +33,34 @@
 		846906782511C8BD007CC039 /* HeroInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906772511C8BD007CC039 /* HeroInfo.swift */; };
 		8469067A2511CF18007CC039 /* Countess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906792511CF18007CC039 /* Countess.swift */; };
 		8469067C2511E9E0007CC039 /* Countess+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469067B2511E9E0007CC039 /* Countess+Extension.swift */; };
+		8469067E25132F88007CC039 /* Dekker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469067D25132F88007CC039 /* Dekker.swift */; };
+		84690680251331B0007CC039 /* Dekker+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469067F251331B0007CC039 /* Dekker+Extension.swift */; };
+		8469068225174801007CC039 /* Gideon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068125174800007CC039 /* Gideon.swift */; };
+		8469068425174BFA007CC039 /* Gideon+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068325174BFA007CC039 /* Gideon+Extension.swift */; };
+		84690686251751EA007CC039 /* Greystone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84690685251751E9007CC039 /* Greystone.swift */; };
+		8469068825175201007CC039 /* Greystone+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068725175201007CC039 /* Greystone+Extension.swift */; };
+		8469068A25175D68007CC039 /* Grim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068925175D67007CC039 /* Grim.swift */; };
+		8469068C25175D7C007CC039 /* Grim+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068B25175D7C007CC039 /* Grim+Extension.swift */; };
+		8469068E2517E8E0007CC039 /* Khaimera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068D2517E8E0007CC039 /* Khaimera.swift */; };
+		846906902517E8F9007CC039 /* Khaimera+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469068F2517E8F9007CC039 /* Khaimera+Extension.swift */; };
+		846906922517F1CE007CC039 /* Kwang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906912517F1CD007CC039 /* Kwang.swift */; };
+		846906942517F1E9007CC039 /* Kwang+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906932517F1E9007CC039 /* Kwang+Extension.swift */; };
+		846906962517FF37007CC039 /* Murdock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906952517FF37007CC039 /* Murdock.swift */; };
+		846906982517FF4E007CC039 /* Murdock+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906972517FF4D007CC039 /* Murdock+Extension.swift */; };
+		8469069A25180735007CC039 /* Muriel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469069925180734007CC039 /* Muriel.swift */; };
+		8469069C25181A2E007CC039 /* Muriel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469069B25181A2E007CC039 /* Muriel+Extension.swift */; };
+		8469069E25181D64007CC039 /* Narbash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469069D25181D64007CC039 /* Narbash.swift */; };
+		846906A025181DA2007CC039 /* Narbash+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469069F25181DA2007CC039 /* Narbash+Extension.swift */; };
+		846906A225182AA9007CC039 /* Sevaraog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906A125182AA9007CC039 /* Sevaraog.swift */; };
+		846906A425182ACB007CC039 /* Sevarog+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906A325182ACB007CC039 /* Sevarog+Extension.swift */; };
+		846906A625182E6E007CC039 /* Sparrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906A525182E6E007CC039 /* Sparrow.swift */; };
+		846906A825182E9D007CC039 /* Sparrow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906A725182E9D007CC039 /* Sparrow+Extension.swift */; };
+		846906AA251833DD007CC039 /* Steel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906A9251833DD007CC039 /* Steel.swift */; };
+		846906AC251833EA007CC039 /* Steel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906AB251833EA007CC039 /* Steel+Extension.swift */; };
+		846906AE25184119007CC039 /* Twinblast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906AD25184119007CC039 /* Twinblast.swift */; };
+		846906B025184128007CC039 /* Twinblast+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906AF25184128007CC039 /* Twinblast+Extension.swift */; };
+		846906B225188C48007CC039 /* HeroRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906B125188C47007CC039 /* HeroRole.swift */; };
+		846906B42518906A007CC039 /* UIPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846906B32518906A007CC039 /* UIPickerTableViewCell.swift */; };
 		84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3C44624E91D1C00DFDE5C /* Belica.swift */; };
 		84AA320D24D7591C0020D08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320C24D7591C0020D08A /* AppDelegate.swift */; };
 		84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA320E24D7591C0020D08A /* SceneDelegate.swift */; };
@@ -101,6 +129,34 @@
 		846906772511C8BD007CC039 /* HeroInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroInfo.swift; sourceTree = "<group>"; };
 		846906792511CF18007CC039 /* Countess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countess.swift; sourceTree = "<group>"; };
 		8469067B2511E9E0007CC039 /* Countess+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Countess+Extension.swift"; sourceTree = "<group>"; };
+		8469067D25132F88007CC039 /* Dekker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dekker.swift; sourceTree = "<group>"; };
+		8469067F251331B0007CC039 /* Dekker+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dekker+Extension.swift"; sourceTree = "<group>"; };
+		8469068125174800007CC039 /* Gideon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gideon.swift; sourceTree = "<group>"; };
+		8469068325174BFA007CC039 /* Gideon+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gideon+Extension.swift"; sourceTree = "<group>"; };
+		84690685251751E9007CC039 /* Greystone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greystone.swift; sourceTree = "<group>"; };
+		8469068725175201007CC039 /* Greystone+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Greystone+Extension.swift"; sourceTree = "<group>"; };
+		8469068925175D67007CC039 /* Grim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grim.swift; sourceTree = "<group>"; };
+		8469068B25175D7C007CC039 /* Grim+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grim+Extension.swift"; sourceTree = "<group>"; };
+		8469068D2517E8E0007CC039 /* Khaimera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Khaimera.swift; sourceTree = "<group>"; };
+		8469068F2517E8F9007CC039 /* Khaimera+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Khaimera+Extension.swift"; sourceTree = "<group>"; };
+		846906912517F1CD007CC039 /* Kwang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kwang.swift; sourceTree = "<group>"; };
+		846906932517F1E9007CC039 /* Kwang+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kwang+Extension.swift"; sourceTree = "<group>"; };
+		846906952517FF37007CC039 /* Murdock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Murdock.swift; sourceTree = "<group>"; };
+		846906972517FF4D007CC039 /* Murdock+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Murdock+Extension.swift"; sourceTree = "<group>"; };
+		8469069925180734007CC039 /* Muriel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muriel.swift; sourceTree = "<group>"; };
+		8469069B25181A2E007CC039 /* Muriel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Muriel+Extension.swift"; sourceTree = "<group>"; };
+		8469069D25181D64007CC039 /* Narbash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Narbash.swift; sourceTree = "<group>"; };
+		8469069F25181DA2007CC039 /* Narbash+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Narbash+Extension.swift"; sourceTree = "<group>"; };
+		846906A125182AA9007CC039 /* Sevaraog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sevaraog.swift; sourceTree = "<group>"; };
+		846906A325182ACB007CC039 /* Sevarog+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sevarog+Extension.swift"; sourceTree = "<group>"; };
+		846906A525182E6E007CC039 /* Sparrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sparrow.swift; sourceTree = "<group>"; };
+		846906A725182E9D007CC039 /* Sparrow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sparrow+Extension.swift"; sourceTree = "<group>"; };
+		846906A9251833DD007CC039 /* Steel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steel.swift; sourceTree = "<group>"; };
+		846906AB251833EA007CC039 /* Steel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Steel+Extension.swift"; sourceTree = "<group>"; };
+		846906AD25184119007CC039 /* Twinblast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twinblast.swift; sourceTree = "<group>"; };
+		846906AF25184128007CC039 /* Twinblast+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Twinblast+Extension.swift"; sourceTree = "<group>"; };
+		846906B125188C47007CC039 /* HeroRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroRole.swift; sourceTree = "<group>"; };
+		846906B32518906A007CC039 /* UIPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerTableViewCell.swift; sourceTree = "<group>"; };
 		84A3C44624E91D1C00DFDE5C /* Belica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Belica.swift; sourceTree = "<group>"; };
 		84AA320924D7591C0020D08A /* Fault Build.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fault Build.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA320C24D7591C0020D08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +219,7 @@
 				8468857024EF8E8E0018DE60 /* FBTableViewCell.swift */,
 				8468857724F357910018DE60 /* ItemFilterTableViewCell.swift */,
 				846048B4250467C500E4A2F6 /* AffinityLevelTableViewCell.swift */,
+				846906B32518906A007CC039 /* UIPickerTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -182,6 +239,32 @@
 				846906772511C8BD007CC039 /* HeroInfo.swift */,
 				846906792511CF18007CC039 /* Countess.swift */,
 				8469067B2511E9E0007CC039 /* Countess+Extension.swift */,
+				8469067D25132F88007CC039 /* Dekker.swift */,
+				8469067F251331B0007CC039 /* Dekker+Extension.swift */,
+				8469068125174800007CC039 /* Gideon.swift */,
+				8469068325174BFA007CC039 /* Gideon+Extension.swift */,
+				84690685251751E9007CC039 /* Greystone.swift */,
+				8469068725175201007CC039 /* Greystone+Extension.swift */,
+				8469068925175D67007CC039 /* Grim.swift */,
+				8469068B25175D7C007CC039 /* Grim+Extension.swift */,
+				8469068D2517E8E0007CC039 /* Khaimera.swift */,
+				8469068F2517E8F9007CC039 /* Khaimera+Extension.swift */,
+				846906912517F1CD007CC039 /* Kwang.swift */,
+				846906932517F1E9007CC039 /* Kwang+Extension.swift */,
+				846906952517FF37007CC039 /* Murdock.swift */,
+				846906972517FF4D007CC039 /* Murdock+Extension.swift */,
+				8469069925180734007CC039 /* Muriel.swift */,
+				8469069B25181A2E007CC039 /* Muriel+Extension.swift */,
+				8469069D25181D64007CC039 /* Narbash.swift */,
+				8469069F25181DA2007CC039 /* Narbash+Extension.swift */,
+				846906A125182AA9007CC039 /* Sevaraog.swift */,
+				846906A325182ACB007CC039 /* Sevarog+Extension.swift */,
+				846906A525182E6E007CC039 /* Sparrow.swift */,
+				846906A725182E9D007CC039 /* Sparrow+Extension.swift */,
+				846906A9251833DD007CC039 /* Steel.swift */,
+				846906AB251833EA007CC039 /* Steel+Extension.swift */,
+				846906AD25184119007CC039 /* Twinblast.swift */,
+				846906AF25184128007CC039 /* Twinblast+Extension.swift */,
 			);
 			path = Heroes;
 			sourceTree = "<group>";
@@ -343,6 +426,7 @@
 				8468855D24EA347E0018DE60 /* Heroes */,
 				84AA325C24DA1C350020D08A /* API */,
 				84AA326824DA5D0A0020D08A /* FaultDataRepository.swift */,
+				846906B125188C47007CC039 /* HeroRole.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -480,12 +564,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846906AE25184119007CC039 /* Twinblast.swift in Sources */,
+				846906962517FF37007CC039 /* Murdock.swift in Sources */,
 				8469067A2511CF18007CC039 /* Countess.swift in Sources */,
 				84AA326B24DB687D0020D08A /* UIColor+Extensions.swift in Sources */,
 				846906782511C8BD007CC039 /* HeroInfo.swift in Sources */,
 				84AA323824D75A740020D08A /* LoginLandingViewController.swift in Sources */,
 				8468856624EC6BCF0018DE60 /* HeroStatsTableViewCell.swift in Sources */,
 				8468857324F1A8FB0018DE60 /* ItemAttribute.swift in Sources */,
+				846906922517F1CE007CC039 /* Kwang.swift in Sources */,
+				8469068825175201007CC039 /* Greystone+Extension.swift in Sources */,
 				8469066E250F56D8007CC039 /* ItemAffinity.swift in Sources */,
 				846048B5250467C500E4A2F6 /* AffinityLevelTableViewCell.swift in Sources */,
 				846906702511556C007CC039 /* Boris.swift in Sources */,
@@ -494,44 +582,68 @@
 				8469067C2511E9E0007CC039 /* Countess+Extension.swift in Sources */,
 				8468857C24F3865F0018DE60 /* StackViewFactory.swift in Sources */,
 				8468856824ED97B30018DE60 /* LMBAbilityTableViewCell.swift in Sources */,
+				846906942517F1E9007CC039 /* Kwang+Extension.swift in Sources */,
+				84690686251751EA007CC039 /* Greystone.swift in Sources */,
 				84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */,
+				846906B42518906A007CC039 /* UIPickerTableViewCell.swift in Sources */,
+				846906A825182E9D007CC039 /* Sparrow+Extension.swift in Sources */,
 				84AA325324D7D2250020D08A /* BaseViewController.swift in Sources */,
+				8469068C25175D7C007CC039 /* Grim+Extension.swift in Sources */,
 				846048B9250AFF3C00E4A2F6 /* Double+Extensions.swift in Sources */,
 				8468857824F357910018DE60 /* ItemFilterTableViewCell.swift in Sources */,
 				8468856C24EE3F480018DE60 /* HeroData.swift in Sources */,
 				84AA325124D7BDA90020D08A /* LeaderboardViewController.swift in Sources */,
 				84AA325B24D908560020D08A /* GameItemData.swift in Sources */,
 				8468856024EA54C40018DE60 /* ImageButtonTableViewCell.swift in Sources */,
+				846906902517E8F9007CC039 /* Khaimera+Extension.swift in Sources */,
 				8468856F24EE4D9B0018DE60 /* LMBAbility.swift in Sources */,
+				8469068425174BFA007CC039 /* Gideon+Extension.swift in Sources */,
+				846906982517FF4E007CC039 /* Murdock+Extension.swift in Sources */,
+				8469068A25175D68007CC039 /* Grim.swift in Sources */,
 				84AA326024DA22EC0020D08A /* Resource.swift in Sources */,
 				84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */,
 				8468856424EBA1800018DE60 /* HeroViewController.swift in Sources */,
 				8469067625116414007CC039 /* HeroCommon.swift in Sources */,
 				84AA326724DA4BD60020D08A /* APIClient.swift in Sources */,
 				84AA325824D8F3A80020D08A /* Theme.swift in Sources */,
+				8469067E25132F88007CC039 /* Dekker.swift in Sources */,
 				84AA320F24D7591C0020D08A /* SceneDelegate.swift in Sources */,
+				8469069E25181D64007CC039 /* Narbash.swift in Sources */,
 				84AA323E24D78D410020D08A /* String+Extensions.swift in Sources */,
 				84AA324B24D7BD370020D08A /* ProfileViewController.swift in Sources */,
+				8469068225174801007CC039 /* Gideon.swift in Sources */,
+				846906A225182AA9007CC039 /* Sevaraog.swift in Sources */,
+				846906A625182E6E007CC039 /* Sparrow.swift in Sources */,
 				84AA326E24DBBC270020D08A /* GameItem.swift in Sources */,
 				8468856224EB9FAD0018DE60 /* Hero.swift in Sources */,
 				84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */,
+				846906A425182ACB007CC039 /* Sevarog+Extension.swift in Sources */,
 				846048B224FEE71900E4A2F6 /* UIImage+Extensions.swift in Sources */,
 				8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */,
+				8469068E2517E8E0007CC039 /* Khaimera.swift in Sources */,
+				846906AA251833DD007CC039 /* Steel.swift in Sources */,
 				84AA325E24DA1C6C0020D08A /* FaultAPI.swift in Sources */,
 				84AA326924DA5D0A0020D08A /* FaultDataRepository.swift in Sources */,
 				84AA327224E248D10020D08A /* ItemViewController.swift in Sources */,
 				84AA324F24D7BD860020D08A /* HeroListViewController.swift in Sources */,
+				8469069A25180735007CC039 /* Muriel.swift in Sources */,
 				8468855C24E9E3150018DE60 /* Belica+Extension.swift in Sources */,
 				84DB29A524E8C44200465587 /* CellFactory.swift in Sources */,
 				846906722511576F007CC039 /* Boris+Extension.swift in Sources */,
 				8468857624F1D8470018DE60 /* ItemBuilderViewController.swift in Sources */,
+				846906AC251833EA007CC039 /* Steel+Extension.swift in Sources */,
 				84AA326524DA48DF0020D08A /* URLRequest+Resource.swift in Sources */,
 				84AA324424D7BCAB0020D08A /* MainLandingPageViewController.swift in Sources */,
 				84AA326224DA27CA0020D08A /* Result.swift in Sources */,
 				84AA321924D7591C0020D08A /* Fault_Build.xcdatamodeld in Sources */,
+				846906B225188C48007CC039 /* HeroRole.swift in Sources */,
+				8469069C25181A2E007CC039 /* Muriel+Extension.swift in Sources */,
+				846906B025184128007CC039 /* Twinblast+Extension.swift in Sources */,
 				8469066A250CA66B007CC039 /* SelectItemFilterViewController.swift in Sources */,
 				8468856A24EE2F6F0018DE60 /* Ability.swift in Sources */,
 				84AA325624D8EECE0020D08A /* Constants.swift in Sources */,
+				84690680251331B0007CC039 /* Dekker+Extension.swift in Sources */,
+				846906A025181DA2007CC039 /* Narbash+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

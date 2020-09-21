@@ -15,9 +15,8 @@ extension Countess: Hero {
         }
     }
     
-    var iconName: String {
-        return "Countess_icon"
-        //"https://api.playfault.com/imagecdn/portraits/9.jpg"
+    var iconURL: String {
+        return "https://api.playfault.com/imagecdn/portraits/9.jpg"
     }
     
     var bannerName: String {
@@ -26,38 +25,38 @@ extension Countess: Hero {
     }
     
     var eAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Countess/E.png"
+        return "https://api.playfault.com/imagecdn/abilities/Countess/E.png"
     }
     
     var lmbAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Countess/LMB.png"
+        return "https://api.playfault.com/imagecdn/abilities/Countess/LMB.png"
     }
     
     var pAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Countess/P.png"
+        return "https://api.playfault.com/imagecdn/abilities/Countess/P.png"
     }
     
     var qAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Countess/Q.png"
+        return "https://api.playfault.com/imagecdn/abilities/Countess/Q.png"
     }
     
     var rAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Countess/R.png"
+        return "https://api.playfault.com/imagecdn/abilities/Countess/R.png"
     }
     
     var rmbAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Countess/RMB.png"
+        return "https://api.playfault.com/imagecdn/abilities/Countess/RMB.png"
     }
     
-    func getBaseHealth() -> Int {
+    func getBaseHealth() -> Double {
         return self.health
     }
     
-    func getBaseMana() -> Int {
+    func getBaseMana() -> Double {
         return self.mana
     }
     
-    func getBasicDefense() -> Int {
+    func getBasicDefense() -> Double {
         return self.physicalArmor
     }
     
@@ -89,11 +88,11 @@ extension Countess: Hero {
         return 1.0 / self.lmbAbility.cooldown
     }
     
-    func getMoveSpeed() -> Int {
+    func getMoveSpeed() -> Double {
         return self.moveSpeed
     }
     
-    func getHealthPerLevel() -> Int {
+    func getHealthPerLevel() -> Double {
         return self.healthPerLevel
     }
     
@@ -101,7 +100,7 @@ extension Countess: Hero {
         return self.healthRegenPerLevel
     }
     
-    func getManaPerLevel() -> Int {
+    func getManaPerLevel() -> Double {
         return self.manaPerLevel
     }
     
@@ -160,10 +159,20 @@ extension CountessQAbility: Ability {
     }
     
     func getDetails() -> String {
-        return ""
+        var details = ""
+        details.append("\(self.qDescription)\n\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Initial Recorver Time: \(self.initialRecoveryTime)\n")
+        details.append("Slow: \(self.slow)\n")
+        details.append("Slow Duration: \(self.slowDuration)\n")
+        details.append("Recast Delay: \(self.recastDelay)\n")
+        details.append("Recast Timeout: \(self.recastTimeout)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        return details
     }
-    
-    
 }
 
 extension CountessEAbility: Ability {
@@ -172,10 +181,21 @@ extension CountessEAbility: Ability {
     }
     
     func getDetails() -> String {
-        return ""
+        var details = ""
+        details.append("\(self.eDescription)\n\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Width: \(self.width)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Speed: \(self.speed)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Recovery Movement Multiplier: \(self.recoveryMovementMultiplier)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        return details
     }
-    
-    
 }
 
 extension CountessRAbility: Ability {
@@ -184,10 +204,18 @@ extension CountessRAbility: Ability {
     }
     
     func getDetails() -> String {
-        return ""
+        var details = ""
+        details.append("\(self.rDescription)\n\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Channel Duration: \(self.channelDuration)\n")
+        details.append("Duration: \(self.duration)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        return details
     }
-    
-    
 }
 
 extension CountessRMBAbility: Ability {
@@ -196,8 +224,22 @@ extension CountessRMBAbility: Ability {
     }
     
     func getDetails() -> String {
-        return ""
+        var details = ""
+        details.append("\(self.rmbDescription)\n\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Passive Bonus %: \(self.bonusToPassive)\n")
+        details.append("% Passive Effect: \(self.ofPassiveEffect)\n")
+        details.append("Damage Bonus Q: \(self.dmgBonusQ)\n")
+        details.append("Damage Bonus E: \(self.dmgBonusE)\n")
+        details.append("Damage Bonus R: \(self.dmgBonusR)\n")
+        details.append("Duration: \(self.duration)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        return details
     }
-    
-    
 }

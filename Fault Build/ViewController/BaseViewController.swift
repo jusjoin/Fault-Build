@@ -11,10 +11,17 @@ import UIKit
 class BaseViewController: UITableViewController, UISearchBarDelegate {
 
     let searchBar: UISearchBar = UISearchBar()
+    let activityIndicator:UIActivityIndicatorView = {
+    let indicator = UIActivityIndicatorView(style: .large)
+        indicator.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0);
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
+        self.view.backgroundColor = .white
     }
     
 //    override func viewDidLayoutSubviews() {
@@ -144,5 +151,22 @@ class BaseViewController: UITableViewController, UISearchBarDelegate {
             headerView.setNeedsLayout()
             headerView.layoutIfNeeded()
         }
+    }
+    
+    func startActivity() {
+//        let activityIndicator = UIActivityIndicatorView(style: .large)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        activityIndicator.hidesWhenStopped = true
+//        activityIndicator.startAnimating()
+//        uiView.addSubview(activityIndicator)
+//        activityIndicator.centerXAnchor.constraint(equalTo: uiView.centerXAnchor).isActive = true
+//        activityIndicator.centerYAnchor.constraint(equalTo: uiView.centerYAnchor).isActive = true
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivity() {
+        self.activityIndicator.stopAnimating()
     }
 }

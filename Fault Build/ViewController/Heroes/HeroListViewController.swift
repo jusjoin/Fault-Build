@@ -9,6 +9,12 @@
 import UIKit
 
 class HeroListViewController: BaseViewController {
+    
+    private enum TableSections: Int, CaseIterable {
+        case filters
+        case heroes
+    }
+    
     private let comingSoonLabel:UILabel = {
         let label = UILabel()
         label.text = "Coming Soon"
@@ -19,19 +25,11 @@ class HeroListViewController: BaseViewController {
     }()
     
     let numberOfHeroesPerRow = 3
-    var heroes = [String: Hero]()
+    var heroIcons = [String: UIImage]()
+    var heroRowDictionary = [Int: [String]]()
     
     init(){
-//        self.heroes = [String: Belica]()
         super.init(nibName: nil, bundle: nil)
-        FaultDataRepository.shared.getHeroes(completion: { [weak self] in
-            if let self = self {
-                DispatchQueue.main.async {
-                    self.heroes = FaultDataRepository.shared.getHeroesDictionary()
-                    self.reloadTableView()
-                }
-            }
-        })
     }
     
     required init?(coder: NSCoder) {
@@ -41,85 +39,131 @@ class HeroListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Heroes"
+        self.startActivity()
+        self.getHeroesAndIcons()
+    }
+    
+    func getHeroesAndIcons() {
+        FaultDataRepository.shared.getHeroes(completion: { [weak self] in
+            if let self = self {
+                let group = DispatchGroup()
+                for hero in FaultDataRepository.shared.getHeroesDictionary() {
+                    group.enter()
+                    FaultBuildHelper.getImage(imageURL: hero.value.iconURL, completion: { image in
+                        self.heroIcons[hero.key] = image
+                        group.leave()
+                    })
+                }
+                group.notify(queue: DispatchQueue.main) {
+                    self.sortHeroes()
+                    self.reloadTableView()
+                    self.stopActivity()
+                }
+            }
+        })
+    }
+    
+    func sortHeroes() {
+        let heroes = FaultDataRepository.shared.getHeroesDictionary()
+        let heroKeys = Array(heroes.keys).sorted()
+        var numberOfRows = Int(heroes.count / self.numberOfHeroesPerRow)
+        if heroes.count % numberOfHeroesPerRow > 0 {
+            numberOfRows += 1
+        }
+        var currentHeroKey = 0
+        for row in 0...numberOfRows - 1 {
+            self.heroRowDictionary[row] = [String]()
+            for _ in 0...self.numberOfHeroesPerRow - 1 {
+                self.heroRowDictionary[row]?.append(heroKeys[currentHeroKey])
+                currentHeroKey += 1
+                if currentHeroKey >= heroes.count {
+                    return
+                    
+                }
+            }
+        }
     }
     
     func makeHeroButton(heroName: String) -> UIButton {
         let button = UIButton(type: .custom)
         button.imageView?.contentMode = .scaleAspectFit
-        if let hero = self.heroes[heroName] {
-            if let image = UIImage(named: hero.iconName) {
-                button.setImage(image, for: .normal)
-            }
-            button.addTarget(self, action: #selector(buttonClick(_:)), for: .touchUpInside)
+        if let hero = FaultDataRepository.shared.getHeroesDictionary()[heroName] {
+            button.setImage(heroIcons[hero.name], for: .normal)
+            button.addTarget(self, action: #selector(self.heroImageButtonClick(_:)), for: .touchUpInside)
         }
         return button
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numberOfRows = Int(self.heroes.count / self.numberOfHeroesPerRow)
-        if self.self.heroes.count % numberOfHeroesPerRow > 0 {
-            numberOfRows += 1
+        let tableSection = TableSections(rawValue: section)
+        var numberOfRows = 0
+        switch tableSection {
+        case .filters:
+            numberOfRows = 1
+        case .heroes:
+            numberOfRows = heroRowDictionary.count
+        default:
+            numberOfRows = 0
         }
         return numberOfRows
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return TableSections.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = FBTableViewCell(style: .default, reuseIdentifier: "cell")
         var buttons = [UIButton]()
-        for n in 0...self.numberOfHeroesPerRow-1 {
-            let hero = indexPath.row * numberOfHeroesPerRow + n
-            if Array(self.heroes.keys).indices.contains(hero) {
-                let heroName = Array(self.heroes.keys)[hero]
-                let button = makeHeroButton(heroName: heroName)
-                button.tag = Heroes.heroIDFromName(name: heroName)
-                buttons.append(button)
+        var buttonTitles = [String]()
+        let tableSection = TableSections(rawValue: indexPath.section)
+        switch tableSection {
+        case .filters:
+            break
+        case .heroes:
+            if let heroes = heroRowDictionary[indexPath.row] {
+                for hero in heroes {
+                    let button = makeHeroButton(heroName: hero)
+                    button.tag = Heroes.heroIDFromName(name: hero)
+                    buttons.append(button)
+                    buttonTitles.append(hero)
+                }
+                cell = ImageButtonTableViewCell(buttons: buttons, buttonTitles: buttonTitles, tableView: self.tableView, reuseIdentifier: nil)
             }
-        }
-        let cell = ImageButtonTableViewCell(buttons: buttons, tableView: self.tableView, reuseIdentifier: nil)
-        return cell
-//        let hero1 = indexPath.row * numberOfHeroesPerRow
-//        let hero2 = indexPath.row * numberOfHeroesPerRow + 1
-//        let hero3 = indexPath.row * numberOfHeroesPerRow + 2
-//        if Array(self.heroes.keys).indices.contains(hero1) {
-//            let button = makeHeroButton(heroName: Array(self.heroes.keys)[hero1])
-//            button.tag = hero1
-//            buttons.append(button)
-//        }
-//        if Array(self.heroes.keys).indices.contains(hero2) {
-//            let button = makeHeroButton(heroName: Array(self.heroes.keys)[hero2])
-//            button.tag = hero2
-//            buttons.append(button)
-//        }
-//        if Array(self.heroes.keys).indices.contains(hero3) {
-//            let button = makeHeroButton(heroName: Array(self.heroes.keys)[hero3])
-//            button.tag = hero3
-//            buttons.append(button)
-//        }
-        
-    }
-    
-    @objc func buttonClick(_ sender: UIButton) {
-        var hero: Hero?
-        switch sender.tag {
-        case Heroes.belica.rawValue:
-            hero = self.heroes[Heroes.belica.name]
-            
-            case Heroes.boris.rawValue:
-            hero = self.heroes[Heroes.boris.name]
-            
-            case Heroes.countess.rawValue:
-            hero = self.heroes[Heroes.countess.name]
-            
         default:
             break
         }
-        if let hero = hero {
-            let heroViewController = HeroViewController(withHero: hero)
-            self.navigationController?.pushViewController(heroViewController, animated: true)
+    
+        
+        return cell
+    }
+    
+    @objc func heroImageButtonClick(_ sender: UIButton) {
+        var hero: Hero?
+        if let heroID = Heroes(rawValue: sender.tag) {
+            hero = FaultDataRepository.shared.getHeroesDictionary()[heroID.name]
+            
+            if let hero = hero {
+                let heroViewController = HeroViewController(withHero: hero)
+                self.navigationController?.pushViewController(heroViewController, animated: true)
+            }
         }
     }
 
+}
+
+extension HeroListViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "Test"
+    }
+    
+    
 }

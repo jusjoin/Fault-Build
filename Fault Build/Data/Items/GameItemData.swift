@@ -11,7 +11,7 @@
 import Foundation
 
 // MARK: - GameItemData
-struct GameItemData: Codable {
+class GameItemData: Codable {
     var name: String
     var parents: [Int]
     var children: [Int]
@@ -29,7 +29,7 @@ struct GameItemData: Codable {
 }
 
 // MARK: - GameItemAttributeData
-struct GameItemAttributeData: Codable {
+class GameItemAttributeData: Codable {
     var attributeName: String
     var value, rankValue: Double
     var uiDetails: String

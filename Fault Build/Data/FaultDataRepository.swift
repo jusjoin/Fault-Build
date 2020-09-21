@@ -124,6 +124,9 @@ final class FaultDataRepository {
     }
     
     func getHeroes(completion: @escaping (() -> Void)) {
+        let group = DispatchGroup()
+        
+        group.enter()
         FaultAPI.shared.getBelicaData() { (result) in
             switch result {
             case .success(let belica):
@@ -131,34 +134,209 @@ final class FaultDataRepository {
                 dump(belica)
 //                let belica = Belica(belicaData: belica)
                 self.heroesDictionary[Heroes.belica.name] = belica
-                completion()
             case .failure(let error):
                 print("\(self) retrieve error on get Belica data: \(error)")
             }
+            group.leave()
         }
         
+        group.enter()
         FaultAPI.shared.getBorisData() { (result) in
             switch result {
             case .success(let boris):
                 print("\(self) retrieved Boris data:")
                 dump(boris)
                 self.heroesDictionary[Heroes.boris.name] = boris
-                completion()
             case .failure(let error):
                 print("\(self) retrieve error on get Boris data: \(error)")
             }
+            group.leave()
         }
         
+        group.enter()
         FaultAPI.shared.getCountessData() { (result) in
             switch result {
             case .success(let countess):
                 print("\(self) retrieved Countess data:")
                 dump(countess)
                 self.heroesDictionary[Heroes.countess.name] = countess
-                completion()
             case .failure(let error):
                 print("\(self) retrieve error on get Countess data: \(error)")
             }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getDekkerData() { (result) in
+            switch result {
+            case .success(let dekker):
+                print("\(self) retrieved Dekker data:")
+                dump(dekker)
+                self.heroesDictionary[Heroes.dekker.name] = dekker
+            case .failure(let error):
+                print("\(self) retrieve error on get Dekker data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getGideonData() { (result) in
+            switch result {
+            case .success(let gideon):
+                print("\(self) retrieved Gideon data:")
+                dump(gideon)
+                self.heroesDictionary[Heroes.gideon.name] = gideon
+            case .failure(let error):
+                print("\(self) retrieve error on get Gideon data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getGreystoneData() { (result) in
+            switch result {
+            case .success(let greystone):
+                print("\(self) retrieved Greystone data:")
+                dump(greystone)
+                self.heroesDictionary[Heroes.greystone.name] = greystone
+            case .failure(let error):
+                print("\(self) retrieve error on get Greystone data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getGrimExeData() { (result) in
+            switch result {
+            case .success(let grimExe):
+                print("\(self) retrieved GrimEXE data:")
+                dump(grimExe)
+                self.heroesDictionary[Heroes.grimExe.name] = grimExe
+            case .failure(let error):
+                print("\(self) retrieve error on get GrimEXE data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getKhaimeraData() { (result) in
+            switch result {
+            case .success(let khaimera):
+                print("\(self) retrieved Khaimera data:")
+                dump(khaimera)
+                self.heroesDictionary[Heroes.khaimera.name] = khaimera
+            case .failure(let error):
+                print("\(self) retrieve error on get Khaimera data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getKwangData() { (result) in
+            switch result {
+            case .success(let kwang):
+                print("\(self) retrieved Kwang data:")
+                dump(kwang)
+                self.heroesDictionary[Heroes.kwang.name] = kwang
+            case .failure(let error):
+                print("\(self) retrieve error on get Kwang data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getMurdockData() { (result) in
+            switch result {
+            case .success(let murdock):
+                print("\(self) retrieved Murdock data:")
+                dump(murdock)
+                self.heroesDictionary[Heroes.murdock.name] = murdock
+            case .failure(let error):
+                print("\(self) retrieve error on get Murdock data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getMurielData() { (result) in
+            switch result {
+            case .success(let muriel):
+                print("\(self) retrieved Muriel data:")
+                dump(muriel)
+                self.heroesDictionary[Heroes.muriel.name] = muriel
+            case .failure(let error):
+                print("\(self) retrieve error on get Muriel data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getNarbashData() { (result) in
+            switch result {
+            case .success(let narbash):
+                print("\(self) retrieved Narbash data:")
+                dump(narbash)
+                self.heroesDictionary[Heroes.narbash.name] = narbash
+            case .failure(let error):
+                print("\(self) retrieve error on get Narbash data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getSevarogData() { (result) in
+            switch result {
+            case .success(let sevarog):
+                print("\(self) retrieved Sevarog data:")
+                dump(sevarog)
+                self.heroesDictionary[Heroes.sevarog.name] = sevarog
+            case .failure(let error):
+                print("\(self) retrieve error on get Sevarog data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getSparrowData() { (result) in
+            switch result {
+            case .success(let sparrow):
+                print("\(self) retrieved Sparrow data:")
+                dump(sparrow)
+                self.heroesDictionary[Heroes.sparrow.name] = sparrow
+            case .failure(let error):
+                print("\(self) retrieve error on get Sparrow data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getSteelData() { (result) in
+            switch result {
+            case .success(let steel):
+                print("\(self) retrieved Steel data:")
+                dump(steel)
+                self.heroesDictionary[Heroes.steel.name] = steel
+            case .failure(let error):
+                print("\(self) retrieve error on get Steel data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        FaultAPI.shared.getTwinblastData() { (result) in
+            switch result {
+            case .success(let twinblast):
+                print("\(self) retrieved Twinblast data:")
+                dump(twinblast)
+                self.heroesDictionary[Heroes.twinblast.name] = twinblast
+            case .failure(let error):
+                print("\(self) retrieve error on get Twinblast data: \(error)")
+            }
+            group.leave()
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            completion()
         }
     }
     

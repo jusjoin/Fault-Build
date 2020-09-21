@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HeroInfo: Codable {
+class HeroInfo: Codable {
     let basicRange, niche, role, damageType: String
     let infoDescription: String
 

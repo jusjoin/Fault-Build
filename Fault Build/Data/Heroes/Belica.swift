@@ -14,13 +14,15 @@ import Foundation
 // MARK: - Belica
 class Belica: Codable, Hero {
     let info: HeroInfo
-    let health, healthPerLevel: Int
-    let healthRegen, healthRegenPerLevel: Double
-    let mana, manaPerLevel: Int
-    let manaRegen, manaRegenPerLevel: Double
-    let physicalArmor: Int
-    let physicalArmorPerLevel, energyArmor, energyArmorPerLevel: Double
-    let moveSpeed: Int
+    let health, healthPerLevel: Double
+    let healthRegenPerLevel, healthRegen, manaRegen: Double
+    let mana, manaPerLevel: Double
+    let manaRegenPerLevel: Double
+    let physicalArmor: Double
+    let physicalArmorPerLevel: Double
+    let energyArmor: Double
+    let energyArmorPerLevel: Double
+    let moveSpeed: Double
     let lmbAbility: LMBAbility
     let rmbAbility: BelicaEAbility
     let qAbility: BelicaQAbility

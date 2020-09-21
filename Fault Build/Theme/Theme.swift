@@ -21,7 +21,7 @@ class ThemeManager {
     
     init() {
         //TODO: Set based on user current theme
-        currentTheme = lightTheme
+        currentTheme = UIScreen.main.traitCollection.userInterfaceStyle == .light ? lightTheme : darkTheme
     }
 }
 
@@ -47,8 +47,8 @@ class Theme {
 class LightTheme: Theme {
     override init() {
         super.init()
-        mainBackgroundColor = .gray
-        tableViewBackgroundColor = .gray
+        mainBackgroundColor = .white
+        tableViewBackgroundColor = .white
         primaryButtonBackgroundColor = .blue
     }
 }
@@ -56,8 +56,8 @@ class LightTheme: Theme {
 class DarkTheme: Theme {
     override init() {
         super.init()
-        mainBackgroundColor = .gray
-        tableViewBackgroundColor = .gray
+        mainBackgroundColor = .black
+        tableViewBackgroundColor = .black
         primaryButtonBackgroundColor = .blue
     }
 }

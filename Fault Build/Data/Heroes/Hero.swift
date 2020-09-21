@@ -11,7 +11,7 @@ import UIKit
 
 protocol Hero {
     var name: String {get }
-    var iconName: String {get }
+    var iconURL: String {get }
     var bannerName: String {get }
     var eAbilityImageURL: String {get }
     var lmbAbilityImageURL: String {get }
@@ -20,12 +20,12 @@ protocol Hero {
     var rAbilityImageURL: String {get }
     var rmbAbilityImageURL: String {get }
         
-    func getBaseMana() -> Int
-    func getManaPerLevel() ->  Int
-    func getBasicDefense() -> Int
+    func getBaseMana() -> Double
+    func getManaPerLevel() ->  Double
+    func getBasicDefense() -> Double
     func getBasicDefensePerLevel() -> Double
-    func getBaseHealth() -> Int
-    func getHealthPerLevel() -> Int
+    func getBaseHealth() -> Double
+    func getHealthPerLevel() -> Double
     func getHealthRegen() -> Double
     func getHealthRegenPerLevel() -> Double
     func getManaRegen() -> Double
@@ -35,7 +35,7 @@ protocol Hero {
     func getBasicAttackDamage() -> Double
     func getBasicAttackDamagePerLevel() -> Double
     func getAttackSpeed() -> Double
-    func getMoveSpeed() -> Int
+    func getMoveSpeed() -> Double
     
 //    func getAbilityImage(imageURL: String, completion: @escaping (UIImage?) -> ())
     
@@ -70,7 +70,7 @@ enum Heroes: Int, CaseIterable {
     case dekker
     case gideon
     case greystone
-    case grim
+    case grimExe
     case khaimera
     case kwang
     case murdock
@@ -102,8 +102,8 @@ enum Heroes: Int, CaseIterable {
         case Heroes.greystone.name:
             heroID = Heroes.greystone.rawValue
             
-        case Heroes.grim.name:
-            heroID = Heroes.grim.rawValue
+        case Heroes.grimExe.name:
+            heroID = Heroes.grimExe.rawValue
             
         case Heroes.khaimera.name:
             heroID = Heroes.khaimera.rawValue
@@ -119,6 +119,15 @@ enum Heroes: Int, CaseIterable {
             
         case Heroes.sevarog.name:
             heroID = Heroes.sevarog.rawValue
+            
+        case Heroes.sparrow.name:
+            heroID = Heroes.sparrow.rawValue
+            
+        case Heroes.steel.name:
+            heroID = Heroes.steel.rawValue
+            
+        case Heroes.twinblast.name:
+            heroID = Heroes.twinblast.rawValue
             
         default:
             break
@@ -141,7 +150,7 @@ enum Heroes: Int, CaseIterable {
             heroName = "Gideon"
         case .greystone:
             heroName = "Greystone"
-        case .grim:
+        case .grimExe:
             heroName = "Grim"
         case .khaimera:
             heroName = "Khaimera"

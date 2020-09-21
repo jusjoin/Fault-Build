@@ -16,9 +16,9 @@ extension Boris: Hero {
         }
     }
     
-    var iconName: String {
-        return "Boris_icon"
-        //"https://api.playfault.com/imagecdn/portraits/14.jpg"
+    var iconURL: String {
+        return "https://api.playfault.com/imagecdn/portraits/14.jpg"
+        
     }
     
     var bannerName: String {
@@ -27,38 +27,38 @@ extension Boris: Hero {
     }
     
     var eAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Boris/E.png"
+        return "https://api.playfault.com/imagecdn/abilities/Boris/E.png"
     }
     
     var lmbAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Boris/LMB.png"
+        return "https://api.playfault.com/imagecdn/abilities/Boris/LMB.png"
     }
     
     var pAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Boris/P.png"
+        return "https://api.playfault.com/imagecdn/abilities/Boris/P.png"
     }
     
     var qAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Boris/Q.png"
+        return "https://api.playfault.com/imagecdn/abilities/Boris/Q.png"
     }
     
     var rAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Boris/R.png"
+        return "https://api.playfault.com/imagecdn/abilities/Boris/R.png"
     }
     
     var rmbAbilityImageURL: String {
-        "https://api.playfault.com/imagecdn/abilities/Boris/RMB.png"
+        return "https://api.playfault.com/imagecdn/abilities/Boris/RMB.png"
     }
     
-    func getBaseHealth() -> Int {
+    func getBaseHealth() -> Double {
         return self.health
     }
     
-    func getBaseMana() -> Int {
+    func getBaseMana() -> Double {
         return self.mana
     }
     
-    func getBasicDefense() -> Int {
+    func getBasicDefense() -> Double {
         return self.physicalArmor
     }
     
@@ -90,11 +90,11 @@ extension Boris: Hero {
         return 1.0 / self.lmbAbility.cooldown
     }
     
-    func getMoveSpeed() -> Int {
+    func getMoveSpeed() -> Double {
         return self.moveSpeed
     }
     
-    func getHealthPerLevel() -> Int {
+    func getHealthPerLevel() -> Double {
         return self.healthPerLevel
     }
     
@@ -102,7 +102,7 @@ extension Boris: Hero {
         return self.healthRegenPerLevel
     }
     
-    func getManaPerLevel() -> Int {
+    func getManaPerLevel() -> Double {
         return self.manaPerLevel
     }
     
@@ -184,7 +184,7 @@ extension BorisEAbility: Ability {
     
     func getDetails() -> String {
         var details = ""
-        details.append("\(self.eDescription)")
+        details.append("\(self.eDescription)\n\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Energy/Unit: \(self.energyperUnit)\n")
@@ -216,12 +216,12 @@ extension BorisRAbility: Ability {
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Range: \(self.range)\n")
-        details.append("Base Damage: \(self.baseDamage)")
-        details.append("Movement Duration: \(self.movementDuration)")
-        details.append("Scaling Factor: \(self.scalingFactor)")
-        details.append("Dmg/Target Missing HP: \(self.bDmgPTrgtMissHP)")
-        details.append("HP Execute Threshhold: \(self.hpExeThresh)")
-        details.append("Recovery Time: \(self.recoveryTime)")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Movement Duration: \(self.movementDuration)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Dmg/Target Missing HP: \(self.bDmgPTrgtMissHP)\n")
+        details.append("HP Execute Threshhold: \(self.hpExeThresh)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
         return details
     }
 }
