@@ -49,6 +49,10 @@ extension Twinblast: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Twinblast/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

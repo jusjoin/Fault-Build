@@ -49,6 +49,10 @@ extension Khaimera: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Khaimera/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

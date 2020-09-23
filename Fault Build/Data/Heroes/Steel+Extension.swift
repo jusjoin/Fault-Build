@@ -49,6 +49,10 @@ extension Steel: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Steel/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

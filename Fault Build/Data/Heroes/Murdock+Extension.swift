@@ -49,6 +49,10 @@ extension Murdock: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Murdock/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

@@ -324,6 +324,10 @@ extension Belica {
     //        return self.bannerName
     //    }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

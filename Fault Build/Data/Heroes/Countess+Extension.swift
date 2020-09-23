@@ -48,6 +48,10 @@ extension Countess: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Countess/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

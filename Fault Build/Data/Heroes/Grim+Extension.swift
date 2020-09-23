@@ -49,6 +49,10 @@ extension GrimExe: Hero {
         return "https://api.playfault.com/imagecdn/abilities/GrimExe/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

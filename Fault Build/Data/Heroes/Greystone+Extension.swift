@@ -49,6 +49,10 @@ extension Greystone: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Greystone/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

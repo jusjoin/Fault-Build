@@ -230,7 +230,7 @@ class ItemListViewController: BaseViewController {
     func filterItems() {
         let filters = self.getFilters()
         let searchString = self.searchBar.text
-        FaultDataRepository.shared.FilterGameItemsFactionDictionary(filters: filters, searchString: searchString)
+        FaultDataRepository.shared.filterGameItemsFactionDictionary(filters: filters, searchString: searchString)
         self.sectionsToDisplay = self.getSectionsToDisplay()
         self.reloadTableView()
     }

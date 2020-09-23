@@ -49,6 +49,10 @@ extension Sevarog: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Sevarog/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

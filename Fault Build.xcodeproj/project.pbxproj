@@ -90,6 +90,9 @@
 		84AA327024DD367B0020D08A /* FaultBuildHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */; };
 		84AA327224E248D10020D08A /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA327124E248D10020D08A /* ItemViewController.swift */; };
 		84DB29A524E8C44200465587 /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB29A424E8C44200465587 /* CellFactory.swift */; };
+		84FDE3242519DFB600155A8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FDE3232519DFB600155A8C /* LaunchScreen.storyboard */; };
+		84FDE32C251BCBFC00155A8C /* HeroRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDE32B251BCBFC00155A8C /* HeroRoles.swift */; };
+		84FDE330251BE43D00155A8C /* SelectHeroFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDE32F251BE43C00155A8C /* SelectHeroFilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +193,9 @@
 		84AA326F24DD367B0020D08A /* FaultBuildHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultBuildHelper.swift; sourceTree = "<group>"; };
 		84AA327124E248D10020D08A /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		84DB29A424E8C44200465587 /* CellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFactory.swift; sourceTree = "<group>"; };
+		84FDE3232519DFB600155A8C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84FDE32B251BCBFC00155A8C /* HeroRoles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroRoles.swift; sourceTree = "<group>"; };
+		84FDE32F251BE43C00155A8C /* SelectHeroFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHeroFilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +271,7 @@
 				846906AB251833EA007CC039 /* Steel+Extension.swift */,
 				846906AD25184119007CC039 /* Twinblast.swift */,
 				846906AF25184128007CC039 /* Twinblast+Extension.swift */,
+				84FDE32B251BCBFC00155A8C /* HeroRoles.swift */,
 			);
 			path = Heroes;
 			sourceTree = "<group>";
@@ -299,6 +306,7 @@
 		84AA320024D7591C0020D08A = {
 			isa = PBXGroup;
 			children = (
+				84FDE3232519DFB600155A8C /* LaunchScreen.storyboard */,
 				84AA320B24D7591C0020D08A /* Fault Build */,
 				84AA322724D759210020D08A /* Fault BuildTests */,
 				84AA320A24D7591C0020D08A /* Products */,
@@ -398,6 +406,7 @@
 			children = (
 				84AA324E24D7BD860020D08A /* HeroListViewController.swift */,
 				8468856324EBA1800018DE60 /* HeroViewController.swift */,
+				84FDE32F251BE43C00155A8C /* SelectHeroFilterViewController.swift */,
 			);
 			path = Heroes;
 			sourceTree = "<group>";
@@ -545,6 +554,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FDE3242519DFB600155A8C /* LaunchScreen.storyboard in Resources */,
 				84AA323F24D7B5E90020D08A /* Localizable.strings in Resources */,
 				84AA321B24D759200020D08A /* Assets.xcassets in Resources */,
 			);
@@ -619,6 +629,7 @@
 				84AA324D24D7BD470020D08A /* ItemListViewController.swift in Sources */,
 				846906A425182ACB007CC039 /* Sevarog+Extension.swift in Sources */,
 				846048B224FEE71900E4A2F6 /* UIImage+Extensions.swift in Sources */,
+				84FDE32C251BCBFC00155A8C /* HeroRoles.swift in Sources */,
 				8468857124EF8E8E0018DE60 /* FBTableViewCell.swift in Sources */,
 				8469068E2517E8E0007CC039 /* Khaimera.swift in Sources */,
 				846906AA251833DD007CC039 /* Steel.swift in Sources */,
@@ -636,6 +647,7 @@
 				84AA324424D7BCAB0020D08A /* MainLandingPageViewController.swift in Sources */,
 				84AA326224DA27CA0020D08A /* Result.swift in Sources */,
 				84AA321924D7591C0020D08A /* Fault_Build.xcdatamodeld in Sources */,
+				84FDE330251BE43D00155A8C /* SelectHeroFilterViewController.swift in Sources */,
 				846906B225188C48007CC039 /* HeroRole.swift in Sources */,
 				8469069C25181A2E007CC039 /* Muriel+Extension.swift in Sources */,
 				846906B025184128007CC039 /* Twinblast+Extension.swift in Sources */,
@@ -802,7 +814,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "JusDevStudios.Fault-Build";
+				MARKETING_VERSION = 0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jusdevstudios.faultbuilder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -820,7 +833,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "JusDevStudios.Fault-Build";
+				MARKETING_VERSION = 0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jusdevstudios.faultbuilder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

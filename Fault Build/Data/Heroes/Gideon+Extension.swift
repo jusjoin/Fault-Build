@@ -49,6 +49,10 @@ extension Gideon: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Gideon/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

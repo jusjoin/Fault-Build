@@ -49,6 +49,10 @@ extension Narbash: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Narbash/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

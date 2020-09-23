@@ -20,6 +20,7 @@ protocol Hero {
     var rAbilityImageURL: String {get }
     var rmbAbilityImageURL: String {get }
         
+    func getHeroInfo() -> HeroInfo
     func getBaseMana() -> Double
     func getManaPerLevel() ->  Double
     func getBasicDefense() -> Double

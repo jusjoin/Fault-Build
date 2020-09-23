@@ -20,6 +20,16 @@ final class FaultDataRepository {
     private var filteredGameItemsFactionDictionary = [String: [GameItem]]()
     private var sortedGameItems = [GameItem]()
     private var heroesDictionary = [String: Hero]()
+    private var filteredHeroesDictionary = [String: Hero]()
+    private var laneDictionary: [HeroRole: [Heroes]] {
+        var dictionary = [HeroRole: [Heroes]]()
+        dictionary[.carry] = [.twinblast, .grimExe, .sparrow, .murdock]
+        dictionary[.support] = [.dekker, .belica, .muriel, .narbash, .steel]
+        dictionary[.midlane] = [.countess, .gideon, .belica]
+        dictionary[.offlane] = [.boris, .countess, .greystone, .kwang, .sevarog, .steel]
+        dictionary[.jungler] = [.boris, .khaimera, .kwang, .sevarog, .steel]
+        return dictionary
+    }
     
     func updateGameItems(completion: @escaping (() -> Void)) {
         FaultAPI.shared.getAllItems { (result) in
@@ -340,7 +350,16 @@ final class FaultDataRepository {
         }
     }
     
-    func FilterGameItemsFactionDictionary(filters: [String]? = nil, searchString: String? = nil){
+    func filterHeroesDictionary(role: HeroRole){
+        var filteredHeroes = [String:Hero]()
+        let laneHeroes = self.laneDictionary[role]
+        for hero in laneHeroes! {
+            filteredHeroes[hero.name] = self.heroesDictionary[hero.name]
+        }
+        self.filteredHeroesDictionary = filteredHeroes
+    }
+    
+    func filterGameItemsFactionDictionary(filters: [String]? = nil, searchString: String? = nil){
         if filters != nil || searchString != nil {
             
             var filtersToUse = [String]()
@@ -406,6 +425,10 @@ final class FaultDataRepository {
     
     func getFilteredGameItemsFactionDictionary() -> [String: [GameItem]]{
         return self.filteredGameItemsFactionDictionary
+    }
+    
+    func getFilteredHeroesDictionary() -> [String: Hero]{
+        return self.filteredHeroesDictionary
     }
     
     //Needs rework and to implement closures and activity indicators

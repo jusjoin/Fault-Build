@@ -15,18 +15,10 @@ class HeroListViewController: BaseViewController {
         case heroes
     }
     
-    private let comingSoonLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Coming Soon"
-        label.textColor = .red
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     let numberOfHeroesPerRow = 3
     var heroIcons = [String: UIImage]()
     var heroRowDictionary = [Int: [String]]()
+    var currentFilter: HeroRole?
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +33,7 @@ class HeroListViewController: BaseViewController {
         self.navigationItem.title = "Heroes"
         self.startActivity()
         self.getHeroesAndIcons()
+        self.currentFilter = nil
     }
     
     func getHeroesAndIcons() {
@@ -64,7 +57,8 @@ class HeroListViewController: BaseViewController {
     }
     
     func sortHeroes() {
-        let heroes = FaultDataRepository.shared.getHeroesDictionary()
+        self.heroRowDictionary = [Int: [String]]()
+        let heroes = self.currentFilter != nil ? FaultDataRepository.shared.getFilteredHeroesDictionary() : FaultDataRepository.shared.getHeroesDictionary()
         let heroKeys = Array(heroes.keys).sorted()
         var numberOfRows = Int(heroes.count / self.numberOfHeroesPerRow)
         if heroes.count % numberOfHeroesPerRow > 0 {
@@ -101,7 +95,7 @@ class HeroListViewController: BaseViewController {
         case .filters:
             numberOfRows = 1
         case .heroes:
-            numberOfRows = heroRowDictionary.count
+            numberOfRows = self.heroRowDictionary.count
         default:
             numberOfRows = 0
         }
@@ -119,7 +113,15 @@ class HeroListViewController: BaseViewController {
         let tableSection = TableSections(rawValue: indexPath.section)
         switch tableSection {
         case .filters:
-            break
+            cell.accessoryType = .disclosureIndicator
+            if let filter = self.currentFilter {
+                cell.textLabel?.text = filter.name
+                cell.imageView?.image = UIImage(named: filter.imageName)
+                cell.imageView?.backgroundColor = .black
+            }
+            else {
+                cell.textLabel?.text = "All Heroes"
+            }
         case .heroes:
             if let heroes = heroRowDictionary[indexPath.row] {
                 for hero in heroes {
@@ -138,6 +140,14 @@ class HeroListViewController: BaseViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == TableSections.filters.rawValue {
+            let heroFilterViewController = SelectHeroFilterViewController(selectedFilter: self.currentFilter)
+            heroFilterViewController.delegate = self
+            self.navigationController?.pushViewController(heroFilterViewController, animated: true)
+        }
+    }
+    
     @objc func heroImageButtonClick(_ sender: UIButton) {
         var hero: Hero?
         if let heroID = Heroes(rawValue: sender.tag) {
@@ -152,17 +162,14 @@ class HeroListViewController: BaseViewController {
 
 }
 
-extension HeroListViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "Test"
+extension HeroListViewController: HeroFilterDelegate {
+    func didSelectFilter(selectedFilter: HeroRole?) {
+        if let selectedFilter = selectedFilter {
+            self.currentFilter = selectedFilter
+            FaultDataRepository.shared.filterHeroesDictionary(role: selectedFilter)
+            self.sortHeroes()
+            self.reloadTableView()
+        }
     }
     
     

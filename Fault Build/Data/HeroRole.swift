@@ -31,4 +31,21 @@ enum HeroRole: Int, CaseIterable {
         }
         return name
     }
+    
+    var imageName: String {
+        var name = ""
+        switch self {
+        case .offlane:
+            name = "OfflaneIcon"
+        case .midlane:
+            name = "MidlaneIcon"
+        case .carry:
+            name = "CarryIcon"
+        case .support:
+            name = "SupportIcon"
+        case .jungler:
+            name = "JunglerIcon"
+        }
+        return name
+    }
 }

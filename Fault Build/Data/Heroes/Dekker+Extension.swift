@@ -49,6 +49,10 @@ extension Dekker: Hero {
         return "https://api.playfault.com/imagecdn/abilities/Dekker/RMB.png"
     }
     
+    func getHeroInfo() -> HeroInfo {
+        return self.info
+    }
+    
     func getBaseHealth() -> Double {
         return self.health
     }

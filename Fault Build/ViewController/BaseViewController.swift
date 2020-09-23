@@ -13,7 +13,6 @@ class BaseViewController: UITableViewController, UISearchBarDelegate {
     let searchBar: UISearchBar = UISearchBar()
     let activityIndicator:UIActivityIndicatorView = {
     let indicator = UIActivityIndicatorView(style: .large)
-        indicator.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0);
         indicator.hidesWhenStopped = true
         return indicator
     }()
@@ -161,9 +160,10 @@ class BaseViewController: UITableViewController, UISearchBarDelegate {
 //        uiView.addSubview(activityIndicator)
 //        activityIndicator.centerXAnchor.constraint(equalTo: uiView.centerXAnchor).isActive = true
 //        activityIndicator.centerYAnchor.constraint(equalTo: uiView.centerYAnchor).isActive = true
-        self.activityIndicator.center = self.view.center
-        self.view.addSubview(self.activityIndicator)
+        
+        self.activityIndicator.center = CGPoint(x: UIScreen.main.bounds.maxX / 2, y: UIScreen.main.bounds.maxY / 2)
         self.activityIndicator.startAnimating()
+        self.view.addSubview(self.activityIndicator)
     }
     
     func stopActivity() {
