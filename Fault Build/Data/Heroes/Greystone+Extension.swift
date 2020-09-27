@@ -53,6 +53,7 @@ extension Greystone: Hero {
         return self.info
     }
     
+    
     func getBaseHealth() -> Double {
         return self.health
     }
@@ -164,19 +165,17 @@ extension GreystoneQAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.qDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
-        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Bounce Range: \(self.maxBounceRange)\n")
-//        details.append("Minion Damage Reduction: \(self.minionDamageReduction)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Stun Duration: \(self.stunDuration)\n")
-//        details.append("Speed: \(self.speed)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Lifetime: \(self.lifetime)\n")
+        details.append("PProcp TH: \(self.pProcpTH)\n")
+        details.append("Rate: \(self.rate)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -193,14 +192,13 @@ extension GreystoneEAbility: Ability {
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("PCT Start Charge Dmg: \(self.pCTStartChargeDmg)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow: \(self.slow)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Disarm Duration: \(self.disarmDuration)\n")
+        details.append("Angle: \(self.angle)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Recovery: \(self.recovery)\n")
+        details.append("Rate Scale: \(self.rateScale)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -213,16 +211,21 @@ extension GreystoneRAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("Effect Delay: \(self.effectDelay)\n")
-//        details.append("Fence Height: \(self.fenceHeight)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Range: \(self.range)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Delay: \(self.delay)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Max Range from Death: \(self.maxRangefromDeath)\n")
+        details.append("PCTBase HPRes: \(self.pCTBaseHPRes)\n")
+        details.append("PCTBase Mana Res: \(self.pCTBaseManaRes)\n")
+        details.append("Slow: \(self.slow)\n")
+        details.append("Slow Radius: \(self.slowRadius)\n")
+        details.append("Slow Height: \(self.slowHeight)\n")
+        details.append("Slow Duration: \(self.slowDuration)\n")
+        details.append("Travel Time: \(self.travelTime)\n")
+        details.append("Tar Con Time: \(self.tarConTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -235,14 +238,16 @@ extension GreystoneRMBAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rmbDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Horizontal Distance: \(self.horizontalDistance)\n")
-//        details.append("Vertical Distance: \(self.verticalDistance)\n")
-//        details.append("Move Speed: \(self.moveSpeed)\n")
-//        details.append("Speed Duration: \(self.speedDuration)\n")
-//        details.append("Radius: \(self.radius)\n")
+        details.append("Inner Radius: \(self.innerRadius)\n")
+        details.append("Inner Radius Bonus Dmg: \(self.innerRadiusDmgBonus)\n")
+        details.append("Outer Radius: \(self.outerRadius)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("TIme: \(self.time)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)\n")
         return details
     }
 }

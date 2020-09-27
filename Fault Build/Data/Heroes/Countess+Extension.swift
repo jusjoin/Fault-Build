@@ -151,7 +151,7 @@ extension CountessPAbility: Ability {
     }
     
     func getDetails() -> String {
-        return ""
+        return self.pDescription
     }
     
     
@@ -174,7 +174,7 @@ extension CountessQAbility: Ability {
         details.append("Slow Duration: \(self.slowDuration)\n")
         details.append("Recast Delay: \(self.recastDelay)\n")
         details.append("Recast Timeout: \(self.recastTimeout)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -197,7 +197,7 @@ extension CountessEAbility: Ability {
         details.append("Speed: \(self.speed)\n")
         details.append("Recovery Time: \(self.recoveryTime)\n")
         details.append("Recovery Movement Multiplier: \(self.recoveryMovementMultiplier)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -217,7 +217,7 @@ extension CountessRAbility: Ability {
         details.append("Channel Duration: \(self.channelDuration)\n")
         details.append("Duration: \(self.duration)\n")
         details.append("Recovery Time: \(self.recoveryTime)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -243,7 +243,7 @@ extension CountessRMBAbility: Ability {
         details.append("Damage Bonus R: \(self.dmgBonusR)\n")
         details.append("Duration: \(self.duration)\n")
         details.append("Recovery Time: \(self.recoveryTime)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }

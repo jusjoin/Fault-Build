@@ -42,7 +42,8 @@ class LoginLandingViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(loginAction(_:)), for: .touchUpInside)
+        //TODO: This will have to be fixed for iOS 12
+        //button.addTarget(self, action: #selector(loginAction(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -83,8 +84,10 @@ class LoginLandingViewController: UIViewController {
     }
     
 
+    @available(iOS 13.0, *)
     @objc func loginAction(_ sender:UIButton!) {
         let mainLanding = MainLandingPageViewController()
+        //TODO: This will have to be fixed for iOS 12
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainLanding)
     }
 

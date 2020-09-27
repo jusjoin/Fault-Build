@@ -81,6 +81,11 @@ class HeroStatsTableViewCell: FBTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.frame = self.bounds.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+    }
+    
     func setupViews() {
         let stackViewVerticalSpacing:CGFloat = 5
         baseHealthLabel.numberOfLines = 0

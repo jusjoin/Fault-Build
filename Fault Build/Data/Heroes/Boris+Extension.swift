@@ -174,7 +174,7 @@ extension BorisQAbility: Ability {
         details.append("Trigger PCTMax Health: \(self.triggerPCTMaxHealth)\n")
         details.append("Duration: \(self.duration)\n")
         details.append("Atk Speed Bonus: \(self.attackSpeedBonus)\n")
-        details.append("Move Speed Bonus: \(self.movementSpeedBonus)\n")
+        details.append("Move Speed Bonus: \(self.movementSpeedBonus)")
         return details
     }
     
@@ -196,13 +196,13 @@ extension BorisEAbility: Ability {
         details.append("Energy/Hero: \(self.energyperHero)\n")
         details.append("Energy/Canister: \(self.energyperCanister)\n")
         details.append("Max Total Energy: \(self.maxTotalEnergy)\n")
-        details.append("Pickup Radius: \(self.pickupRadius)")
-        details.append("Animation Rate Scale: \(self.animationRateScale)")
-        details.append("BLHeal Factor: \(self.bLHealFactor)")
-        details.append("BLDamage Factor: \(self.bLHealDmgFactor)")
-        details.append("Move Speed Bonus: \(self.movementSpeedBonus)")
-        details.append("Buff Duration: \(self.buffDuration)")
-        details.append("Unstoppable Duration: \(self.unstoppableDuration)")
+        details.append("Pickup Radius: \(self.pickupRadius)\n")
+        details.append("Animation Rate Scale: \(self.animationRateScale)\n")
+        details.append("BLHeal Factor: \(self.bLHealFactor)\n")
+        details.append("BLDamage Factor: \(self.bLHealDmgFactor)\n")
+        details.append("Move Speed Bonus: \(self.movementSpeedBonus)\n")
+        details.append("Buff Duration: \(self.buffDuration)\n")
+        details.append("Unstoppable Duration: \(self.unstoppableDuration)\n")
         details.append("Max Duration on Ground: \(self.maxDurationOnGround)")
         return details
     }
@@ -217,15 +217,16 @@ extension BorisRAbility: Ability {
     
     func getDetails() -> String {
         var details = ""
+        details.append("\(self.rDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Range: \(self.range)\n")
-        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Movement Duration: \(self.movementDuration)\n")
         details.append("Scaling Factor: \(self.scalingFactor)\n")
         details.append("Dmg/Target Missing HP: \(self.bDmgPTrgtMissHP)\n")
         details.append("HP Execute Threshhold: \(self.hpExeThresh)\n")
-        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Recovery Time: \(self.recoveryTime)")
         return details
     }
 }
@@ -237,11 +238,12 @@ extension BorisRMBAbility: Ability {
     
     func getDetails() -> String {
         var details = ""
+        details.append("\(self.rmbDescription)\n\n")
+        details.append("Base BADamage: \(self.baseBADamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Leap Distance: \(self.leapDistance)\n")
         details.append("Duration: \(self.duration)")
-        details.append("Base BADamage: \(self.baseBADamage)")
         return details
     }
 }

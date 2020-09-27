@@ -171,6 +171,7 @@ class LMBAbilityTableViewCell: FBTableViewCell {
         
         self.AdaptiveDamagePerLevelLabel.text = "Dmg/Lvl: " + String(format: "%.2f",hero.getLMBAbility().getAdaptiveDamagePerLevel())
         self.scalingFactorLabel.text = "Scaling: " + String(hero.getLMBAbility().getScalingFactor())
+        self.imageView?.image =  #imageLiteral(resourceName: "FaultLogo").scaledToWidth(width: 50)
         
         //Any hero could be used here
         FaultBuildHelper.getImage(imageURL: self.hero.lmbAbilityImageURL, completion: { image in

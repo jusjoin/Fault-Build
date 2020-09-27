@@ -164,19 +164,15 @@ extension GideonQAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.qDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
-        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Bounce Range: \(self.maxBounceRange)\n")
-//        details.append("Minion Damage Reduction: \(self.minionDamageReduction)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Stun Duration: \(self.stunDuration)\n")
-//        details.append("Speed: \(self.speed)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Cast Movement Multiplier: \(self.castMovementMultiplier)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -191,16 +187,11 @@ extension GideonEAbility: Ability {
         details.append("\(self.eDescription)\n\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("PCT Start Charge Dmg: \(self.pCTStartChargeDmg)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow: \(self.slow)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Distance: \(self.distance)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Lifetime: \(self.lifetime)")
         return details
     }
 }
@@ -213,16 +204,20 @@ extension GideonRAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("Effect Delay: \(self.effectDelay)\n")
-//        details.append("Fence Height: \(self.fenceHeight)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Range: \(self.range)\n")
+        details.append("Fence Height: \(self.duration)\n")
+        details.append("Base Amount: \(self.baseAmount)\n")
+        details.append("Enemy Factor: \(self.enemyFactor)\n")
+        details.append("Pull: \(self.pull)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Rate: \(self.rate)\n")
+        details.append("Shield Decay Delay: \(self.shieldDecayDelay)\n")
+        details.append("Shield Duration: \(self.shieldDuration)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
+        
         return details
     }
 }
@@ -235,14 +230,18 @@ extension GideonRMBAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rmbDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
         details.append("Resource Cost: \(self.resourceCost)\n")
         details.append("Cooldown: \(self.cooldown)\n")
         details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Horizontal Distance: \(self.horizontalDistance)\n")
-//        details.append("Vertical Distance: \(self.verticalDistance)\n")
-//        details.append("Move Speed: \(self.moveSpeed)\n")
-//        details.append("Speed Duration: \(self.speedDuration)\n")
-//        details.append("Radius: \(self.radius)\n")
+        details.append("Max Range: \(self.maxRange)\n")
+        details.append("Minion Dmg Modifier: \(self.minionDmgModifier)\n")
+        details.append("Max Range: \(self.maxRange)\n")
+        details.append("Projectile Radius: \(self.projectileRadius)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Speed: \(self.speed)\n")
+        details.append("Recorvery Time: \(self.recoveryTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }

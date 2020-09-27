@@ -28,11 +28,6 @@ class SelectHeroFilterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Roles"
-        setupRightBarButton()
-    }
-    
-    func setupRightBarButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     }
 
     // MARK: - Table view data source
@@ -70,9 +65,6 @@ class SelectHeroFilterViewController: BaseViewController {
             self.selectedFilter = rowData
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
-    }
-
-    @objc func doneButtonTapped() {
         delegate?.didSelectFilter(selectedFilter: self.selectedFilter)
         self.navigationController?.popViewController(animated: true)
     }

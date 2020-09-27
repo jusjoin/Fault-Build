@@ -21,9 +21,9 @@ class FBTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.contentView.frame = self.bounds.inset(by: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        self.contentView.frame = self.bounds.inset(by: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
+//    }
     
 }

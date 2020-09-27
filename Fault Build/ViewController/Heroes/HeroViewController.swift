@@ -91,6 +91,7 @@ class HeroViewController: BaseViewController {
         case .passive:
             cell.textLabel?.text = self.hero.getPAbility().getName()
             cell.detailTextLabel?.text = self.hero.getPAbility().getDetails()
+            cell.imageView?.image =  #imageLiteral(resourceName: "FaultLogo").scaledToWidth(width: 50)
             FaultBuildHelper.getImage(imageURL: self.hero.pAbilityImageURL, completion: { image in
                 DispatchQueue.main.async {
                     guard let image = image else { return }
@@ -106,6 +107,7 @@ class HeroViewController: BaseViewController {
         case .qAbility:
             cell.textLabel?.text = self.hero.getQAbility().getName()
             cell.detailTextLabel?.text = self.hero.getQAbility().getDetails()
+            cell.imageView?.image =  #imageLiteral(resourceName: "FaultLogo").scaledToWidth(width: 50)
             FaultBuildHelper.getImage(imageURL: self.hero.qAbilityImageURL, completion: { image in
                 DispatchQueue.main.async {
                     guard let image = image else { return }
@@ -118,6 +120,7 @@ class HeroViewController: BaseViewController {
         case .eAbility:
             cell.textLabel?.text = self.hero.getEAbility().getName()
             cell.detailTextLabel?.text = self.hero.getEAbility().getDetails()
+            cell.imageView?.image =  #imageLiteral(resourceName: "FaultLogo").scaledToWidth(width: 50)
             FaultBuildHelper.getImage(imageURL: self.hero.eAbilityImageURL, completion: { image in
                 DispatchQueue.main.async {
                     guard let image = image else { return }
@@ -130,6 +133,7 @@ class HeroViewController: BaseViewController {
         case .rAbility:
             cell.textLabel?.text = self.hero.getRAbility().getName()
             cell.detailTextLabel?.text = self.hero.getRAbility().getDetails()
+            cell.imageView?.image =  #imageLiteral(resourceName: "FaultLogo").scaledToWidth(width: 50)
             FaultBuildHelper.getImage(imageURL: self.hero.rAbilityImageURL, completion: { image in
                 DispatchQueue.main.async {
                     guard let image = image else { return }
@@ -142,6 +146,7 @@ class HeroViewController: BaseViewController {
         case .rmbAbility:
             cell.textLabel?.text = self.hero.getRMBAbility().getName()
             cell.detailTextLabel?.text = self.hero.getRMBAbility().getDetails()
+            cell.imageView?.image =  #imageLiteral(resourceName: "FaultLogo").scaledToWidth(width: 50)
             FaultBuildHelper.getImage(imageURL: self.hero.rmbAbilityImageURL, completion: { image in
                 DispatchQueue.main.async {
                     guard let image = image else { return }

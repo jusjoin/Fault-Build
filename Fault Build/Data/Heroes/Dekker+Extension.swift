@@ -176,7 +176,7 @@ extension DekkerQAbility: Ability {
         details.append("Slow Duration: \(self.slowDuration)\n")
         details.append("Stun Duration: \(self.stunDuration)\n")
         details.append("Speed: \(self.speed)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -200,7 +200,7 @@ extension DekkerEAbility: Ability {
         details.append("Recovery Time: \(self.recoveryTime)\n")
         details.append("Slow: \(self.slow)\n")
         details.append("Slow Duration: \(self.slowDuration)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -222,7 +222,7 @@ extension DekkerRAbility: Ability {
         details.append("Radius: \(self.radius)\n")
         details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
         details.append("Recovery Time: \(self.recoveryTime)\n")
-        details.append("Range: \(self.range)\n")
+        details.append("Range: \(self.range)")
         return details
     }
 }
@@ -242,7 +242,7 @@ extension DekkerRMBAbility: Ability {
         details.append("Vertical Distance: \(self.verticalDistance)\n")
         details.append("Move Speed: \(self.moveSpeed)\n")
         details.append("Speed Duration: \(self.speedDuration)\n")
-        details.append("Radius: \(self.radius)\n")
+        details.append("Radius: \(self.radius)")
         return details
     }
 }

@@ -12,7 +12,9 @@ class BaseViewController: UITableViewController, UISearchBarDelegate {
 
     let searchBar: UISearchBar = UISearchBar()
     let activityIndicator:UIActivityIndicatorView = {
-    let indicator = UIActivityIndicatorView(style: .large)
+        var indicatorStyle = UIActivityIndicatorView.Style.whiteLarge
+        if #available(iOS 13, *) {indicatorStyle = .large}
+        let indicator = UIActivityIndicatorView(style: indicatorStyle)
         indicator.hidesWhenStopped = true
         return indicator
     }()
@@ -20,7 +22,7 @@ class BaseViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = self.tableView.backgroundColor
     }
     
 //    override func viewDidLayoutSubviews() {
