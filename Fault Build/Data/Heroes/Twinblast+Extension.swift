@@ -17,7 +17,7 @@ extension Twinblast: Hero {
     }
     
     var iconURL: String {
-        return "https://api.playfault.com/imagecdn/portraits/200.jpg"
+        return "https://api.playfault.com/imagecdn/portraits/2.jpg"
         
     }
     
