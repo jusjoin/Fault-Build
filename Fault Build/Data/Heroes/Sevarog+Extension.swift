@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Sevarog: Hero {
     var name: String {
@@ -18,6 +19,15 @@ extension Sevarog: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/7.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {
@@ -164,19 +174,15 @@ extension SevarogQAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.qDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Bounce Range: \(self.maxBounceRange)\n")
-//        details.append("Minion Damage Reduction: \(self.minionDamageReduction)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Stun Duration: \(self.stunDuration)\n")
-//        details.append("Speed: \(self.speed)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Minion Damage Reduction: \(self.passiveGainOnKillMultiplier)\n")
+        details.append("Radius: \(self.rangePassiveTier)\n")
+        details.append("Recovery Time: \(self.widthPassiveTier)\n")
+        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -189,18 +195,17 @@ extension SevarogEAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.eDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("PCT Start Charge Dmg: \(self.pCTStartChargeDmg)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow: \(self.slow)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Root Duration Passive Tier: \(self.rootDurationperPassiveTier)\n")
+        details.append("Slow: \(self.slow)\n")
+        details.append("Slow Duration: \(self.slowDuration)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Subjugation Anim Rate Scale: \(self.subjugationAnimationRateScale)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -213,16 +218,15 @@ extension SevarogRAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("Effect Delay: \(self.effectDelay)\n")
-//        details.append("Fence Height: \(self.fenceHeight)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Range: \(self.range)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Cast Movement Multiplier: \(self.castMovementMultiplier)\n")
+        details.append("Displacement Angle: \(self.displacementAngle)\n")
+        details.append("Displacement Speed: \(self.displacementSpeed)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -235,14 +239,11 @@ extension SevarogRMBAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rmbDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Horizontal Distance: \(self.horizontalDistance)\n")
-//        details.append("Vertical Distance: \(self.verticalDistance)\n")
-//        details.append("Move Speed: \(self.moveSpeed)\n")
-//        details.append("Speed Duration: \(self.speedDuration)\n")
-//        details.append("Radius: \(self.radius)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Distance per Passive Tier: \(self.distancePerPassiveTier)\n")
+        details.append("Cast Time: \(self.speed)\n")
+        
         return details
     }
 }

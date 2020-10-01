@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 protocol Hero {
-    var name: String {get }
-    var iconURL: String {get }
-    var bannerName: String {get }
-    var eAbilityImageURL: String {get }
-    var lmbAbilityImageURL: String {get }
-    var pAbilityImageURL: String {get }
-    var qAbilityImageURL: String {get }
-    var rAbilityImageURL: String {get }
-    var rmbAbilityImageURL: String {get }
+    var name: String { get }
+    var iconURL: String { get }
+    var bannerName: String { get }
+    var eAbilityImageURL: String { get }
+    var lmbAbilityImageURL: String { get }
+    var pAbilityImageURL: String { get }
+    var qAbilityImageURL: String { get }
+    var rAbilityImageURL: String { get }
+    var rmbAbilityImageURL: String { get }
+    var heroIcon: UIImage? { get set }
         
     func getHeroInfo() -> HeroInfo
     func getBaseMana() -> Double
@@ -108,6 +109,9 @@ enum Heroes: Int, CaseIterable {
             
         case Heroes.khaimera.name:
             heroID = Heroes.khaimera.rawValue
+            
+        case Heroes.kwang.name:
+            heroID = Heroes.kwang.rawValue
             
         case Heroes.murdock.name:
             heroID = Heroes.murdock.rawValue

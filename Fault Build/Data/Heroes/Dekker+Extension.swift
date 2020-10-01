@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Dekker: Hero {
     var name: String {
@@ -18,6 +19,15 @@ extension Dekker: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/16.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {

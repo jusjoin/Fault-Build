@@ -8,6 +8,7 @@
 //   let heroData = try? newJSONDecoder().decode(HeroData.self, from: jsonData)
 
 import Foundation
+import UIKit
 
 // MARK: - HeroData
 class Narbash: Codable {
@@ -27,6 +28,7 @@ class Narbash: Codable {
     let eAbility: NarbashEAbility
     let rAbility: NarbashRAbility
     let pAbility: NarbashPAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

@@ -42,6 +42,7 @@ class GameItem {
     let cost: Int
     let color: String
     var attributeNames: [String]
+    var itemImage: UIImage?
     
     init(itemID: String, name: String, parents: [Int], children: [Int], treeID: Int, attributes: [GameItemAttribute], passive: String, active: String, cost: Int, color: String) {
         self.itemID = itemID
@@ -59,7 +60,6 @@ class GameItem {
         for attribute in self.attributes {
             self.attributeNames.append(attribute.attributeName.lowercased())
         }
-        
     }
     
     init(itemID: String, gameItemData: GameItemData) {
@@ -83,7 +83,11 @@ class GameItem {
         }
     }
     
-    func getItemImage() -> UIImage{
+    func getItemImageURL() -> String {
+        return "https://api.playfault.com/imagecdn/items/\(self.itemID).jpg"
+    }
+    
+    func getDefaultItemImage() -> UIImage {
         var image = UIImage()
         switch(self.color) {
                 case FaultFaction.none:

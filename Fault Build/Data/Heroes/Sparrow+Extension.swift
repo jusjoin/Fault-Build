@@ -9,6 +9,7 @@
 //   let heroData = try? newJSONDecoder().decode(HeroData.self, from: jsonData)
 
 import Foundation
+import UIKit
 
 extension Sparrow: Hero {
     var name: String {
@@ -20,6 +21,15 @@ extension Sparrow: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/15.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {
@@ -166,19 +176,17 @@ extension SparrowQAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.qDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Bounce Range: \(self.maxBounceRange)\n")
-//        details.append("Minion Damage Reduction: \(self.minionDamageReduction)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Stun Duration: \(self.stunDuration)\n")
-//        details.append("Speed: \(self.speed)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Effect Delay: \(self.effectDelay)\n")
+        details.append("eStack gain per Rate: \(self.eStackGainperRate)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Lifetime: \(self.lifetime)\n")
+        details.append("Rate: \(self.rate)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -191,18 +199,13 @@ extension SparrowEAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.eDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("PCT Start Charge Dmg: \(self.pCTStartChargeDmg)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow: \(self.slow)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Buff Duration: \(self.buffDuration)\n")
+        details.append("exPass Stack per hit: \(self.exPassStackpHit)\n")
+        details.append("pStack on E Hit: \(self.pStacksonEHit)\n")
+        details.append("Slow: \(self.slow)\n")
+        details.append("Slow Duration: \(self.slowDuration)")
         return details
     }
 }
@@ -215,16 +218,12 @@ extension SparrowRAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("Effect Delay: \(self.effectDelay)\n")
-//        details.append("Fence Height: \(self.fenceHeight)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Range: \(self.range)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Duration: \(self.duration)\n")
+        details.append("Side Projectile Damage: \(self.sPDmg)\n")
+        details.append("Side Projectile Angle: \(self.sideProjectileAngle)\n")
+        details.append("Side Projectiles: \(self.sideProjectiles)")
         return details
     }
 }
@@ -237,14 +236,18 @@ extension SparrowRMBAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rmbDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Horizontal Distance: \(self.horizontalDistance)\n")
-//        details.append("Vertical Distance: \(self.verticalDistance)\n")
-//        details.append("Move Speed: \(self.moveSpeed)\n")
-//        details.append("Speed Duration: \(self.speedDuration)\n")
-//        details.append("Radius: \(self.radius)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Cast Movement Multiplier: \(self.castMovementMultiplier)\n")
+        details.append("Min Channel Time: \(self.minimumChannelTime)\n")
+        details.append("Max Damage Channel Time: \(self.maxDamageChannelTime)\n")
+        details.append("Starting Channel Damage: \(self.startingChannelDamage)\n")
+        details.append("End Channel Damage: \(self.endChannelDamage)\n")
+        details.append("Projectile Speed: \(self.projectileSpeed)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }

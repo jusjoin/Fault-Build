@@ -59,6 +59,11 @@ final class FaultDataRepository {
         
         for gameItem in responseDictionary {
             let item = GameItem(itemID: gameItem.key, gameItemData: gameItem.value)
+            FaultBuildHelper.getImage(imageURL: item.getItemImageURL(), completion: { image in
+                if let image = image {
+                    item.itemImage = image//.resize(scaledToSize: CGSize(width: 50, height: 50))
+                }
+            })
             gameItemDictionary[gameItem.key] = item
             
             switch(item.color) {
@@ -346,7 +351,17 @@ final class FaultDataRepository {
         }
         
         group.notify(queue: DispatchQueue.main) {
-            completion()
+            let group2 = DispatchGroup()
+            for hero in self.heroesDictionary {
+                group2.enter()
+                FaultBuildHelper.getImage(imageURL: hero.value.iconURL, completion: { image in
+                    self.heroesDictionary[hero.key]?.heroIcon = image
+                    group2.leave()
+                })
+            }
+            group2.notify(queue: DispatchQueue.main) {
+                completion()
+            }
         }
     }
     

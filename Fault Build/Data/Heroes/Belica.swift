@@ -10,6 +10,7 @@
 
 
 import Foundation
+import UIKit
 
 // MARK: - Belica
 class Belica: Codable, Hero {
@@ -29,6 +30,7 @@ class Belica: Codable, Hero {
     let eAbility: BelicaEAbility
     let rAbility: BelicaRAbility
     let pAbility: BelicaPAbility
+    var heroIcon: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

@@ -21,6 +21,15 @@ extension Boris: Hero {
         
     }
     
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
+    }
+    
     var bannerName: String {
         return "Boris_banner"
         //"https://global-uploads.webflow.com/5d44771a95c1f5121689f944/5eb614ccccd7e75fb34dc8a4_T_BorisDefault_Portrait.jpg"

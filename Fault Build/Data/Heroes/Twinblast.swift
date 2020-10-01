@@ -8,6 +8,7 @@
 //   let heroData = try? newJSONDecoder().decode(HeroData.self, from: jsonData)
 
 import Foundation
+import UIKit
 
 // MARK: - HeroData
 struct Twinblast: Codable {
@@ -27,6 +28,7 @@ struct Twinblast: Codable {
     let eAbility: TwinblastEAbility
     let rAbility: TwinblastRAbility
     let pAbility: TwinblastPAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

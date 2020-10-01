@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Greystone: Hero {
     var name: String {
@@ -18,6 +19,15 @@ extension Greystone: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/11.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {
@@ -247,7 +257,7 @@ extension GreystoneRMBAbility: Ability {
         details.append("Range: \(self.range)\n")
         details.append("Recovery Time: \(self.recoveryTime)\n")
         details.append("TIme: \(self.time)\n")
-        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }

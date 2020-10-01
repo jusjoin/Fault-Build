@@ -9,6 +9,7 @@
 //   let heroData = try? newJSONDecoder().decode(HeroData.self, from: jsonData)
 
 import Foundation
+import UIKit
 
 // MARK: - HeroData
 class Khaimera: Codable {
@@ -28,6 +29,7 @@ class Khaimera: Codable {
     let eAbility: KhaimeraEAbility
     let rAbility: KhaimeraRAbility
     let pAbility: KhaimeraPAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

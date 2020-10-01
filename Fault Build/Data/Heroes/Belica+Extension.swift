@@ -462,18 +462,18 @@ extension BelicaQAbility{
     
     func getDetails() -> String {
         var details = ""
-        details.append(self.qDescription + "\n\n")
-        details.append("Resource Cost: " + self.resourceCost + "\n")
-        details.append("Cooldown: " + self.cooldown + "\n")
-        details.append("Range: " + self.range + "\n")
-        details.append("Base Damage: " + self.baseDamage + "\n")
-        details.append("Width: " + self.width + "\n")
-        details.append("Height: " + self.height + "\n")
-        details.append("Cast Time: " + self.castTime + "\n")
-        details.append("Speed: " + self.speed + "\n")
-        details.append("Launch Speed: " + self.launchspeed + "\n")
-        details.append("Scaling Factor: " + self.scalingFactor + "\n")
-        details.append("Duration: " + self.duration + "\n")
+        details.append("\(self.qDescription)\n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Width: \(self.width)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Speed: \(self.speed)\n")
+        details.append("Launch Speed: \(self.launchspeed)\n")
+        details.append("Duration: \(self.duration)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -486,16 +486,29 @@ extension BelicaEAbility{
     func getDetails() -> String {
         var details = ""
         details.append(self.eDescription + "\n\n")
-        details.append("Resource Cost: " + self.resourceCost + "\n")
-        details.append("Cooldown: " + self.cooldown + "\n")
-        details.append("Range: " + self.range + "\n")
-        details.append("Base Damage" + self.baseDamage + "\n")
-        details.append("Radius: " + self.radius + "\n")
-        
-        if let lifetime = self.lifetime {
-            details.append(lifetime != "" ? "Lifetime: " + lifetime + "\n" : "")
+        details.append("Base Damage \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Range: \(self.range)\n")
+        if let manaperunithit = self.manaperunithit,
+           manaperunithit != "" {
+            details.append("Mana per Unit hit: \(manaperunithit)\n")
+        }
+        details.append("Radius: \(self.radius)\n")
+        if let lifetime = self.lifetime,
+           self.lifetime != "" {
+            details.append("Lifetime: \(lifetime)\n")
+        }
+        if let delay = self.delay,
+           delay != "" {
+            details.append("Delay: \(delay)\n")
         }
         
+        if let xLevel = self.xLevel,
+           xLevel != "" {
+            details.append("xLevel: \(xLevel)\n")
+        }
+        details.append("Radius: \(self.scalingFactor)")
         return details
     }
 }
@@ -507,16 +520,18 @@ extension BelicaRAbility{
     
     func getDetails() -> String {
         var details = ""
-        details.append(self.rDescription + "\n\n")
-        details.append("Resource Cost: " + self.resourceCost + "\n")
-        details.append("Cooldown" + self.cooldown + "\n")
-        details.append("Range: " + self.range + "\n")
-        details.append("Base Damage: " + self.baseDamage + "\n")
-        details.append("Cast Time: " + self.castTime + "\n")
-        details.append("Recovery Time: " + self.recoveryTime + "\n")
-        details.append("Missing Mana PCT: " + self.missingManaPCT + "\n")
-        details.append("Missing Mana PCT Max: " + self.missingManaPCTMax + "\n")
-        details.append("Scaling Factor: " + self.scalingFactor + "\n")
+        details.append("\(self.rDescription) \n\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown \(self.cooldown)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Missing Mana PCT: \(self.missingManaPCT)\n")
+        details.append("Missing Mana PCT Max: \(self.missingManaPCTMax)\n")
+        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
+        
         return details
     }
 }

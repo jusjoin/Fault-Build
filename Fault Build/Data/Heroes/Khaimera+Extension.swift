@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Khaimera: Hero {
     var name: String {
@@ -18,6 +19,15 @@ extension Khaimera: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/6.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {
@@ -164,19 +174,12 @@ extension KhaimeraQAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.qDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Bounce Range: \(self.maxBounceRange)\n")
-//        details.append("Minion Damage Reduction: \(self.minionDamageReduction)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Stun Duration: \(self.stunDuration)\n")
-//        details.append("Speed: \(self.speed)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Minion Damage Reduction: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Base Damage: \(self.maxDuration)\n")
+        details.append("Max Bounce Range: \(self.maxNumberAttacks)\n")
+        details.append("Resource Cost: \(self.bAScalingFactor)")
         return details
     }
 }
@@ -189,18 +192,17 @@ extension KhaimeraEAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.eDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("PCT Start Charge Dmg: \(self.pCTStartChargeDmg)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow: \(self.slow)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("BBBAD Duration: \(self.bBBADDuration)\n")
+        details.append("Max Lifetime: \(self.bonusBaseBAD)\n")
+        details.append("Cast Animation Time 1: \(self.castAnimationTime1)\n")
+        details.append("Cast Animation Time 2: \(self.castAnimationTime2)\n")
+        details.append("Case Movement Multiplier: \(self.castMovementMultiplier)\n")
+        details.append("Grant Stacks Effect Delay: \(self.grantStacksEffectDelay)\n")
+        details.append("Passive Stacks: \(self.passiveStacks)\n")
+        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)")
         return details
     }
 }
@@ -213,16 +215,17 @@ extension KhaimeraRAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("Effect Delay: \(self.effectDelay)\n")
-//        details.append("Fence Height: \(self.fenceHeight)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Range: \(self.range)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Channel Duration: \(self.channelDuration)\n")
+        details.append("Effect 2 Delay: \(self.effect2Delay)\n")
+        details.append("Knockback Speed: \(self.knockbackSpeed)\n")
+        details.append("Passive Stacks: \(self.passiveStacks)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Suppression: \(self.supression)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -235,14 +238,15 @@ extension KhaimeraRMBAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rmbDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Horizontal Distance: \(self.horizontalDistance)\n")
-//        details.append("Vertical Distance: \(self.verticalDistance)\n")
-//        details.append("Move Speed: \(self.moveSpeed)\n")
-//        details.append("Speed Duration: \(self.speedDuration)\n")
-//        details.append("Radius: \(self.radius)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Additional Stacks: \(self.additionalStacks)\n")
+        details.append("Duration: \(self.duration)\n")
+        details.append("Effect Delay: \(self.effectDelay)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Slow: \(self.slow)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }

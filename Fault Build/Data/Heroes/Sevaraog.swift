@@ -11,6 +11,7 @@ import Foundation
 //   let heroData = try? newJSONDecoder().decode(HeroData.self, from: jsonData)
 
 import Foundation
+import UIKit
 
 // MARK: - HeroData
 class Sevarog: Codable {
@@ -30,6 +31,7 @@ class Sevarog: Codable {
     let eAbility: SevarogEAbility
     let rAbility: SevarogRAbility
     let pAbility: SevarogPAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

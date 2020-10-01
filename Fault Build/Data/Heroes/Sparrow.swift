@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - HeroData
 class Sparrow: Codable {
@@ -26,6 +27,7 @@ class Sparrow: Codable {
     let eAbility: SparrowEAbility
     let rAbility: SparrowRAbility
     let pAbility: SparrowPAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

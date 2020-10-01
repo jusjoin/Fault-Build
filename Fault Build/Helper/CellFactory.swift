@@ -16,7 +16,14 @@ class CellFactory{
     
     static func createBasicItemCell(gameItem: GameItem) -> FBTableViewCell {
         let cell = FBTableViewCell(style: .subtitle, reuseIdentifier: ReuseIdentifiers.basicItemCell)
-        cell.imageView?.image = gameItem.getItemImage().resize(scaledToSize: CGSize(width: 50, height: 50))
+        cell.imageView?.frame.size = CGSize(width: 50, height: 50)
+        cell.imageView?.clipsToBounds = true
+        if let image = gameItem.itemImage {
+            cell.imageView?.image = image.resize(scaledToSize: CGSize(width: 50, height: 50))
+        }
+        else {
+            cell.imageView?.image = gameItem.getDefaultItemImage().resize(scaledToSize: CGSize(width: 50, height: 50))
+        }
         cell.imageView?.backgroundColor = gameItem.getItemImageBackgroundColor()
         cell.textLabel?.text = gameItem.name
         var itemInfo = ""
@@ -28,7 +35,7 @@ class CellFactory{
         }
         
         cell.detailTextLabel?.numberOfLines = 0
-        cell.detailTextLabel?.text = itemInfo
+        cell.detailTextLabel?.text = itemInfo != "" ? itemInfo : "Juice"
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
 //        cell.layer.cornerRadius = 8

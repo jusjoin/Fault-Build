@@ -86,8 +86,15 @@ class ItemViewController: BaseViewController {
         let row = ItemTableRow(rawValue: indexPath.row)
         switch section {
         case .tableHeader:
-            cell = CellFactory.createCenterImageViewCell(
-                image: self.item.getItemImage().resize(scaledToSize: CGSize(width: 100, height: 100)))
+            var itemImage = UIImage()
+            if let image = self.item.itemImage {
+                itemImage = image.resize(scaledToSize: CGSize(width: 100, height: 100))
+            }
+            else
+            {
+                itemImage = self.item.getDefaultItemImage().resize(scaledToSize: CGSize(width: 100, height: 100))
+            }
+            cell = CellFactory.createCenterImageViewCell(image: itemImage)
             cell.backgroundColor = self.item.getItemImageBackgroundColor()
             
         case .itemDetails:

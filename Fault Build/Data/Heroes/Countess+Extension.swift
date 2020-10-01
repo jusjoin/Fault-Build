@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Countess: Hero {
     var name: String {
@@ -17,6 +18,15 @@ extension Countess: Hero {
     
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/9.jpg"
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - HeroData
 class GrimExe: Codable {
@@ -26,6 +27,7 @@ class GrimExe: Codable {
     let eAbility: GrimExeEAbility
     let rAbility: GrimExeRAbility
     let pAbility: GrimExePAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

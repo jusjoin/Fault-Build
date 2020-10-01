@@ -34,7 +34,7 @@ class BaseViewController: UITableViewController, UISearchBarDelegate {
         tableView.backgroundColor = ThemeManager().currentTheme.tableViewBackgroundColor
 //        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = 44
+        tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = UITableView.automaticDimension
 //        tableView.estimatedSectionHeaderHeight = 25

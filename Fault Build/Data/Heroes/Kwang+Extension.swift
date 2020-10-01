@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Kwang: Hero {
     var name: String {
@@ -18,6 +19,15 @@ extension Kwang: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/4.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {
@@ -164,19 +174,17 @@ extension KwangQAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.qDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Bounce Range: \(self.maxBounceRange)\n")
-//        details.append("Minion Damage Reduction: \(self.minionDamageReduction)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Stun Duration: \(self.stunDuration)\n")
-//        details.append("Speed: \(self.speed)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cast Time: \(self.casttime)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Duration: \(self.duration)\n")
+        details.append("Effect Delay: \(self.effectDelay)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Range: \(self.range)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -189,18 +197,18 @@ extension KwangEAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.eDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Base Damage: \(self.baseDamage)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("PCT Start Charge Dmg: \(self.pCTStartChargeDmg)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Slow: \(self.slow)\n")
-//        details.append("Slow Duration: \(self.slowDuration)\n")
-//        details.append("Scaling Factor: \(self.scalingFactor)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("Energy Armor Shred: \(self.enArShred)\n")
+        details.append("Shred Duration: \(self.shredDuration)\n")
+        details.append("Movement Penalty: \(self.movementPenalty)\n")
+        details.append("Sword Range: \(self.swordRange)\n")
+        details.append("Without Sword Range: \(self.withoutSwRange)\n")
+        details.append("Width: \(self.width)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Scaling Factor: \(self.scalingFactor)")
         return details
     }
 }
@@ -213,16 +221,17 @@ extension KwangRAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Max Lifetime: \(self.maxLifetime)\n")
-//        details.append("Effect Delay: \(self.effectDelay)\n")
-//        details.append("Fence Height: \(self.fenceHeight)\n")
-//        details.append("Radius: \(self.radius)\n")
-//        details.append("Ready Movement Multiplier: \(self.readyMovementMultiplier)\n")
-//        details.append("Recovery Time: \(self.recoveryTime)\n")
-//        details.append("Range: \(self.range)\n")
+        details.append("Base Damage: \(self.baseDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("P Scaling Factor: \(self.pScalingFactor)\n")
+        details.append("Radius: \(self.radius)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Slow: \(self.slow)\n")
+        details.append("Slow Duration: \(self.slowDuration)\n")
+        details.append("Recovery Time: \(self.recoveryTime)\n")
+        details.append("Z Scaling Factor: \(self.zScalingFactor)")
         return details
     }
 }
@@ -235,14 +244,20 @@ extension KwangRMBAbility: Ability {
     func getDetails() -> String {
         var details = ""
         details.append("\(self.rmbDescription)\n\n")
-//        details.append("Resource Cost: \(self.resourceCost)\n")
-//        details.append("Cooldown: \(self.cooldown)\n")
-//        details.append("Cast Time: \(self.castTime)\n")
-//        details.append("Horizontal Distance: \(self.horizontalDistance)\n")
-//        details.append("Vertical Distance: \(self.verticalDistance)\n")
-//        details.append("Move Speed: \(self.moveSpeed)\n")
-//        details.append("Speed Duration: \(self.speedDuration)\n")
-//        details.append("Radius: \(self.radius)\n")
+        details.append("Lightning Radius: \(self.lightningDamage)\n")
+        details.append("Shield Damage: \(self.shieldDamage)\n")
+        details.append("Resource Cost: \(self.resourceCost)\n")
+        details.append("Cooldown: \(self.cooldown)\n")
+        details.append("Cast Time: \(self.castTime)\n")
+        details.append("AOE Radius: \(self.aOERadius)\n")
+        details.append("Height: \(self.height)\n")
+        details.append("Sh Damage Radius: \(self.shDmgRadius)\n")
+        details.append("BHP Scaling Factor: \(self.bHPScalingFactor)\n")
+        details.append("Shield Amount: \(self.shieldAmount)\n")
+        details.append("Shield Duration: \(self.shieldDuration)\n")
+        details.append("Light SC Factor: \(self.lightScFact)\n")
+        details.append("Recovery TIme: \(self.recoveryTime)\n")
+        details.append("Shield Scaling Factor: \(self.shieldScalingFactor)")
         return details
     }
 }

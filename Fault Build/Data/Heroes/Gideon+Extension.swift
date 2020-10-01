@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Gideon: Hero {
     var name: String {
@@ -18,6 +19,15 @@ extension Gideon: Hero {
     var iconURL: String {
         return "https://api.playfault.com/imagecdn/portraits/3.jpg"
         
+    }
+    
+    var heroIcon: UIImage? {
+        get {
+            return self.iconImage
+        }
+        set (image) {
+            self.iconImage = image
+        }
     }
     
     var bannerName: String {

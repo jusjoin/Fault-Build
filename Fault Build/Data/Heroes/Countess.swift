@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //   let heroData = try? newJSONDecoder().decode(HeroData.self, from: jsonData)
 
@@ -30,6 +31,7 @@ class Countess: Codable {
     let eAbility: CountessEAbility
     let rAbility: CountessRAbility
     let pAbility: CountessPAbility
+    var iconImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case info

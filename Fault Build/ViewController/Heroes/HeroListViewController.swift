@@ -39,19 +39,19 @@ class HeroListViewController: BaseViewController {
     func getHeroesAndIcons() {
         FaultDataRepository.shared.getHeroes(completion: { [weak self] in
             if let self = self {
-                let group = DispatchGroup()
-                for hero in FaultDataRepository.shared.getHeroesDictionary() {
-                    group.enter()
-                    FaultBuildHelper.getImage(imageURL: hero.value.iconURL, completion: { image in
-                        self.heroIcons[hero.key] = image
-                        group.leave()
-                    })
-                }
-                group.notify(queue: DispatchQueue.main) {
+//                let group = DispatchGroup()
+//                for hero in FaultDataRepository.shared.getHeroesDictionary() {
+//                    group.enter()
+//                    FaultBuildHelper.getImage(imageURL: hero.value.iconURL, completion: { image in
+//                        self.heroIcons[hero.key] = image ?? UIImage(named: "FaultLogo")?.resize(scaledToSize: CGSize(width: 50, height: 50))
+//                        group.leave()
+//                    })
+//                }
+//                group.notify(queue: DispatchQueue.main) {
                     self.sortHeroes()
                     self.reloadTableView()
                     self.stopActivity()
-                }
+//                }
             }
         })
     }
@@ -82,7 +82,8 @@ class HeroListViewController: BaseViewController {
         let button = UIButton(type: .custom)
         button.imageView?.contentMode = .scaleAspectFit
         if let hero = FaultDataRepository.shared.getHeroesDictionary()[heroName] {
-            button.setImage(heroIcons[hero.name], for: .normal)
+            let image = hero.heroIcon ?? UIImage(named: "FaultLogo")
+            button.setImage(image, for: .normal)
             button.addTarget(self, action: #selector(self.heroImageButtonClick(_:)), for: .touchUpInside)
         }
         return button
@@ -141,7 +142,7 @@ class HeroListViewController: BaseViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == TableSections.filters.rawValue {
+        if indexPath.section == TableSections.filters.rawValue {
             let heroFilterViewController = SelectHeroFilterViewController(selectedFilter: self.currentFilter)
             heroFilterViewController.delegate = self
             self.navigationController?.pushViewController(heroFilterViewController, animated: true)
