@@ -35,7 +35,7 @@ class CellFactory{
         }
         
         cell.detailTextLabel?.numberOfLines = 0
-        cell.detailTextLabel?.text = itemInfo != "" ? itemInfo : "Juice"
+        cell.detailTextLabel?.text = itemInfo
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
 //        cell.layer.cornerRadius = 8
