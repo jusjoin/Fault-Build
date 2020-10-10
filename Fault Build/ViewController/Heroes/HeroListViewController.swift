@@ -65,14 +65,16 @@ class HeroListViewController: BaseViewController {
             numberOfRows += 1
         }
         var currentHeroKey = 0
-        for row in 0...numberOfRows - 1 {
-            self.heroRowDictionary[row] = [String]()
-            for _ in 0...self.numberOfHeroesPerRow - 1 {
-                self.heroRowDictionary[row]?.append(heroKeys[currentHeroKey])
-                currentHeroKey += 1
-                if currentHeroKey >= heroes.count {
-                    return
-                    
+        if numberOfRows > 0 {
+            for row in 0...numberOfRows - 1 {
+                self.heroRowDictionary[row] = [String]()
+                for _ in 0...self.numberOfHeroesPerRow - 1 {
+                    self.heroRowDictionary[row]?.append(heroKeys[currentHeroKey])
+                    currentHeroKey += 1
+                    if currentHeroKey >= heroes.count {
+                        return
+                        
+                    }
                 }
             }
         }
