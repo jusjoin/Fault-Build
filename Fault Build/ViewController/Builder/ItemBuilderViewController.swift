@@ -57,7 +57,7 @@ class ItemBuilderViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Build"
-        self.navigationItem.rightBarButtonItem?.title = "Save/Load"
+        self.setupRightBarButton()
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,8 +71,12 @@ class ItemBuilderViewController: BaseViewController {
         }
     }
     
-    //TODO: Create a popup which allows selecting affinity
-    //TODO: Affinity rank calculations
+    func setupRightBarButton() {
+        let saveBuildButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveBuild(_:)))
+        self.navigationItem.rightBarButtonItem = saveBuildButton
+    }
+    
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return ItemBuilderTableSections.allCases.count
@@ -240,18 +244,28 @@ extension ItemBuilderViewController: AffinityLevelTableViewCellDelegate {
         heroStats?.updateHeroStats()
     }
     
-//    func didDecreaseAffinity1() {
-//
-//    }
-    
     func didUpdateAffinity2(rank: Int) {
         self.affinity2Rank = rank
         heroStats?.updateHeroStats()
     }
     
-//    func didDecreaseAffinity2() {
-//
-//    }
+    @objc func saveBuild(_ sender: Any) {
+        var itemArray = [String]()
+        for item in buildItems {
+            itemArray.append(item.itemID)
+        }
+        let itemBuild = ItemBuild(
+            buildID: "1",
+            characterID: "1",
+            items: itemArray,
+            affinity1: 1,
+            affinity1Level: self.affinity1Rank,
+            affinity2: 2,
+            affinity2Level: self.affinity2Rank
+        )
+        
+        FaultCoreDataManager.shared.saveItemBuild(itemBuild: itemBuild)
+    }
 }
 
 extension ItemBuilderViewController: ItemListViewDelegate {

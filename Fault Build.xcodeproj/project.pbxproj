@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8438E58A25326A570090A62F /* FaultCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438E58925326A570090A62F /* FaultCoreDataManager.swift */; };
+		8438E58F25326ED70090A62F /* ItemBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438E58E25326ED60090A62F /* ItemBuild.swift */; };
 		846048B224FEE71900E4A2F6 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */; };
 		846048B5250467C500E4A2F6 /* AffinityLevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B4250467C500E4A2F6 /* AffinityLevelTableViewCell.swift */; };
 		846048B9250AFF3C00E4A2F6 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846048B8250AFF3C00E4A2F6 /* Double+Extensions.swift */; };
@@ -106,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8438E58925326A570090A62F /* FaultCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultCoreDataManager.swift; sourceTree = "<group>"; };
+		8438E58E25326ED60090A62F /* ItemBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBuild.swift; sourceTree = "<group>"; };
 		846048B124FEE71900E4A2F6 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		846048B4250467C500E4A2F6 /* AffinityLevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffinityLevelTableViewCell.swift; sourceTree = "<group>"; };
 		846048B8250AFF3C00E4A2F6 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -216,6 +220,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8438E58D25326EC40090A62F /* Builds */ = {
+			isa = PBXGroup;
+			children = (
+				8438E58E25326ED60090A62F /* ItemBuild.swift */,
+			);
+			path = Builds;
+			sourceTree = "<group>";
+		};
 		846048B3250463E300E4A2F6 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,12 +442,14 @@
 		84AA325924D908310020D08A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8438E58D25326EC40090A62F /* Builds */,
 				84AA325524D8EECE0020D08A /* Constants.swift */,
 				8468856D24EE4B710018DE60 /* Items */,
 				8468855D24EA347E0018DE60 /* Heroes */,
 				84AA325C24DA1C350020D08A /* API */,
 				84AA326824DA5D0A0020D08A /* FaultDataRepository.swift */,
 				846906B125188C47007CC039 /* HeroRole.swift */,
+				8438E58925326A570090A62F /* FaultCoreDataManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -596,9 +610,11 @@
 				84690686251751EA007CC039 /* Greystone.swift in Sources */,
 				84A3C44724E91D1C00DFDE5C /* Belica.swift in Sources */,
 				846906B42518906A007CC039 /* UIPickerTableViewCell.swift in Sources */,
+				8438E58A25326A570090A62F /* FaultCoreDataManager.swift in Sources */,
 				846906A825182E9D007CC039 /* Sparrow+Extension.swift in Sources */,
 				84AA325324D7D2250020D08A /* BaseViewController.swift in Sources */,
 				8469068C25175D7C007CC039 /* Grim+Extension.swift in Sources */,
+				8438E58F25326ED70090A62F /* ItemBuild.swift in Sources */,
 				846048B9250AFF3C00E4A2F6 /* Double+Extensions.swift in Sources */,
 				8468857824F357910018DE60 /* ItemFilterTableViewCell.swift in Sources */,
 				8468856C24EE3F480018DE60 /* HeroData.swift in Sources */,

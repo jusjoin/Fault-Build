@@ -29,7 +29,7 @@ class GameItemAttribute {
     }
 }
 
-class GameItem {
+public class GameItem: NSObject {
     
     let itemID: String
     let name: String
@@ -223,20 +223,20 @@ enum GameItemType: Int, CaseIterable {
     }
 }
 
-extension GameItem: Hashable, Equatable {
-//    var hashValue: Int {
-//        return self.itemID.hashValue ^
-//        self.name.hashValue ^
-//            self.color.hashValue
+//extension GameItem: Hashable, Equatable {
+////    var hashValue: Int {
+////        return self.itemID.hashValue ^
+////        self.name.hashValue ^
+////            self.color.hashValue
+////    }
+////
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(self.itemID.hashValue)
+//        hasher.combine(self.name.hashValue)
+//        hasher.combine(self.color.hashValue)
 //    }
-//
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.itemID.hashValue)
-        hasher.combine(self.name.hashValue)
-        hasher.combine(self.color.hashValue)
-    }
-    
-    static func == (lhs: GameItem, rhs: GameItem) -> Bool {
-        return lhs.itemID == rhs.itemID && lhs.name == rhs.name
-    }
-}
+//    
+//    static func == (lhs: GameItem, rhs: GameItem) -> Bool {
+//        return lhs.itemID == rhs.itemID && lhs.name == rhs.name
+//    }
+//}
